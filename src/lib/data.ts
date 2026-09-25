@@ -75,3 +75,16 @@ export async function getPosts(): Promise<Post[]> {
     }))
     .sort((a, b) => b.published.getTime() - a.published.getTime() || (a.order ?? 0) - (b.order ?? 0));
 }
+
+/** Latest article per service, newest first: a varied "latest writing" list for the home and thank-you pages. */
+export async function getLatestByService(n = 3): Promise<Post[]> {
+  const seen = new Set<string>();
+  const out: Post[] = [];
+  for (const p of await getPosts()) {
+    if (seen.has(p.service)) continue;
+    seen.add(p.service);
+    out.push(p);
+    if (out.length === n) break;
+  }
+  return out;
+}

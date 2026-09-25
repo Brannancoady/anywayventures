@@ -47,11 +47,15 @@ Commit a change to `main` and Netlify rebuilds the site in about a minute.
 
 ### Adding an article
 
-Copy one of the files in `src/content/insights/`, rename it to the slug you want and edit the front matter. The body is Markdown:
-- the first paragraph becomes the lead
-- the `pull` quote is placed after the second paragraph
+1. Copy one of the files in `src/content/insights/` and rename it to the slug you want. The body is Markdown:
+   - the first paragraph becomes the lead
+   - `pull` is shown as a pull quote after the second paragraph, and must be copied word for word from the body
+2. Fill in `description` (130 to 155 characters, used in search results), `tags`, `faq` (shown at the end of the article and marked up as FAQ data) and `related` (slugs of related articles).
+3. Run `npm run lint:content`. It flags em and en dashes, stock AI-writing phrases, over-long titles and descriptions, a pull quote not found in the text, and broken internal links.
+4. Run `npm run og` to make the article's share image (`public/og/insights/<slug>.png`). It needs Chrome installed; set `CHROME_PATH` if it isn't found.
+5. Add `draft: true` to keep an article off the site while you work on it.
 
-The article is added automatically to `/insights`, the menus, the sitemap, the RSS feed, `llms.txt` and `llms-full.txt`.
+Published articles are added automatically to `/insights`, the sitemap, the RSS feed, `llms.txt` and `llms-full.txt`. The home page shows the latest article from each service.
 
 ### Booking link
 

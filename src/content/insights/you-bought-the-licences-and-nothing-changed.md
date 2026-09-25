@@ -10,6 +10,7 @@ audience: "CEOs, owner-managers, COOs"
 service: "Embedded AI delivery"
 serviceHref: "/embedded-ai-delivery"
 pull: "Licences don't change workflows. Someone sitting with the person doing the work does."
+description: "Why AI licences rarely change how a mid-market business works, and how a short embedded sprint gets core processes automated and measurable instead."
 order: 3
 ---
 A pattern I see in almost every business I walk into: a company-wide AI licence rolled out eighteen months ago, a handful of enthusiasts using it heavily, most people using it to draft emails, and the core processes — quoting, onboarding, reconciliation, reporting — exactly as they were.

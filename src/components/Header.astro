@@ -14,9 +14,9 @@ const uPe = pePages ? on : 'transparent', uOps = opsPages ? on : 'transparent', 
 
 const posts = await getPosts();
 const bySlug = (slug: string) => posts.find((p) => p.slug === slug) ?? posts[0];
-const featPe = bySlug('ai-due-diligence-value-creation-plan');
-const featOps = bySlug('you-bought-the-licences-and-nothing-changed');
-const featAbout = bySlug('why-mid-market-funds-cant-hire-an-ai-operating-partner');
+const featPe = bySlug('ai-due-diligence-private-equity');
+const featOps = bySlug('why-ai-pilots-fail');
+const featAbout = bySlug('ai-operating-partner-private-equity');
 const drawerFeatured = featPe;
 
 const drawerGroups = [

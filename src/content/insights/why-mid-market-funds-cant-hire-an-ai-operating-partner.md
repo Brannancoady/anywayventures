@@ -10,6 +10,7 @@ audience: "Fund partners, portfolio directors"
 service: "Fractional AI operating partner"
 serviceHref: "/ai-operating-partner"
 pull: "A roadmap is not a capability, and management teams were already busy."
+description: "Why lower mid-market PE funds struggle to hire a full-time AI operating partner, and why a fractional, delivery-backed model works better across a portfolio."
 order: 2
 ---
 Large-cap funds are building AI operating teams. Lower-mid-market funds — six to fifteen portfolio companies, small operating bench — mostly aren't, not because they don't see the need but because the economics don't work. A credible AI operating partner costs what a partner costs, and the portfolio isn't large enough to amortise that.

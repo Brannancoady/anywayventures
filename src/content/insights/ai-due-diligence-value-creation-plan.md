@@ -10,6 +10,7 @@ audience: "Deal teams, investment committees"
 service: "AI due diligence"
 serviceHref: "/ai-due-diligence"
 pull: "The plan you can underwrite is the one that knows what broke last month."
+description: "AI due diligence should produce a costed value creation plan for the investment case, not another risk register. What that looks like for PE deal teams."
 order: 1
 ---
 Technical diligence has a settled shape: architecture, code quality, security, team, a red/amber/green summary. It is useful and it is almost entirely defensive — a list of things that could go wrong. AI has been bolted onto that list as another risk category: is the target's AI real, is the data clean, is there IP exposure.

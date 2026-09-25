@@ -5,14 +5,13 @@ description: "A technology due diligence checklist for UK private equity: eight 
 kicker: "DILIGENCE"
 published: 2026-09-25
 updated: 2026-09-25
-read: "9 MIN"
-readLong: "Nine minutes"
+read: "10 MIN"
+readLong: "Ten minutes"
 audience: "Deal teams, operating partners, CFOs"
 service: "AI due diligence"
 serviceHref: "/ai-due-diligence"
 pull: "Technical debt should be costed, not described."
 order: 2
-draft: true
 tags: ["technology due diligence checklist", "tech due diligence private equity", "IT due diligence checklist", "software due diligence", "technical due diligence questions"]
 related: ["ai-due-diligence-private-equity", "ai-washing-due-diligence"]
 faq:
@@ -33,9 +32,9 @@ That filter matters more this year than it did two years ago. Early 2026 saw a s
 
 ## What separates a checklist from a judgement
 
-I've sat on both sides of this. I ran Netsells, a York product consultancy, as CEO for around a decade, and I was Chief Product Officer at YourParkingSpace. I've answered the diligence questionnaire late at night as well as written it. The pattern is consistent. Targets are good at producing documents. They are much worse at producing evidence.
+I have been on both ends of this. I ran Netsells, a York product consultancy, as CEO for around a decade, and I was Chief Product Officer at YourParkingSpace. I've answered the diligence questionnaire late at night as well as written it. The pattern is consistent. Targets are good at producing documents. They are much worse at producing evidence.
 
-A policy says what should happen. A deployment log, a ticket history or a cloud bill shows what did. Wherever possible, the list below asks for the second kind. Where only the first kind exists, that is itself a finding.
+A policy says what should happen. A deployment log or a cloud bill shows what did. The list below asks for the second kind. Where only the first kind exists, that is itself a finding.
 
 ## Architecture, engineering and the people who hold it together
 
@@ -51,7 +50,7 @@ The red flag is a business plan that assumes three times the volume on a platfor
 
 Ask for read access to the repository, deployment frequency over the last six months, lead time from commit to production, the change failure rate, and how testing works in practice.
 
-Treat test coverage as a signal, not a score. High coverage of trivial code tells you less than modest coverage concentrated on billing and permissions. What matters is whether the team deploys often and without drama. A team that ships several times a week with automated checks can usually absorb a new owner's priorities. A team that ships monthly, by hand, on a Friday night, will slow every value-creation initiative you plan.
+Treat test coverage as a signal, not a score. High coverage of trivial code tells you less than modest coverage concentrated on billing and permissions. What matters is whether the team deploys often and without drama. A team that ships monthly, by hand, on a Friday night, will slow every value-creation initiative you plan.
 
 The red flag is manual releases owned by one person, no staging environment, and a long list of "we don't touch that bit". Price the slowdown into the plan, not only the risk register.
 
@@ -71,7 +70,7 @@ Ask for the last two penetration test reports with evidence of remediation, the 
 
 Treat SOC 2 and ISO 27001 as signals of discipline rather than proof of security. A certificate tells you a process existed during the audit window. The pen test findings, and what happened to them, tell you what the team does when nobody is checking. Good looks like findings closed on a documented timeline, multi-factor authentication everywhere, and a named person who owns data protection and can explain where personal data lives.
 
-The red flag is an unreported incident, personal data sitting in places the privacy notice doesn't mention, or critical pen test findings from last year still open. The first goes to a specific indemnity. The others go into the 100-day plan with a cost against them.
+The red flag is an unreported incident, personal data sitting in places the privacy notice doesn't mention, or critical pen test findings from last year still open. The first needs a specific indemnity. The others need a cost in the 100-day plan.
 
 ### 5. Third-party dependencies, licences and IP
 
@@ -89,11 +88,11 @@ Ask for product usage data at feature level, cohort retention (logo and revenue)
 
 Good looks like retention that holds up cohort by cohort, a small set of features doing most of the work, and a roadmap where most of last year's commitments arrived roughly on time.
 
-The red flag is a revenue plan that depends on features that don't exist yet, built by a team that delivered a third of last year's roadmap. If the model has new-product revenue in year two, discount it by the team's actual delivery record, not by the deck.
+The red flag is a revenue plan that depends on features that don't exist yet, built by a team that delivered a third of last year's roadmap. Discount any new-product revenue by that record.
 
 ### 7. Cost to run and technical debt, in pounds
 
-Ask for 12 months of cloud bills, all software subscriptions, engineering time split between new features and maintenance, and the team's own list of what they'd fix if they had three clear months.
+Ask for 12 months of cloud bills, all software subscriptions, engineering time split between new features and maintenance, and the team's own list of what they'd fix first.
 
 Technical debt should be costed, not described. Take an illustrative case: a platform on an unsupported framework version that the team estimate needs four engineers for nine months to upgrade. At a loaded cost of £85k per engineer a year, that's 4 × £85k × 0.75 = £255k. Plus nine months in which those four build nothing a customer pays for. If the equity story includes a new product line in year one, that's a real delay with a real cost, and it belongs in the price or in the debt-like items as known capex.
 

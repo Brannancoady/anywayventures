@@ -12,7 +12,6 @@ service: "Fractional AI operating partner"
 serviceHref: "/ai-operating-partner"
 pull: "Hours returned are not EBITDA until someone stops paying for them."
 order: 4
-draft: true
 tags: ["AI value creation plan", "AI value creation private equity", "AI in portfolio companies", "100-day plan AI", "AI EBITDA impact"]
 related: ["ai-operating-partner-private-equity", "measuring-ai-roi"]
 faq:

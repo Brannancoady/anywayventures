@@ -1,7 +1,7 @@
 ---
 title: "AI agents for business: where they work and where they don't"
 standfirst: "Most of what gets sold as an agent is a workflow with a model call in the middle. That's usually the right answer. Here is how to tell when it isn't."
-description: "AI agents for business operations, from an operator: how agents differ from RPA and automation, where they pay back, where they fail, and how to control them."
+description: "AI agents for business operations: how they differ from RPA and automation, where they pay back, where they fail, and how to control them."
 kicker: "DELIVERY"
 published: 2026-09-25
 updated: 2026-09-25
@@ -12,7 +12,6 @@ service: "Embedded AI delivery"
 serviceHref: "/embedded-ai-delivery"
 pull: "The best agent in most mid-market businesses is a dull one."
 order: 9
-draft: true
 tags: ["AI agents for business", "AI agents use cases", "agentic AI in operations", "AI agents mid-market", "AI workflow automation", "AI agent vs RPA"]
 related: ["why-ai-pilots-fail", "how-to-implement-ai-mid-market-business"]
 faq:
@@ -57,12 +56,12 @@ A useful test when a vendor demos an agent: ask them to draw the flow. If they c
 
 The use cases that pay back share a shape: lots of documents, a known destination system, an outcome you can check, and a team currently spending hours keying, matching or chasing.
 
-- **Supplier invoices.** Read invoices from email and PDF, match to purchase orders and goods received, code them, post the clean ones for approval, queue the mismatches.
-- **Order entry from emails and PDFs.** Customers send orders in every format imaginable. The agent reads them, maps products and prices, and drafts the order in the ERP.
-- **Quote preparation.** Pull the spec from an enquiry, look up pricing rules and past quotes, draft the quote for an estimator to check and send.
-- **Onboarding checks.** Gather documents for a new customer, supplier or employee, check them against a list, chase what's missing, flag what looks wrong.
-- **First-line service triage with handoff.** Classify incoming requests, pull the account context, answer the simple ones from approved content, and route the rest to the right person with a summary.
-- **Reconciliations with exception queues.** Match bank lines, statements or intercompany entries, clear the obvious matches, and hand a short, explained list of exceptions to a person.
+- Supplier invoices. Read invoices from email and PDF, match to purchase orders and goods received, code them, post the clean ones for approval, queue the mismatches.
+- Order entry from emails and PDFs. Customers send orders in every format imaginable. The agent reads them, maps products and prices, and drafts the order in the ERP.
+- Quote preparation. Pull the spec from an enquiry, look up pricing rules and past quotes, draft the quote for an estimator to check and send.
+- Onboarding checks. Gather documents for a new customer, supplier or employee, check them against a list, chase what's missing, flag what looks wrong.
+- First-line service triage with handoff. Classify incoming requests, pull the account context, answer the simple ones from approved content, and route the rest to the right person with a summary.
+- Reconciliations with exception queues. Match bank lines, statements or intercompany entries, clear the obvious matches, and hand a short, explained list of exceptions to a person.
 
 Notice that none of these is customer-facing decision making. They're back office, the output is checked, and the value comes from moving a person from doing the work to reviewing it.
 
@@ -70,13 +69,13 @@ Notice that none of these is customer-facing decision making. They're back offic
 
 Agents struggle, and usually get quietly switched off, in four situations.
 
-**Open-ended customer-facing decisions without guardrails.** Letting a model decide refunds, credit terms or contract changes directly with customers is how you end up explaining yourself to the board. Keep a person on any decision that commits money or changes a customer relationship until you have months of evidence.
+Open-ended customer-facing decisions without guardrails. Letting a model decide refunds, credit terms or contract changes directly with customers is how you end up explaining yourself to the board. Keep a person on any decision that commits money or changes a customer relationship until you have months of evidence.
 
-**Anything without clean system access.** If the agent has to scrape a green-screen system, or the data it needs lives in someone's personal spreadsheet, the build becomes an integration project with a model attached. Fix the access first or pick a different process.
+Anything without clean system access. If the agent has to scrape a green-screen system, or the data it needs lives in someone's personal spreadsheet, the build becomes an integration project with a model attached. Fix the access first or pick a different process.
 
-**Low-volume work.** An agent that saves eight minutes on a task done twenty times a month returns under three hours. It will cost more than that to maintain.
+Low-volume work. An agent that saves eight minutes on a task done twenty times a month returns under three hours. It will cost more than that to maintain.
 
-**Processes nobody has mapped.** If three people do the job three different ways, an agent will learn to do it a fourth. Map the process, agree the one way, then automate it. I cover this failure in more depth in [why AI pilots fail](/insights/why-ai-pilots-fail).
+Processes nobody has mapped. If three people do the job three different ways, an agent will learn to do it a fourth. Map the process, agree the one way, then automate it. I cover this failure in more depth in [why AI pilots fail](/insights/why-ai-pilots-fail).
 
 ## Picking candidates: volume against variability
 
@@ -95,13 +94,13 @@ Take an illustrative £50m industrial distributor. Customers send around 250 ord
 
 Here's the agent, step by step.
 
-1. **Intake.** A shared mailbox rule passes every order email and attachment to the agent. Nothing else in that mailbox is visible to it.
-2. **Read.** The model extracts customer, delivery address, requested date, and each line: description, quantity, customer part number.
-3. **Match.** Deterministic lookups, not the model, find the customer account, map customer part numbers to your SKUs using the cross-reference table, and pull contract prices and stock.
-4. **Check.** Rules flag anything unusual: a new delivery address, a quantity more than three times the customer's normal, a price below contract, an unrecognised part, a credit hold.
-5. **Draft.** Clean orders are drafted in the ERP in a held status. Nothing is released to the warehouse yet.
-6. **Approve.** A person reviews the draft against the source document shown side by side and releases it with one click.
-7. **Exceptions.** Flagged orders go to a queue with the reason attached, so the person starts from "part 44-B not recognised" rather than from scratch.
+1. Intake. A shared mailbox rule passes every order email and attachment to the agent. Nothing else in that mailbox is visible to it.
+2. Read. The model extracts customer, delivery address, requested date, and each line: description, quantity, customer part number.
+3. Match. Deterministic lookups, not the model, find the customer account, map customer part numbers to your SKUs using the cross-reference table, and pull contract prices and stock.
+4. Check. Rules flag anything unusual: a new delivery address, a quantity more than three times the customer's normal, a price below contract, an unrecognised part, a credit hold.
+5. Draft. Clean orders are drafted in the ERP in a held status. Nothing is released to the warehouse yet.
+6. Approve. A person reviews the draft against the source document shown side by side and releases it with one click.
+7. Exceptions. Flagged orders go to a queue with the reason attached, so the person starts from "part 44-B not recognised" rather than from scratch.
 
 Assume 70% of orders come through clean and take 90 seconds to approve, and the other 30% still take the full six minutes. That's 175 × 1.5 = about 263 minutes plus 75 × 6 = 450 minutes, or roughly 12 hours a day. The saving is about 13 hours a day, or around 275 hours returned a month. Assume model and hosting costs of 10p per order: 250 × 21 × £0.10 is about £525 a month. The arithmetic isn't close.
 
@@ -111,14 +110,14 @@ What makes it survivable is the controls, not the model. The agent can draft but
 
 Most of what separates a production agent from a cancelled one is unglamorous. The list I work through on every build:
 
-- **Narrow scope.** One process, one mailbox, one destination. Widen it once it's earned the right.
-- **Human approval at the right step.** Before anything irreversible: releasing an order, paying an invoice, emailing a customer. Not at every step, or you've built a slower manual process.
-- **Exception queues.** The agent must be able to say "I'm not sure" and hand over with a reason. An agent that always produces an answer is the dangerous kind.
-- **Audit logs.** Input, output, action, approver, timestamp. Your auditors will ask, and so will UK GDPR if personal data is involved.
-- **Permissions like a new employee.** Give it the access you'd give a sensible new starter in week one. Read most things, write to a held status, approve nothing.
-- **An evaluation set.** A few hundred real, historical cases with the correct answers, run before launch and after every change. Without one, "it seems to work" is the only evidence you have.
-- **Cost per task.** Track it from day one. Model costs, retries and review time per order, per invoice, per ticket. This is where Gartner's escalating costs show up first.
-- **A fallback when the model is wrong.** A clear route back to the manual process, and a person who knows it's theirs. If the model provider has an outage on month-end, the business still closes.
+- Narrow scope. One process, one mailbox, one destination. Widen it once it's earned the right.
+- Human approval at the right step. Before anything irreversible: releasing an order, paying an invoice, emailing a customer. Not at every step, or you've built a slower manual process.
+- Exception queues. The agent must be able to say "I'm not sure" and hand over with a reason. An agent that always produces an answer is the dangerous kind.
+- Audit logs. Input, output, action, approver, timestamp. Your auditors will ask, and so will UK GDPR if personal data is involved.
+- Permissions like a new employee. Give it the access you'd give a sensible new starter in week one. Read most things, write to a held status, approve nothing.
+- An evaluation set. A few hundred real, historical cases with the correct answers, run before launch and after every change. Without one, "it seems to work" is the only evidence you have.
+- Cost per task. Track it from day one. Model costs, retries and review time per order, per invoice, per ticket. This is where Gartner's escalating costs show up first.
+- A fallback when the model is wrong. A clear route back to the manual process, and a person who knows it's theirs. If the model provider has an outage on month-end, the business still closes.
 
 For the wider sequencing (which process first, who owns it, how to measure the baseline before you start) see [how to implement AI in a mid-market business](/insights/how-to-implement-ai-mid-market-business).
 

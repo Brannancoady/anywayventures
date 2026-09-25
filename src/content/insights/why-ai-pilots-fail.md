@@ -10,9 +10,8 @@ readLong: "Nine minutes"
 audience: "CEOs, COOs, operating partners"
 service: "Embedded AI delivery"
 serviceHref: "/embedded-ai-delivery"
-pull: "The pilot was set up to fail before anyone wrote a prompt."
+pull: "Most failed pilots didn't fail loudly. They were abandoned by the people they were meant to help."
 order: 7
-draft: true
 tags: ["why AI pilots fail", "AI pilot to production", "AI proof of concept failure", "MIT 95% AI pilots", "generative AI project failure rate"]
 related: ["measuring-ai-roi", "how-to-implement-ai-mid-market-business"]
 faq:

@@ -12,7 +12,6 @@ service: "AI due diligence"
 serviceHref: "/ai-due-diligence"
 pull: "A business priced as proprietary AI software and delivered as a services firm with a chatbot has been mispriced, and the buyer pays the difference."
 order: 3
-draft: true
 tags: ["AI washing", "AI washing due diligence", "agent washing", "fake AI companies", "verifying AI claims", "AI claims in M&A"]
 related: ["ai-due-diligence-private-equity", "technology-due-diligence-checklist"]
 faq:

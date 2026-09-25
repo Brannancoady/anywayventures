@@ -12,7 +12,6 @@ service: "AI due diligence"
 serviceHref: "/ai-due-diligence"
 pull: "A target can have no AI at all and still carry more AI risk than one that sells it."
 order: 1
-draft: true
 tags: ["AI due diligence", "AI due diligence private equity", "due diligence on AI companies", "AI risk in M&A", "AI value creation in due diligence"]
 related: ["technology-due-diligence-checklist", "ai-washing-due-diligence"]
 faq:

@@ -12,7 +12,6 @@ service: "Board & NED"
 serviceHref: "/board-and-ned"
 pull: "AI doesn't need a new kind of governance."
 order: 6
-draft: true
 tags: ["board questions about AI", "AI governance for boards", "non-executive director AI", "board oversight of AI", "AI strategy board"]
 related: ["measuring-ai-roi", "why-ai-pilots-fail"]
 faq:

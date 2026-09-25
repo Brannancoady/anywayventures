@@ -1,9 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
-import { cases, getPosts } from '../lib/data';
+import { getLatestByService, cases } from '../lib/data';
 
 const path = '/';
-const posts = (await getPosts()).slice(0, 3);
+const posts = await getLatestByService(3);
 ---
 <Base path={path}>
 <div>
