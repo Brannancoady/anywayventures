@@ -1,0 +1,15 @@
+---
+import { contactEmail, ctaLabel } from '../lib/data';
+interface Props { heading: string }
+const { heading: ctaHeading } = Astro.props;
+---
+<section data-loc="section" aria-label="Enquire" style="padding:clamp(50px,6vw,80px) clamp(20px,4vw,60px);background:#15160f;color:#f5f2ea;display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px clamp(28px,4vw,60px);align-items:center">
+<div style="flex:1 1 420px;min-width:0">
+<h2 style="margin:0 0 14px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.025em">{ctaHeading}</h2>
+<p style="margin:0;font-size:18px;line-height:1.6;color:#c5c4b4;max-width:620px">The first conversation is free and takes under an hour. If there's an engagement worth having you'll leave knowing its shape and its price — and if there isn't, I'll say so.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;flex:none">
+<a href="/contact" style="text-decoration:none;background:#f5f2ea;color:#15160f;padding:17px 30px;font-size:15px;font-weight:600;white-space:nowrap">{ctaLabel}</a>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#a9a897">{contactEmail}</span>
+</div>
+</section>

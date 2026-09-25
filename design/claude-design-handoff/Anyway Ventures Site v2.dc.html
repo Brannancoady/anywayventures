@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"><style>body{margin:0;background:#f5f2ea;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#15160f}a{color:#8a5a3c}a:hover{color:#15160f}*{box-sizing:border-box}</style></helmet>
+
+<div style="background:#f5f2ea;color:#15160f;font-family:'IBM Plex Sans',system-ui,sans-serif;min-height:100vh">
+
+<div onMouseLeave="{{ closeMenu }}" style="position:sticky;top:0;z-index:30;background:#f5f2ea;border-bottom:1px solid rgba(21,22,15,.14);padding-top:env(safe-area-inset-top)">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px max(clamp(20px,4vw,60px),env(safe-area-inset-right)) 14px max(clamp(20px,4vw,60px),env(safe-area-inset-left))">
+<a href="#" onClick="{{ goHome }}" onMouseEnter="{{ closeMenu }}" style="text-decoration:none;color:#15160f;font-family:'Newsreader',Georgia,serif;font-size:23px;letter-spacing:-.01em;white-space:nowrap">Anyway&nbsp;Ventures</a>
+<sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;align-items:center;gap:clamp(14px,2vw,28px);font-size:14px;flex-wrap:wrap">
+<a href="#" onClick="{{ goPe }}" onMouseEnter="{{ openPe }}" style="text-decoration:none;color:{{ cPe }};padding:6px 0;border-bottom:1px solid {{ uPe }}">For PE &amp; investors</a>
+<a href="#" onClick="{{ goOperators }}" onMouseEnter="{{ openOps }}" style="text-decoration:none;color:{{ cOperators }};padding:6px 0;border-bottom:1px solid {{ uOps }}">For operators</a>
+<a href="#" onClick="{{ goAbout }}" onMouseEnter="{{ openAbout }}" style="text-decoration:none;color:{{ cAboutMenu }};padding:6px 0;border-bottom:1px solid {{ uAbout }}">About</a>
+<a href="#" onClick="{{ goInsights }}" onMouseEnter="{{ closeMenu }}" style="text-decoration:none;color:{{ cInsights }};padding:6px 0;border-bottom:1px solid transparent">Insights</a>
+<a href="#" onClick="{{ goContact }}" onMouseEnter="{{ closeMenu }}" style="text-decoration:none;color:#f5f2ea;background:#15160f;padding:10px 18px;font-size:13.5px;font-weight:500">Enquire</a>
+</div>
+</sc-if>
+<sc-if value="{{ isCompact }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;align-items:center;gap:12px">
+<a href="#" onClick="{{ goContact }}" style="text-decoration:none;color:#f5f2ea;background:#15160f;padding:12px 16px;font-size:13.5px;font-weight:500;min-height:44px;display:flex;align-items:center">Enquire</a>
+<a href="#" onClick="{{ toggleDrawer }}" aria-label="Menu" style="text-decoration:none;color:#15160f;border:1px solid rgba(21,22,15,.3);min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;padding:0 14px">{{ drawerLabel }}</a>
+</div>
+</sc-if>
+</div>
+<sc-if value="{{ peOpen }}" hint-placeholder-val="{{ false }}">
+<div style="border-top:1px solid rgba(21,22,15,.14);background:#f5f2ea;box-shadow:0 24px 40px -24px rgba(21,22,15,.25)">
+<div style="display:grid;grid-template-columns:minmax(0,2.3fr) minmax(260px,1fr)">
+<div style="padding:34px clamp(20px,4vw,60px) 38px;border-right:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:minmax(180px,240px) minmax(0,1fr);gap:40px">
+<div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:14px">FOR PE &amp; INVESTORS</div><p style="margin:0;font-size:14.5px;line-height:1.55;color:#3c3d33">One partner across the deal cycle: the person who diligences the target writes the AI plan and helps the portfolio deliver it.</p></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 36px"><div><a href="#" onClick="{{ goDiligence }}" style="text-decoration:none;color:#15160f;display:block;padding:12px 0;border-top:1px solid rgba(21,22,15,.12)"><div style="font-family:'Newsreader',Georgia,serif;font-size:21px;line-height:1.2">Tech, product &amp; AI due diligence</div><div style="font-size:13px;color:#5c5d51;margin-top:3px">Pre-deal · 1–3 weeks · fixed price</div></a><a href="#" onClick="{{ goOpPartner }}" style="text-decoration:none;color:#15160f;display:block;padding:12px 0;border-top:1px solid rgba(21,22,15,.12)"><div style="font-family:'Newsreader',Georgia,serif;font-size:21px;line-height:1.2">Fractional AI operating partner</div><div style="font-size:13px;color:#5c5d51;margin-top:3px">Retained · across the portfolio</div></a></div><div><a href="#" onClick="{{ goBoard }}" style="text-decoration:none;color:#15160f;display:block;padding:12px 0;border-top:1px solid rgba(21,22,15,.12)"><div style="font-family:'Newsreader',Georgia,serif;font-size:21px;line-height:1.2">Board &amp; NED</div><div style="font-size:13px;color:#5c5d51;margin-top:3px">Governance · 2–4 seats held</div></a><a href="#" onClick="{{ goPe }}" style="text-decoration:none;color:#15160f;display:block;padding:12px 0;border-top:1px solid rgba(21,22,15,.12)"><div style="font-family:'Newsreader',Georgia,serif;font-size:21px;line-height:1.2">The whole deal cycle</div><div style="font-size:13px;color:#5c5d51;margin-top:3px">How the four fit together</div></a></div></div>
+</div>
+<a href="#" onClick="{{ featPe.open }}" style="text-decoration:none;color:#f5f2ea;background:#15160f;padding:34px clamp(20px,3vw,44px) 38px;display:flex;flex-direction:column;gap:14px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#d9a27e">FROM INSIGHTS · {{ featPe.kicker }}</div>
+<div style="font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:26px;line-height:1.15;letter-spacing:-.015em">{{ featPe.title }}</div>
+<div style="font-size:14.5px;line-height:1.55;color:#c5c4b4">{{ featPe.standfirst }}</div>
+<div style="margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#d9a27e">READ · {{ featPe.read }} →</div>
+</a>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ opsOpen }}" hint-placeholder-val="{{ false }}">
+<div style="border-top:1px solid rgba(21,22,15,.14);background:#f5f2ea;box-shadow:0 24px 40px -24px rgba(21,22,15,.25)">
+<div style="display:grid;grid-template-columns:minmax(0,2.3fr) minmax(260px,1fr)">
+<div style="padding:34px clamp(20px,4vw,60px) 38px;border-right:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:minmax(180px,240px) minmax(0,1fr);gap:40px">
+<div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:14px">FOR OPERATORS</div><p style="margin:0;font-size:14.5px;line-height:1.55;color:#3c3d33">For CEOs and owner-managers who want cost out and capability in — built with your team, not described to them.</p></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 36px"><div><a href="#" onClick="{{ goEmbedded }}" style="text-decoration:none;color:#15160f;display:block;padding:12px 0;border-top:1px solid rgba(21,22,15,.12)"><div style="font-family:'Newsreader',Georgia,serif;font-size:21px;line-height:1.2">Embedded AI delivery</div><div style="font-size:13px;color:#5c5d51;margin-top:3px">Inside the business · 2–8 weeks</div></a><a href="#" onClick="{{ goEmbedded }}" style="text-decoration:none;color:#15160f;display:block;padding:12px 0;border-top:1px solid rgba(21,22,15,.12)"><div style="font-family:'Newsreader',Georgia,serif;font-size:21px;line-height:1.2">Internal tooling &amp; automation</div><div style="font-size:13px;color:#5c5d51;margin-top:3px">Agents in production, owned by your team</div></a></div><div><a href="#" onClick="{{ goEmbedded }}" style="text-decoration:none;color:#15160f;display:block;padding:12px 0;border-top:1px solid rgba(21,22,15,.12)"><div style="font-family:'Newsreader',Georgia,serif;font-size:21px;line-height:1.2">Capability transfer</div><div style="font-size:13px;color:#5c5d51;margin-top:3px">Your people, AI-native for real</div></a><a href="#" onClick="{{ goContact }}" style="text-decoration:none;color:#15160f;display:block;padding:12px 0;border-top:1px solid rgba(21,22,15,.12)"><div style="font-family:'Newsreader',Georgia,serif;font-size:21px;line-height:1.2">Book the first conversation</div><div style="font-size:13px;color:#5c5d51;margin-top:3px">Free · under an hour · straight answer on fit</div></a></div></div>
+</div>
+<a href="#" onClick="{{ featOps.open }}" style="text-decoration:none;color:#f5f2ea;background:#15160f;padding:34px clamp(20px,3vw,44px) 38px;display:flex;flex-direction:column;gap:14px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#d9a27e">FROM INSIGHTS · {{ featOps.kicker }}</div>
+<div style="font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:26px;line-height:1.15;letter-spacing:-.015em">{{ featOps.title }}</div>
+<div style="font-size:14.5px;line-height:1.55;color:#c5c4b4">{{ featOps.standfirst }}</div>
+<div style="margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#d9a27e">READ · {{ featOps.read }} →</div>
+</a>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ aboutOpen }}" hint-placeholder-val="{{ false }}">
+<div style="border-top:1px solid rgba(21,22,15,.14);background:#f5f2ea;box-shadow:0 24px 40px -24px rgba(21,22,15,.25)">
+<div style="display:grid;grid-template-columns:minmax(0,2.3fr) minmax(260px,1fr)">
+<div style="padding:34px clamp(20px,4vw,60px) 38px;border-right:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:minmax(180px,240px) minmax(0,1fr);gap:40px">
+<div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:14px">ABOUT</div><p style="margin:0;font-size:14.5px;line-height:1.55;color:#3c3d33">A founder-operator’s vehicle: capital, board work, and hands-on AI — with a small senior bench behind it.</p></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 36px"><div><a href="#" onClick="{{ goAbout }}" style="text-decoration:none;color:#15160f;display:block;padding:12px 0;border-top:1px solid rgba(21,22,15,.12)"><div style="font-family:'Newsreader',Georgia,serif;font-size:21px;line-height:1.2">Brannan Coady</div><div style="font-size:13px;color:#5c5d51;margin-top:3px">Operating experience: Netsells, YourParkingSpace, exits</div></a><a href="#" onClick="{{ goRecord }}" style="text-decoration:none;color:#15160f;display:block;padding:12px 0;border-top:1px solid rgba(21,22,15,.12)"><div style="font-family:'Newsreader',Georgia,serif;font-size:21px;line-height:1.2">Investments &amp; exits</div><div style="font-size:13px;color:#5c5d51;margin-top:3px">Companies founded, backed and sold</div></a></div><div><a href="#" onClick="{{ goCases }}" style="text-decoration:none;color:#15160f;display:block;padding:12px 0;border-top:1px solid rgba(21,22,15,.12)"><div style="font-family:'Newsreader',Georgia,serif;font-size:21px;line-height:1.2">Case studies</div><div style="font-size:13px;color:#5c5d51;margin-top:3px">Recent client work, with numbers</div></a><a href="#" onClick="{{ goAbout }}" style="text-decoration:none;color:#15160f;display:block;padding:12px 0;border-top:1px solid rgba(21,22,15,.12)"><div style="font-family:'Newsreader',Georgia,serif;font-size:21px;line-height:1.2">The bench</div><div style="font-size:13px;color:#5c5d51;margin-top:3px">Engineering, data, security, design</div></a></div></div>
+</div>
+<a href="#" onClick="{{ featAbout.open }}" style="text-decoration:none;color:#f5f2ea;background:#15160f;padding:34px clamp(20px,3vw,44px) 38px;display:flex;flex-direction:column;gap:14px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#d9a27e">FROM INSIGHTS · {{ featAbout.kicker }}</div>
+<div style="font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:26px;line-height:1.15;letter-spacing:-.015em">{{ featAbout.title }}</div>
+<div style="font-size:14.5px;line-height:1.55;color:#c5c4b4">{{ featAbout.standfirst }}</div>
+<div style="margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#d9a27e">READ · {{ featAbout.read }} →</div>
+</a>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ drawerOpen }}" hint-placeholder-val="{{ false }}">
+<div style="border-top:1px solid rgba(21,22,15,.14);background:#f5f2ea;max-height:calc(100dvh - 73px);overflow-y:auto;padding:8px max(clamp(20px,4vw,60px),env(safe-area-inset-right)) max(28px,env(safe-area-inset-bottom)) max(clamp(20px,4vw,60px),env(safe-area-inset-left))">
+<sc-for list="{{ drawerGroups }}" as="g" hint-placeholder-count="3">
+<div style="padding:18px 0 6px;border-bottom:1px solid rgba(21,22,15,.12)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:6px">{{ g.heading }}</div>
+<sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+<a href="#" onClick="{{ it.go }}" style="text-decoration:none;color:#15160f;display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:48px;padding:6px 0"><span style="font-family:'Newsreader',Georgia,serif;font-size:21px;line-height:1.2">{{ it.label }}</span><span style="font-size:12.5px;color:#5c5d51;text-align:right;flex:none">{{ it.sub }}</span></a>
+</sc-for>
+</div>
+</sc-for>
+<div style="display:flex;flex-wrap:wrap;gap:10px 22px;padding-top:18px;font-size:14px"><a href="#" onClick="{{ goInsights }}" style="text-decoration:none;color:#3c3d33;min-height:44px;display:flex;align-items:center">Insights</a><a href="#" onClick="{{ goContact }}" style="text-decoration:none;color:#3c3d33;min-height:44px;display:flex;align-items:center">Contact</a><a href="{{ linkedinUrl }}" target="_blank" rel="noreferrer" style="text-decoration:none;color:#3c3d33;min-height:44px;display:flex;align-items:center">LinkedIn</a></div>
+<a href="#" onClick="{{ drawerFeatured.open }}" style="text-decoration:none;color:#f5f2ea;background:#15160f;padding:22px 24px;display:flex;flex-direction:column;gap:8px;margin-top:8px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#d9a27e">FROM INSIGHTS</div><div style="font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:22px;line-height:1.2">{{ drawerFeatured.title }}</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#d9a27e">READ · {{ drawerFeatured.read }} →</div></a>
+</div>
+</sc-if>
+</div>
+
+
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<div>
+<div style="padding:clamp(48px,7vw,84px) clamp(20px,4vw,60px) 0">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c;margin-bottom:30px">AI OPERATING PARTNER · DUE DILIGENCE · EMBEDDED DELIVERY · BOARD</div>
+<h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(40px,6vw,80px);line-height:1.02;letter-spacing:-.025em;max-width:17ch;text-wrap:balance">The AI operating partner for <em style="color:#8a5a3c">PE-backed and mid-market</em> businesses.</h1>
+<div style="display:flex;flex-direction:column;gap:30px;margin-top:40px;align-items:flex-start;padding-bottom:52px;border-bottom:1px solid rgba(21,22,15,.14)">
+<p style="margin:0;font-size:20px;line-height:1.6;color:#3c3d33;max-width:700px;text-wrap:pretty">Anyway Ventures is the vehicle of Brannan Coady — founder, exited operator and investor — and a small senior bench. We diligence technology and AI before a deal, plan AI value creation across a portfolio, and go into companies to build it with their teams. Not slideware: internal tooling, automation and agents in production.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-self:stretch">
+<a href="#" onClick="{{ goPe }}" style="flex:none;white-space:nowrap;text-decoration:none;background:#15160f;color:#f5f2ea;padding:14px 24px;min-height:48px;display:inline-flex;align-items:center;font-size:15px;font-weight:500">For PE &amp; investors</a>
+<a href="#" onClick="{{ goOperators }}" style="flex:none;white-space:nowrap;text-decoration:none;border:1px solid rgba(21,22,15,.3);color:#15160f;padding:14px 24px;min-height:48px;display:inline-flex;align-items:center;font-size:15px;font-weight:500">For CEOs &amp; owner-managers</a>
+</div>
+</div>
+</div>
+
+<div style="padding:0 clamp(20px,4vw,60px);display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border-bottom:1px solid rgba(21,22,15,.14)">
+<div style="padding:30px 26px 30px 0"><div style="font-family:'Newsreader',Georgia,serif;font-size:42px;font-weight:300;letter-spacing:-.02em">12<span style="color:#8a5a3c">yrs</span></div><div style="font-size:13.5px;color:#5c5d51;line-height:1.45;margin-top:4px">building and selling software businesses</div></div>
+<div style="padding:30px 26px;border-left:1px solid rgba(21,22,15,.12)"><div style="font-family:'Newsreader',Georgia,serif;font-size:42px;font-weight:300;letter-spacing:-.02em">2</div><div style="font-size:13.5px;color:#5c5d51;line-height:1.45;margin-top:4px">consultancies founded, both realised</div></div>
+<div style="padding:30px 26px;border-left:1px solid rgba(21,22,15,.12)"><div style="font-family:'Newsreader',Georgia,serif;font-size:42px;font-weight:300;letter-spacing:-.02em">9</div><div style="font-size:13.5px;color:#5c5d51;line-height:1.45;margin-top:4px">investments and board positions held</div></div>
+<div style="padding:30px 0 30px 26px;border-left:1px solid rgba(21,22,15,.12)"><div style="font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:.1em;color:#8a5a3c;border:1px dashed rgba(138,90,60,.5);padding:10px 12px;display:inline-block">FIGURE TBC</div><div style="font-size:13.5px;color:#5c5d51;line-height:1.45;margin-top:8px">value of exits to FTSE 100 acquirers</div></div>
+</div>
+
+<div style="padding:clamp(46px,6vw,74px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">I. FOR PE &amp; INVESTORS</div>
+<h2 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:38px;line-height:1.1;letter-spacing:-.02em;max-width:700px">One partner across the deal cycle</h2>
+<p style="margin:0 0 36px;font-size:16px;color:#5c5d51;max-width:640px">The same person who diligences the target writes the AI value-creation plan, then helps the portfolio deliver it. No hand-off between advisers, no drift between thesis and execution.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:transparent;border:1px solid rgba(21,22,15,.16);--cell:1">
+<a href="#" onClick="{{ goDiligence }}" style="text-decoration:none;color:#15160f;background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:30px 26px;display:flex;flex-direction:column;gap:12px;min-height:250px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c">01 · PRE-DEAL</div><h3 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:26px;line-height:1.15">Tech, product &amp; AI due diligence</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">What the platform is, whether the product earns the plan — and a costed AI plan of attack in the IC pack.</p><span style="margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:#8a5a3c">1–3 WEEKS · FIXED PRICE →</span></a>
+<a href="#" onClick="{{ goOpPartner }}" style="text-decoration:none;color:#f5f2ea;background:#15160f;outline:1px solid rgba(21,22,15,.16);padding:30px 26px;display:flex;flex-direction:column;gap:12px;min-height:250px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#d9a27e">02 · PORTFOLIO</div><h3 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:26px;line-height:1.15">Fractional AI operating partner</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#e4e1d6">Retained by the fund. AI value-creation plans across the portfolio, with the hands to deliver them.</p><span style="margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:#d9a27e">RETAINED · 2–4 DAYS/MONTH →</span></a>
+<a href="#" onClick="{{ goEmbedded }}" style="text-decoration:none;color:#15160f;background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:30px 26px;display:flex;flex-direction:column;gap:12px;min-height:250px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c">03 · IN A PORTCO</div><h3 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:26px;line-height:1.15">Embedded AI delivery</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">Inside one business, with its team. Internal tooling, automation and agents live in weeks.</p><span style="margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:#8a5a3c">2–8 WEEKS · FIXED PRICE →</span></a>
+<a href="#" onClick="{{ goBoard }}" style="text-decoration:none;color:#15160f;background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:30px 26px;display:flex;flex-direction:column;gap:12px;min-height:250px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c">04 · GOVERNANCE</div><h3 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:26px;line-height:1.15">Board &amp; NED</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">A small number of seats where technology, product and AI decide the outcome.</p><span style="margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:#8a5a3c">2–4 SEATS HELD →</span></a>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,74px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#eeeade;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(28px,4vw,60px)">
+<div style="max-width:320px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">II. FOR OPERATORS</div>
+<h2 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:38px;line-height:1.1;letter-spacing:-.02em">Running the business, not backing it?</h2>
+<p style="margin:16px 0 18px;font-size:15px;line-height:1.6;color:#5c5d51">The same AI practice, bought directly by CEOs and owner-managers who want cost out and capability in, without a transformation programme.</p>
+<a href="#" onClick="{{ goOperators }}" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-decoration:none;white-space:nowrap">THE AI PRACTICE FOR OPERATORS →</a>
+</div>
+<div style="grid-column:span 2;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
+<div style="background:#f5f2ea;border:1px solid rgba(21,22,15,.14);padding:26px"><div style="font-family:'Newsreader',Georgia,serif;font-size:20px;margin-bottom:9px">“We know AI matters and don't know where to start.”</div><p style="margin:0;font-size:15px;line-height:1.6;color:#5c5d51">A ranked, costed plan your team can act on — written in a week, on site.</p></div>
+<div style="background:#f5f2ea;border:1px solid rgba(21,22,15,.14);padding:26px"><div style="font-family:'Newsreader',Georgia,serif;font-size:20px;margin-bottom:9px">“Our cost is headcount doing repetitive work.”</div><p style="margin:0;font-size:15px;line-height:1.6;color:#5c5d51">Automation against the three worst hours-to-value processes, live inside two months.</p></div>
+<div style="background:#f5f2ea;border:1px solid rgba(21,22,15,.14);padding:26px"><div style="font-family:'Newsreader',Georgia,serif;font-size:20px;margin-bottom:9px">“We bought the licences and nothing changed.”</div><p style="margin:0;font-size:15px;line-height:1.6;color:#5c5d51">Working alongside your people until the daily workflows are the ones with AI in them.</p></div>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,74px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:32px">
+<div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">III. RECENT WORK</div><h2 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:38px;line-height:1.1;letter-spacing:-.02em">What it looks like in practice</h2></div>
+<a href="#" onClick="{{ goRecord }}" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-decoration:none;white-space:nowrap">FULL TRACK RECORD →</a>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+<sc-for list="{{ cases }}" as="c" hint-placeholder-count="3">
+<div style="border:1px solid rgba(21,22,15,.16);padding:30px 28px;display:flex;flex-direction:column;gap:14px;background:#f5f2ea">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#8a5a3c">{{ c.tag }}</div>
+<h3 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:24px;line-height:1.18">{{ c.title }}</h3>
+<p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">{{ c.body }}</p>
+<div style="margin-top:auto;padding-top:18px;border-top:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div><div style="font-family:'Newsreader',Georgia,serif;font-size:30px;font-weight:300;letter-spacing:-.02em">{{ c.stat1 }}</div><div style="font-size:12.5px;color:#5c5d51;line-height:1.4">{{ c.label1 }}</div></div>
+<div><div style="font-family:'Newsreader',Georgia,serif;font-size:30px;font-weight:300;letter-spacing:-.02em">{{ c.stat2 }}</div><div style="font-size:12.5px;color:#5c5d51;line-height:1.4">{{ c.label2 }}</div></div>
+</div>
+</div>
+</sc-for>
+</div>
+<p style="margin:18px 0 0;font-size:12.5px;color:#8a5a3c;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em">Figures illustrative pending client sign-off — replace before publication.</p>
+</div>
+
+<div style="padding:clamp(46px,6vw,74px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#eeeade;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(28px,4vw,60px)">
+<div style="max-width:300px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">IV. INSIGHTS</div>
+<h2 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:38px;line-height:1.1;letter-spacing:-.02em">Writing</h2>
+<p style="margin:16px 0 18px;font-size:15px;line-height:1.6;color:#5c5d51">Short, practical pieces for deal teams and operators. No newsletter.</p>
+<a href="#" onClick="{{ goInsights }}" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-decoration:none;white-space:nowrap">ALL WRITING →</a>
+</div>
+<div style="grid-column:span 2;min-width:0">
+<sc-for list="{{ posts }}" as="p" hint-placeholder-count="3">
+<a href="#" onClick="{{ p.open }}" style="text-decoration:none;color:#15160f;display:grid;grid-template-columns:110px minmax(0,1fr);gap:22px;padding:20px 0;border-top:1px solid rgba(21,22,15,.18);align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8a5a3c;letter-spacing:.1em">{{ p.kicker }}</span><div><div style="font-family:'Newsreader',Georgia,serif;font-size:23px;margin-bottom:5px">{{ p.title }}</div><div style="font-size:15px;line-height:1.55;color:#5c5d51">{{ p.standfirst }}</div></div></a>
+</sc-for>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,74px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,4vw,64px);align-items:start">
+<div style="grid-column:span 2;min-width:0">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">V. WHO YOU'RE HIRING</div>
+<h2 style="margin:0 0 22px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:44px;line-height:1.08;letter-spacing:-.025em">Brannan Coady, and a bench</h2>
+<p style="margin:0 0 16px;font-size:18px;line-height:1.68;color:#3c3d33;max-width:700px">I co-founded Netsells and ran it as chief executive through a decade of product work for Trainline, Coca-Cola, the BBC and Toolstation, to a merger with hedgehog lab backed by BGF. I've been Chief Product Officer and an executive director at YourParkingSpace, and I've invested in, advised and sat on the boards of UK software and consumer businesses — with exits to FTSE 100 acquirers.</p>
+<p style="margin:0 0 22px;font-size:18px;line-height:1.68;color:#3c3d33;max-width:700px">I lead every engagement personally. When the work needs more hands, I bring in senior engineers, designers and security specialists I've shipped with for years.</p>
+<a href="#" onClick="{{ goAbout }}" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-decoration:none;white-space:nowrap">THE LONGER VERSION →</a>
+</div>
+<div style="aspect-ratio:4/5;background:repeating-linear-gradient(135deg,#e6e1d2 0 9px,#eeeade 9px 18px);border:1px solid rgba(21,22,15,.16);display:flex;align-items:flex-end;padding:16px;max-width:340px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:#6e6c5c">PORTRAIT — BRANNAN COADY</span></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPe }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px) clamp(40px,5vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:30px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c">FOR PRIVATE EQUITY, GROWTH INVESTORS &amp; ACQUIRERS</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:#5c5d51">LAST UPDATED {{ updated }}</div></div>
+<h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(38px,5.4vw,72px);line-height:1.04;letter-spacing:-.025em;max-width:18ch;text-wrap:balance">Technology and AI judgement <em style="color:#8a5a3c">across the whole hold</em>.</h1>
+<div style="display:flex;flex-direction:column;gap:30px;margin-top:40px;align-items:flex-start">
+<p style="margin:0;font-size:19px;line-height:1.62;color:#3c3d33;max-width:700px;text-wrap:pretty">Most funds buy technology diligence from one firm, an AI strategy from another, and then ask the portfolio company to deliver it alone. We do the three as one continuous piece of work — by the person who has run, built and sold the kind of business you own.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;align-self:stretch">
+<a href="#" onClick="{{ goContact }}" style="flex:none;white-space:nowrap;text-decoration:none;background:#15160f;color:#f5f2ea;padding:14px 24px;min-height:48px;display:inline-flex;align-items:center;font-size:15px;font-weight:500">Book 30 minutes</a>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5c5d51">FREE · ONE CALL FOR EVERY ENQUIRY · STRAIGHT ANSWER ON FIT</span>
+</div>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<h2 style="margin:0 0 8px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:38px;letter-spacing:-.02em">Four services, one deal cycle</h2>
+<p style="margin:0 0 36px;font-size:16px;color:#5c5d51;max-width:640px">Enter at any point. Most relationships start with a diligence and become a retained operating-partner role.</p>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ peServices }}" as="s" hint-placeholder-count="4">
+<a href="#" onClick="{{ s.open }}" style="text-decoration:none;color:#15160f;display:grid;grid-template-columns:{{ peSvcCols }};gap:16px 24px;padding:26px 0;border-top:1px solid rgba(21,22,15,.18);align-items:start"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8a5a3c">{{ s.n }}</span><div style="font-family:'Newsreader',Georgia,serif;font-size:26px;line-height:1.15">{{ s.title }}</div><p style="margin:0;font-size:15.5px;line-height:1.6;color:#3c3d33">{{ s.body }}</p><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5c5d51;text-align:{{ timeAlign }};grid-column:{{ peMetaCol }};letter-spacing:.1em">{{ s.meta }}</span></a>
+</sc-for>
+<div style="border-top:1px solid rgba(21,22,15,.18)"></div>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#eeeade">
+<h2 style="margin:0 0 30px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em">Why funds use us</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:34px">
+<div style="border-top:2px solid #8a5a3c;padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Operator, not analyst</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">Ran a product business for a decade, sold it, sat on the buy side. The report reads like it was written by someone who has had to live with the consequences.</p></div>
+<div style="border-top:2px solid rgba(21,22,15,.25);padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Continuity</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">The diligence author writes the value-creation plan and can help deliver it. Nothing gets lost between advisers.</p></div>
+<div style="border-top:2px solid rgba(21,22,15,.25);padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Still building</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">Hands on the current AI tooling every week. The plan reflects what actually works in production now, not what a vendor deck says.</p></div>
+<div style="border-top:2px solid rgba(21,22,15,.25);padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Fixed price, deal timetable</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">Quoted the same week, delivered to your exclusivity window. No day rates, no scope drift.</p></div>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(28px,4vw,60px)">
+<div style="max-width:320px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">THE ANTI-OFFER</div><h2 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em;line-height:1.1">What we don't do</h2><p style="margin:16px 0 0;font-size:15px;line-height:1.6;color:#5c5d51">Saying no to these is most of what makes the rest work.</p></div>
+<div style="grid-column:span 2;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 36px">
+<sc-for list="{{ dont }}" as="d" hint-placeholder-count="6">
+<div style="padding:16px 0;border-top:1px solid rgba(21,22,15,.16);display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;align-items:start"><span style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#8a5a3c;line-height:1.4">×</span><div><div style="font-size:16.5px;font-weight:600;margin-bottom:3px">{{ d.t }}</div><div style="font-size:14.5px;line-height:1.55;color:#3c3d33">{{ d.b }}</div></div></div>
+</sc-for>
+</div>
+</div>
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<h2 style="margin:0 0 30px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em">Recent work</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+<sc-for list="{{ cases }}" as="c" hint-placeholder-count="3">
+<div style="border:1px solid rgba(21,22,15,.16);padding:30px 28px;display:flex;flex-direction:column;gap:14px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#8a5a3c">{{ c.tag }}</div>
+<h3 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:24px;line-height:1.18">{{ c.title }}</h3>
+<p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">{{ c.body }}</p>
+<div style="margin-top:auto;padding-top:18px;border-top:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div><div style="font-family:'Newsreader',Georgia,serif;font-size:30px;font-weight:300;letter-spacing:-.02em">{{ c.stat1 }}</div><div style="font-size:12.5px;color:#5c5d51;line-height:1.4">{{ c.label1 }}</div></div>
+<div><div style="font-family:'Newsreader',Georgia,serif;font-size:30px;font-weight:300;letter-spacing:-.02em">{{ c.stat2 }}</div><div style="font-size:12.5px;color:#5c5d51;line-height:1.4">{{ c.label2 }}</div></div>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isDiligence }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px) clamp(40px,5vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:30px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c">01 · TECHNOLOGY, PRODUCT &amp; AI DUE DILIGENCE</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:#5c5d51">LAST UPDATED {{ updated }}</div></div>
+<h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(38px,5.4vw,72px);line-height:1.04;letter-spacing:-.025em;max-width:19ch;text-wrap:balance">Diligence on what the business is — and a plan for <em style="color:#8a5a3c">what AI makes it</em>.</h1>
+<div style="display:flex;flex-direction:column;gap:30px;margin-top:40px;align-items:flex-start">
+<p style="margin:0;font-size:19px;line-height:1.62;color:#3c3d33;max-width:680px;text-wrap:pretty">Most technical diligence tells you what could go wrong. We cover that properly — then go further, with a costed plan for how AI changes the target's cost base and growth in the first hundred days of ownership. Led by someone who has built, run and sold the kind of business you're buying, with specialist security and data reviewers where the target warrants it.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;align-self:stretch">
+<a href="#" onClick="{{ goContact }}" style="flex:none;white-space:nowrap;text-decoration:none;background:#15160f;color:#f5f2ea;padding:14px 24px;min-height:48px;display:inline-flex;align-items:center;font-size:15px;font-weight:500">Book 30 minutes</a>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5c5d51">FIXED QUOTE IN 48 HOURS · IC SESSION INSIDE 3 WEEKS</span>
+</div>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<h2 style="margin:0 0 8px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:38px;letter-spacing:-.02em">Three strands</h2>
+<p style="margin:0 0 36px;font-size:16px;color:#5c5d51;max-width:640px">Commissioned together or separately. Together is better: the AI plan is only credible if it rests on an honest read of the platform and the product.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px">
+<div style="border:1px solid rgba(21,22,15,.16);padding:34px 30px;display:flex;flex-direction:column;gap:14px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c">TECHNOLOGY</div><h3 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:27px;line-height:1.15">Is the platform what they say it is?</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">Architecture, code quality, scalability, security and data posture, third-party dependency, and the engineering team — capability, key-person risk, and how they actually ship.</p><div style="margin-top:auto;padding-top:18px;border-top:1px solid rgba(21,22,15,.14);font-size:14px;color:#5c5d51;line-height:1.6">Answers: what breaks at 3× scale, and what it costs to fix.</div></div>
+<div style="border:1px solid rgba(21,22,15,.16);padding:34px 30px;display:flex;flex-direction:column;gap:14px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c">PRODUCT</div><h3 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:27px;line-height:1.15">Does the product earn the growth story?</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">Usage and retention behind the headline numbers, roadmap realism, competitive position, pricing power, and whether product leadership can take it to the next stage.</p><div style="margin-top:auto;padding-top:18px;border-top:1px solid rgba(21,22,15,.14);font-size:14px;color:#5c5d51;line-height:1.6">Answers: whether the plan in the model is buildable.</div></div>
+<div style="background:#15160f;color:#f5f2ea;padding:34px 30px;display:flex;flex-direction:column;gap:14px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#d9a27e">AI VALUE CREATION</div><h3 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:27px;line-height:1.15">What does AI make this business worth?</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#e4e1d6">A function-by-function plan of attack: where AI takes cost out, where it accelerates revenue, what the data and systems will support, and what it costs to deliver. Plus a hard look at any AI claims the target already makes.</p><div style="margin-top:auto;padding-top:18px;border-top:1px solid rgba(245,242,234,.18);font-size:14px;color:#c5c4b4;line-height:1.6">Answers: the upside you can underwrite, and when it lands.</div></div>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#eeeade;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,4vw,60px)">
+<div style="max-width:340px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">THE NEW ANGLE</div><h2 style="margin:0 0 14px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:38px;letter-spacing:-.02em;line-height:1.1">AI diligence is a value-creation plan, not a risk register</h2><p style="margin:0;font-size:15.5px;line-height:1.6;color:#5c5d51">Every buyer now assumes AI is part of the thesis. Very few reach completion knowing where, how much, or how fast. This closes that gap before the price is set.</p></div>
+<div style="grid-column:span 2;min-width:0">
+<sc-for list="{{ aiPlan }}" as="a" hint-placeholder-count="5">
+<div style="display:grid;grid-template-columns:56px minmax(0,1fr);gap:20px;padding:22px 0;border-top:1px solid rgba(21,22,15,.18);align-items:start"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8a5a3c">{{ a.n }}</span><div><div style="font-family:'Newsreader',Georgia,serif;font-size:23px;margin-bottom:6px">{{ a.title }}</div><div style="font-size:15.5px;color:#3c3d33;line-height:1.6;max-width:680px">{{ a.body }}</div></div></div>
+</sc-for>
+</div>
+</div>
+
+<div style="padding:clamp(40px,5vw,56px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#15160f;color:#f5f2ea;display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px 40px;align-items:center">
+<div style="flex:1 1 380px;min-width:0"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#d9a27e;margin-bottom:12px">SAMPLE · REDACTED</div><h2 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:30px;letter-spacing:-.02em;line-height:1.1">See what an AI value-creation plan actually looks like</h2><p style="margin:0;font-size:15.5px;line-height:1.6;color:#c5c4b4;max-width:560px">A redacted plan from a recent engagement: the opportunity map, the cost-out model in three cases, readiness findings and the first-hundred-days sequence. Twelve pages, PDF.</p></div>
+<a href="{{ sampleUrl }}" style="flex:none;text-decoration:none;border:1px solid rgba(245,242,234,.5);color:#f5f2ea;padding:15px 24px;font-size:14.5px;font-weight:500;white-space:nowrap">Request the sample plan →</a>
+</div>
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,4vw,60px)">
+<div style="max-width:320px"><h2 style="margin:0 0 14px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em;line-height:1.1">How it runs</h2><p style="margin:0;font-size:15.5px;line-height:1.6;color:#5c5d51">Built around your deal timetable.</p></div>
+<div style="grid-column:span 2;min-width:0">
+<sc-for list="{{ ddSteps }}" as="s" hint-placeholder-count="4">
+<div style="display:grid;grid-template-columns:{{ stepCols }};gap:20px;padding:22px 0;border-top:1px solid rgba(21,22,15,.18);align-items:start"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8a5a3c">{{ s.n }}</span><div><div style="font-family:'Newsreader',Georgia,serif;font-size:23px;margin-bottom:6px">{{ s.title }}</div><div style="font-size:15.5px;color:#3c3d33;line-height:1.6">{{ s.body }}</div></div><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5c5d51;text-align:{{ timeAlign }};grid-column:{{ timeCol }};letter-spacing:.1em">{{ s.time }}</span></div>
+</sc-for>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px 40px;align-items:center;background:#eeeade">
+<div><h2 style="margin:0 0 12px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:34px;letter-spacing:-.02em">The person who writes the plan can deliver it</h2><p style="margin:0;font-size:17px;line-height:1.6;color:#3c3d33;max-width:620px">After completion, the AI plan moves straight into a <a href="#" onClick="{{ goOpPartner }}">retained operating-partner role</a> or an <a href="#" onClick="{{ goEmbedded }}">embedded engagement</a> — no re-briefing, no second firm.</p></div>
+<a href="#" onClick="{{ goContact }}" style="flex:none;text-decoration:none;background:#15160f;color:#f5f2ea;padding:14px 28px;min-height:48px;display:inline-flex;align-items:center;font-size:15px;font-weight:500">Book 30 minutes</a>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isOpPartner }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px) clamp(40px,5vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#15160f;color:#f5f2ea">
+<div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:30px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#d9a27e">02 · FRACTIONAL AI OPERATING PARTNER</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:#a9a897">LAST UPDATED {{ updated }}</div></div>
+<h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(38px,5.4vw,72px);line-height:1.04;letter-spacing:-.025em;max-width:18ch;text-wrap:balance">An AI operating partner for the fund — <em style="color:#d9a27e">without the headcount</em>.</h1>
+<div style="display:flex;flex-direction:column;gap:30px;margin-top:40px;align-items:flex-start">
+<p style="margin:0;font-size:19px;line-height:1.62;color:#e4e1d6;max-width:700px;text-wrap:pretty">Mid-market funds know AI belongs in every value-creation plan and can't justify a full-time operating partner to own it. This is that role, retained: two to four days a month across the portfolio, plus the hands to build what the plans call for.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;align-self:stretch">
+<a href="#" onClick="{{ goContact }}" style="flex:none;white-space:nowrap;text-decoration:none;background:#f5f2ea;color:#15160f;padding:16px 24px;font-size:15px;font-weight:600">Book 30 minutes</a>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#a9a897">ONE OR TWO FUNDS AT A TIME · ANNUAL TERM</span>
+</div>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<h2 style="margin:0 0 8px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:38px;letter-spacing:-.02em">What the role covers</h2>
+<p style="margin:0 0 36px;font-size:16px;color:#5c5d51;max-width:640px">Shaped with the deal team at the start of the term and reviewed quarterly.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:transparent;border:1px solid rgba(21,22,15,.16);--cell:1">
+<div style="background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:30px 28px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">PORTFOLIO</div><h3 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:24px;line-height:1.15">AI value-creation plan per portco</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">A function-by-function opportunity map, costed and sequenced, for each business — refreshed as the tooling moves.</p></div>
+<div style="background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:30px 28px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">MANAGEMENT</div><h3 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:24px;line-height:1.15">A counterpart for each CEO</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">Monthly working sessions with management on priorities, vendors, hires and what to stop. Someone who has sat in their chair.</p></div>
+<div style="background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:30px 28px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">DELIVERY</div><h3 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:24px;line-height:1.15">Hands, when the plan needs them</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">Where a portco can't deliver alone, an <a href="#" onClick="{{ goEmbedded }}">embedded sprint</a> from me and the bench — scoped and priced separately.</p></div>
+<div style="background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:30px 28px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">DEAL TEAM</div><h3 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:24px;line-height:1.15">Pipeline and exit support</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">Early reads on targets, priority access for <a href="#" onClick="{{ goDiligence }}">full diligence</a>, and an evidenced AI story for each exit.</p></div>
+<div style="background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:30px 28px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">FUND</div><h3 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:24px;line-height:1.15">Reporting to the IC</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">A quarterly portfolio view: hours out, cost out, revenue effects, and what's still theatre. Written to be read.</p></div>
+<div style="background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:30px 28px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">SHARED LEARNING</div><h3 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:24px;line-height:1.15">Reuse across the portfolio</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">What works in one portco is packaged and rolled to the next. Ten businesses pay for a pattern once.</p></div>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#eeeade;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,4vw,60px)">
+<div style="max-width:320px"><h2 style="margin:0 0 14px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em;line-height:1.1">The first ninety days</h2><p style="margin:0;font-size:15.5px;line-height:1.6;color:#5c5d51">How a retained term begins.</p></div>
+<div style="grid-column:span 2;min-width:0">
+<sc-for list="{{ opSteps }}" as="s" hint-placeholder-count="4">
+<div style="display:grid;grid-template-columns:{{ stepCols }};gap:20px;padding:22px 0;border-top:1px solid rgba(21,22,15,.18);align-items:start"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8a5a3c">{{ s.n }}</span><div><div style="font-family:'Newsreader',Georgia,serif;font-size:23px;margin-bottom:6px">{{ s.title }}</div><div style="font-size:15.5px;color:#3c3d33;line-height:1.6">{{ s.body }}</div></div><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5c5d51;text-align:{{ timeAlign }};grid-column:{{ timeCol }};letter-spacing:.1em">{{ s.time }}</span></div>
+</sc-for>
+</div>
+</div>
+
+<div style="padding:clamp(40px,5vw,56px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#15160f;color:#f5f2ea;display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px 40px;align-items:center">
+<div style="flex:1 1 380px;min-width:0"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#d9a27e;margin-bottom:12px">SAMPLE · REDACTED</div><h2 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:30px;letter-spacing:-.02em;line-height:1.1">See what an AI value-creation plan actually looks like</h2><p style="margin:0;font-size:15.5px;line-height:1.6;color:#c5c4b4;max-width:560px">A redacted plan from a recent engagement: the opportunity map, the cost-out model in three cases, readiness findings and the first-hundred-days sequence. Twelve pages, PDF.</p></div>
+<a href="{{ sampleUrl }}" style="flex:none;text-decoration:none;border:1px solid rgba(245,242,234,.5);color:#f5f2ea;padding:15px 24px;font-size:14.5px;font-weight:500;white-space:nowrap">Request the sample plan →</a>
+</div>
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<h2 style="margin:0 0 30px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em">Who it suits</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:34px">
+<div style="border-top:2px solid #8a5a3c;padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Lower-mid-market funds</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">Six to fifteen portfolio companies, no in-house operating team of scale, and an LP base asking about AI.</p></div>
+<div style="border-top:2px solid rgba(21,22,15,.25);padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Tech-enabled services and software</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">Businesses where the cost base is people doing process, and the growth story rests on product.</p></div>
+<div style="border-top:2px solid rgba(21,22,15,.25);padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Funds who want it done, not described</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">If you want a framework and a workshop, there are cheaper options. This is for funds that want working systems in the portfolio.</p></div>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px 40px;align-items:center;background:#eeeade">
+<div><h2 style="margin:0 0 12px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:34px;letter-spacing:-.02em">Capacity for one further fund this year</h2><p style="margin:0;font-size:17px;line-height:1.6;color:#3c3d33;max-width:620px">The role only works with real attention, so it's deliberately limited. A conversation costs nothing and settles fit quickly.</p></div>
+<a href="#" onClick="{{ goContact }}" style="flex:none;text-decoration:none;background:#15160f;color:#f5f2ea;padding:14px 28px;min-height:48px;display:inline-flex;align-items:center;font-size:15px;font-weight:500">Book 30 minutes</a>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isEmbedded }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px) clamp(40px,5vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:30px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c">{{ embeddedKicker }}</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:#5c5d51">LAST UPDATED {{ updated }}</div></div>
+<h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(38px,5.4vw,72px);line-height:1.04;letter-spacing:-.025em;max-width:18ch;text-wrap:balance">We don't write you a strategy. We come in and <em style="color:#8a5a3c">build it with your team</em>.</h1>
+<div style="display:flex;flex-direction:column;gap:30px;margin-top:40px;align-items:flex-start">
+<p style="margin:0;font-size:19px;line-height:1.62;color:#3c3d33;max-width:700px;text-wrap:pretty">Twelve years of shipping software for businesses that could not afford it to go wrong, now pointed at one thing: getting AI into the operating fabric of mid-market and PE-backed companies. I lead every engagement personally, with a small bench of senior engineers and designers brought in as the work needs. Internal tooling, automation and agents, in production, owned by your people.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;align-self:stretch">
+<a href="#" onClick="{{ goContact }}" style="flex:none;white-space:nowrap;text-decoration:none;background:#15160f;color:#f5f2ea;padding:14px 24px;min-height:48px;display:inline-flex;align-items:center;font-size:15px;font-weight:500">Book 30 minutes</a>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5c5d51">FREE · UNDER AN HOUR · STRAIGHT ANSWER ON FIT</span>
+</div>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<h2 style="margin:0 0 8px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:38px;letter-spacing:-.02em">Four ways in</h2>
+<p style="margin:0 0 36px;font-size:16px;color:#5c5d51;max-width:620px">Most engagements start with the first and grow into the others. All fixed price against a defined outcome.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:transparent;border:1px solid rgba(21,22,15,.16);--cell:1">
+<div style="background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:34px 30px;display:flex;flex-direction:column;gap:14px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c">01 · EMBEDDED SPRINT</div><h3 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:27px;line-height:1.15">Two to three weeks inside the business</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">We sit with the people doing the work — ops, finance, sales, support — and map where the hours and the errors actually go. By the end of the sprint the top one or two are automated and running, not specified.</p><div style="margin-top:auto;padding-top:18px;border-top:1px solid rgba(21,22,15,.14);font-size:14px;color:#5c5d51;line-height:1.6">You leave with: working software, a ranked and costed backlog, and a team that has watched it be built.</div></div>
+<div style="background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:34px 30px;display:flex;flex-direction:column;gap:14px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c">02 · INTERNAL TOOLING</div><h3 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:27px;line-height:1.15">The software the roadmap keeps deferring</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">Every business has three internal tools it has wanted for two years — the pricing calculator, the ops dashboard, the thing that kills the spreadsheet. Built properly on your stack, with AI where it earns its place.</p><div style="margin-top:auto;padding-top:18px;border-top:1px solid rgba(21,22,15,.14);font-size:14px;color:#5c5d51;line-height:1.6">You leave with: production software, documentation, and engineers able to extend it.</div></div>
+<div style="background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:34px 30px;display:flex;flex-direction:column;gap:14px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c">03 · AUTOMATION &amp; AGENTS</div><h3 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:27px;line-height:1.15">Cost out of the operation, permanently</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">Quoting, onboarding, reconciliation, reporting, support triage, document handling. Agents built against your systems and your data, with a human in the loop wherever judgement or liability sits.</p><div style="margin-top:auto;padding-top:18px;border-top:1px solid rgba(21,22,15,.14);font-size:14px;color:#5c5d51;line-height:1.6">You leave with: a measured before-and-after on hours, cost and error rate.</div></div>
+<div style="background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:34px 30px;display:flex;flex-direction:column;gap:14px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c">04 · CAPABILITY TRANSFER</div><h3 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:27px;line-height:1.15">Your team, AI-native for real</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">You bought the licences and nothing changed. We work alongside your engineers and operators until the workflows they use daily are the ones with AI in them — then deliberately make ourselves unnecessary.</p><div style="margin-top:auto;padding-top:18px;border-top:1px solid rgba(21,22,15,.14);font-size:14px;color:#5c5d51;line-height:1.6">You leave with: habits and workflows that survive our departure. Measured at six months.</div></div>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#eeeade;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,4vw,60px)">
+<div style="max-width:320px"><h2 style="margin:0 0 14px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:38px;letter-spacing:-.02em;line-height:1.1">How an engagement runs</h2><p style="margin:0;font-size:15.5px;line-height:1.6;color:#5c5d51">No rate card, no juniors, no hand-off once the pitch is won. If we finish faster we earn a better margin; if we underestimate, we absorb it.</p></div>
+<div style="grid-column:span 2;min-width:0">
+<sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+<div style="display:grid;grid-template-columns:{{ stepCols }};gap:20px;padding:24px 0;border-top:1px solid rgba(21,22,15,.18);align-items:start"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8a5a3c">{{ s.n }}</span><div><div style="font-family:'Newsreader',Georgia,serif;font-size:24px;margin-bottom:6px">{{ s.title }}</div><div style="font-size:15.5px;color:#3c3d33;line-height:1.6">{{ s.body }}</div></div><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5c5d51;text-align:{{ timeAlign }};grid-column:{{ timeCol }};letter-spacing:.1em">{{ s.time }}</span></div>
+</sc-for>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(28px,4vw,60px)">
+<div style="max-width:320px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">THE ANTI-OFFER</div><h2 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em;line-height:1.1">What we don't do</h2><p style="margin:16px 0 0;font-size:15px;line-height:1.6;color:#5c5d51">Saying no to these is most of what makes the rest work.</p></div>
+<div style="grid-column:span 2;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 36px">
+<sc-for list="{{ dont }}" as="d" hint-placeholder-count="6">
+<div style="padding:16px 0;border-top:1px solid rgba(21,22,15,.16);display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;align-items:start"><span style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#8a5a3c;line-height:1.4">×</span><div><div style="font-size:16.5px;font-weight:600;margin-bottom:3px">{{ d.t }}</div><div style="font-size:14.5px;line-height:1.55;color:#3c3d33">{{ d.b }}</div></div></div>
+</sc-for>
+</div>
+</div>
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<h2 style="margin:0 0 30px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em">Recent work</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+<sc-for list="{{ cases }}" as="c" hint-placeholder-count="3">
+<div style="border:1px solid rgba(21,22,15,.16);padding:30px 28px;display:flex;flex-direction:column;gap:14px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#8a5a3c">{{ c.tag }}</div>
+<h3 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:24px;line-height:1.18">{{ c.title }}</h3>
+<p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">{{ c.body }}</p>
+<div style="margin-top:auto;padding-top:18px;border-top:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div><div style="font-family:'Newsreader',Georgia,serif;font-size:30px;font-weight:300;letter-spacing:-.02em">{{ c.stat1 }}</div><div style="font-size:12.5px;color:#5c5d51;line-height:1.4">{{ c.label1 }}</div></div>
+<div><div style="font-family:'Newsreader',Georgia,serif;font-size:30px;font-weight:300;letter-spacing:-.02em">{{ c.stat2 }}</div><div style="font-size:12.5px;color:#5c5d51;line-height:1.4">{{ c.label2 }}</div></div>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<h2 style="margin:0 0 32px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:38px;letter-spacing:-.02em">Why this isn't a consultancy</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:34px">
+<div style="border-top:2px solid #8a5a3c;padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Senior hands, small bench</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">Brannan leads every engagement and does the work. Where it needs more hands, senior engineers and designers he's shipped with for a decade — never a pyramid with his face on the pitch.</p></div>
+<div style="border-top:2px solid rgba(21,22,15,.25);padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Priced on outcome</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">Fixed against a defined result, agreed before we start. Same side of the table about speed.</p></div>
+<div style="border-top:2px solid rgba(21,22,15,.25);padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Built to be left behind</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">Your stack, your repos, your accounts. Nothing depends on us after handover — that's the test the work is held to.</p></div>
+<div style="border-top:2px solid rgba(21,22,15,.25);padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">We'll tell you when not to</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">A good proportion of AI ideas are worse than fixing the process. No incentive to pretend otherwise; we'll say so on the first call.</p></div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isBoard }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px) clamp(40px,5vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:30px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c">04 · BOARD &amp; NON-EXECUTIVE</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:#5c5d51">LAST UPDATED {{ updated }}</div></div>
+<h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(38px,5.4vw,72px);line-height:1.04;letter-spacing:-.025em;max-width:17ch;text-wrap:balance">Board-level judgement from someone still <em style="color:#8a5a3c">in the work</em>.</h1>
+<div style="display:flex;flex-direction:column;gap:30px;margin-top:40px;align-items:flex-start">
+<p style="margin:0;font-size:19px;line-height:1.62;color:#3c3d33;max-width:700px;text-wrap:pretty">I take a small number of positions a year, weighted to businesses where product, technology and now AI decide the outcome. I'm useful in the room because I'm still building the week before the board meeting.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;align-self:stretch">
+<a href="#" onClick="{{ goContact }}" style="flex:none;white-space:nowrap;text-decoration:none;background:#15160f;color:#f5f2ea;padding:14px 24px;min-height:48px;display:inline-flex;align-items:center;font-size:15px;font-weight:500">Book 30 minutes</a>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5c5d51">2–4 SEATS HELD · STANDARD NED TERMS</span>
+</div>
+</div>
+</div>
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#eeeade;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,4vw,60px)">
+<div style="max-width:320px"><h2 style="margin:0 0 14px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em;line-height:1.1">What I actually contribute</h2><p style="margin:0;font-size:15.5px;line-height:1.6;color:#5c5d51">Beyond governance and the usual board hygiene.</p></div>
+<div style="grid-column:span 2;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px;min-width:0">
+<div><h3 style="margin:0 0 8px;font-size:18px;font-weight:600">Product and roadmap pressure</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">The uncomfortable questions about what's being built and why, asked early enough to matter.</p></div>
+<div><h3 style="margin:0 0 8px;font-size:18px;font-weight:600">AI reality-check</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">Where it genuinely changes the cost base, where it's theatre, and what the board should expect to see by when.</p></div>
+<div><h3 style="margin:0 0 8px;font-size:18px;font-weight:600">Exit readiness</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">Been through it as founder and investor. Most of the value is decided two years before the process starts.</p></div>
+<div><h3 style="margin:0 0 8px;font-size:18px;font-weight:600">Senior hiring</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">Sitting in on CTO, CPO and head-of-engineering hires, and telling you honestly what you're buying.</p></div>
+</div>
+</div>
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px 40px;align-items:center">
+<div><h2 style="margin:0 0 12px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:34px;letter-spacing:-.02em">Current availability</h2><p style="margin:0;font-size:17px;line-height:1.6;color:#3c3d33;max-width:560px">Taking enquiries for one further board seat through the rest of the year. Also open to a fractional product &amp; AI leadership retainer — a day or two a month with a CEO who needs the plan pressure-tested.</p></div>
+<a href="#" onClick="{{ goContact }}" style="flex:none;text-decoration:none;background:#15160f;color:#f5f2ea;padding:14px 28px;min-height:48px;display:inline-flex;align-items:center;font-size:15px;font-weight:500">Book 30 minutes</a>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCases }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px) clamp(40px,5vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c;margin-bottom:30px">CASE STUDIES</div>
+<h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(38px,5.4vw,72px);line-height:1.04;letter-spacing:-.025em;max-width:16ch;text-wrap:balance">Recent work, <em style="color:#8a5a3c">with the numbers</em>.</h1>
+<p style="margin:34px 0 0;font-size:19px;line-height:1.62;color:#3c3d33;max-width:660px;text-wrap:pretty">Anonymised where clients prefer it. Every engagement is measured against the outcome it was priced on — hours out, cost out, time to production, what still runs six months later.</p>
+</div>
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+<sc-for list="{{ cases }}" as="c" hint-placeholder-count="3">
+<div style="border:1px solid rgba(21,22,15,.16);padding:30px 28px;display:flex;flex-direction:column;gap:14px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#8a5a3c">{{ c.tag }}</div>
+<h2 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:24px;line-height:1.18">{{ c.title }}</h2>
+<p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">{{ c.body }}</p>
+<div style="margin-top:auto;padding-top:18px;border-top:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div><div style="font-family:'Newsreader',Georgia,serif;font-size:30px;font-weight:300;letter-spacing:-.02em">{{ c.stat1 }}</div><div style="font-size:12.5px;color:#5c5d51;line-height:1.4">{{ c.label1 }}</div></div>
+<div><div style="font-family:'Newsreader',Georgia,serif;font-size:30px;font-weight:300;letter-spacing:-.02em">{{ c.stat2 }}</div><div style="font-size:12.5px;color:#5c5d51;line-height:1.4">{{ c.label2 }}</div></div>
+</div>
+</div>
+</sc-for>
+</div>
+<p style="margin:18px 0 0;font-size:12.5px;color:#8a5a3c;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em">Figures illustrative pending client sign-off — replace before publication.</p>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isRecord }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px) clamp(40px,5vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c;margin-bottom:30px">TRACK RECORD</div>
+<h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(38px,5.4vw,72px);line-height:1.04;letter-spacing:-.025em;max-width:16ch;text-wrap:balance">Built, backed, and <em style="color:#8a5a3c">in some cases sold</em>.</h1>
+<p style="margin:34px 0 0;font-size:19px;line-height:1.62;color:#3c3d33;max-width:700px;text-wrap:pretty">The companies founded and operated, the investments and board positions held, and recent client work. The capital side of Anyway Ventures still runs — small personal cheques into early UK software and consumer businesses, usually with time attached.</p>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<h2 style="margin:0 0 28px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em">Companies &amp; positions</h2>
+<div style="display:grid;grid-template-columns:{{ recordCols }};gap:12px 20px;padding-bottom:12px;border-bottom:1px solid rgba(21,22,15,.3);font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#5c5d51"><span>COMPANY</span><span>ROLE</span><span>SECTOR</span><span style="text-align:right">STATUS</span></div>
+<sc-for list="{{ record }}" as="row" hint-placeholder-count="8">
+<div style="display:grid;grid-template-columns:{{ recordCols }};gap:12px 20px;padding:19px 0;border-bottom:1px solid rgba(21,22,15,.12);font-size:15px;align-items:baseline"><span style="font-family:'Newsreader',Georgia,serif;font-size:20px">{{ row.name }}</span><span style="color:#3c3d33">{{ row.role }}</span><span style="color:#5c5d51">{{ row.sector }}</span><span style="text-align:right;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:{{ row.colour }}">{{ row.status }}</span></div>
+</sc-for>
+<p style="margin:22px 0 0;font-size:13.5px;color:#5c5d51;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em">Dates, deal values and co-investors to be confirmed before publication.</p>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#eeeade">
+<h2 style="margin:0 0 30px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em">Recent client work</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+<sc-for list="{{ cases }}" as="c" hint-placeholder-count="3">
+<div style="border:1px solid rgba(21,22,15,.16);background:#f5f2ea;padding:30px 28px;display:flex;flex-direction:column;gap:14px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#8a5a3c">{{ c.tag }}</div>
+<h3 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:24px;line-height:1.18">{{ c.title }}</h3>
+<p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">{{ c.body }}</p>
+<div style="margin-top:auto;padding-top:18px;border-top:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div><div style="font-family:'Newsreader',Georgia,serif;font-size:30px;font-weight:300;letter-spacing:-.02em">{{ c.stat1 }}</div><div style="font-size:12.5px;color:#5c5d51;line-height:1.4">{{ c.label1 }}</div></div>
+<div><div style="font-family:'Newsreader',Georgia,serif;font-size:30px;font-weight:300;letter-spacing:-.02em">{{ c.stat2 }}</div><div style="font-size:12.5px;color:#5c5d51;line-height:1.4">{{ c.label2 }}</div></div>
+</div>
+</div>
+</sc-for>
+</div>
+<p style="margin:18px 0 0;font-size:12.5px;color:#8a5a3c;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em">Figures illustrative pending client sign-off — replace before publication.</p>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px 40px;align-items:center">
+<div><h2 style="margin:0 0 12px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:34px;letter-spacing:-.02em">Raising?</h2><p style="margin:0;font-size:17px;line-height:1.6;color:#3c3d33;max-width:560px">UK, early, software-shaped, founders who ship, and a real use for the time as well as the money. Send the deck and one paragraph on why now — I reply either way.</p></div>
+<a href="#" onClick="{{ goContact }}" style="flex:none;text-decoration:none;background:#15160f;color:#f5f2ea;padding:14px 28px;min-height:48px;display:inline-flex;align-items:center;font-size:15px;font-weight:500">Send it over</a>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isInsights }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px) clamp(40px,5vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c;margin-bottom:30px">INSIGHTS</div>
+<h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(38px,5.4vw,72px);line-height:1.04;letter-spacing:-.025em;max-width:16ch;text-wrap:balance">Writing for deal teams and <em style="color:#8a5a3c">operators</em>.</h1>
+<p style="margin:34px 0 0;font-size:19px;line-height:1.62;color:#3c3d33;max-width:660px">Short and practical. Written from the work, not about it. No newsletter — if you want to hear when something new goes up, LinkedIn is where it lands.</p>
+</div>
+<div style="padding:clamp(30px,4vw,50px) clamp(20px,4vw,60px) clamp(46px,6vw,70px);border-bottom:1px solid rgba(21,22,15,.14)">
+<sc-for list="{{ posts }}" as="p" hint-placeholder-count="3">
+<a href="#" onClick="{{ p.open }}" style="text-decoration:none;color:#15160f;display:grid;grid-template-columns:minmax(120px,160px) minmax(0,1fr);gap:28px;padding:30px 0;border-top:1px solid rgba(21,22,15,.18);align-items:start"><div><div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8a5a3c;letter-spacing:.1em;margin-bottom:6px">{{ p.kicker }}</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5c5d51;letter-spacing:.06em">{{ p.date }} · {{ p.read }}</div></div><div><h2 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:30px;line-height:1.15;letter-spacing:-.015em">{{ p.title }}</h2><p style="margin:0;font-size:16px;line-height:1.6;color:#3c3d33;max-width:700px">{{ p.standfirst }}</p></div></a>
+</sc-for>
+<div style="border-top:1px solid rgba(21,22,15,.18)"></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPost }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="background:#eeeade;border-bottom:1px solid rgba(21,22,15,.14);padding:clamp(40px,6vw,72px) clamp(20px,4vw,60px) clamp(40px,5vw,60px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(28px,5vw,80px);align-items:end">
+<div>
+<a href="#" onClick="{{ goInsights }}" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-decoration:none;white-space:nowrap">← ALL WRITING</a>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#8a5a3c;margin:32px 0 20px">{{ post.kicker }}</div>
+<h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(36px,5vw,66px);line-height:1.04;letter-spacing:-.025em;max-width:20ch;text-wrap:balance">{{ post.title }}</h1>
+<p style="margin:26px 0 0;font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:clamp(20px,2vw,25px);line-height:1.4;color:#3c3d33;max-width:34ch;text-wrap:pretty">{{ post.standfirst }}</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px;padding-top:22px;border-top:1px solid rgba(21,22,15,.25)">
+<div style="display:flex;justify-content:space-between;gap:16px;font-size:13.5px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#5c5d51">WRITTEN</span><span style="color:#15160f">{{ post.dateLong }}</span></div>
+<div style="display:flex;justify-content:space-between;gap:16px;font-size:13.5px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#5c5d51">READING</span><span style="color:#15160f">{{ post.readLong }}</span></div>
+<div style="display:flex;justify-content:space-between;gap:16px;font-size:13.5px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#5c5d51">FOR</span><span style="color:#15160f;text-align:right">{{ post.audience }}</span></div>
+<div style="display:flex;justify-content:space-between;gap:16px;font-size:13.5px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#5c5d51">RELATES TO</span><a href="#" onClick="{{ post.serviceGo }}" style="text-decoration:none;text-align:right">{{ post.service }}</a></div>
+</div>
+</div>
+
+<div style="padding:clamp(40px,6vw,72px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,680px) minmax(0,1fr);gap:0 clamp(0px,4vw,60px)">
+<div></div>
+<div style="min-width:0">
+<p style="margin:0 0 24px;font-size:20px;line-height:1.6;color:#15160f">{{ post.lead }}</p>
+<sc-for list="{{ post.bodyA }}" as="para" hint-placeholder-count="1">
+<p style="margin:0 0 22px;font-size:17.5px;line-height:1.72;color:#15160f">{{ para }}</p>
+</sc-for>
+<blockquote style="margin:38px 0;padding:0 0 0 26px;border-left:2px solid #8a5a3c;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(24px,2.4vw,30px);line-height:1.3;letter-spacing:-.01em;color:#15160f">{{ post.pull }}</blockquote>
+<sc-for list="{{ post.bodyB }}" as="para" hint-placeholder-count="2">
+<p style="margin:0 0 22px;font-size:17.5px;line-height:1.72;color:#15160f">{{ para }}</p>
+</sc-for>
+<div style="margin-top:44px;padding:26px 28px;border:1px solid rgba(21,22,15,.16);display:grid;grid-template-columns:72px minmax(0,1fr);gap:22px;align-items:center">
+<div style="width:72px;height:72px;border-radius:50%;background:repeating-linear-gradient(135deg,#e6e1d2 0 6px,#eeeade 6px 12px);border:1px solid rgba(21,22,15,.16)"></div>
+<div><div style="font-family:'Newsreader',Georgia,serif;font-size:21px;margin-bottom:4px">Brannan Coady</div><div style="font-size:14.5px;line-height:1.5;color:#3c3d33">Founder of Anyway Ventures. Exited founder, former CPO, investor and board member; now building AI inside PE-backed and mid-market businesses. <a href="#" onClick="{{ goAbout }}" style="text-decoration:none">More →</a></div></div>
+</div>
+</div>
+<div style="display:none"></div>
+</div>
+
+<div style="padding:clamp(40px,5vw,60px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#eeeade">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:24px"><h2 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:32px;letter-spacing:-.02em">Keep reading</h2><a href="#" onClick="{{ goInsights }}" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-decoration:none;white-space:nowrap">ALL WRITING →</a></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+<sc-for list="{{ post.related }}" as="r" hint-placeholder-count="2">
+<a href="#" onClick="{{ r.open }}" style="text-decoration:none;color:#15160f;background:#f5f2ea;border:1px solid rgba(21,22,15,.16);padding:26px 28px;display:flex;flex-direction:column;gap:10px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#8a5a3c">{{ r.kicker }} · {{ r.read }}</div><div style="font-family:'Newsreader',Georgia,serif;font-size:23px;line-height:1.2">{{ r.title }}</div><div style="font-size:14.5px;line-height:1.55;color:#5c5d51">{{ r.standfirst }}</div></a>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px) clamp(40px,5vw,60px);border-bottom:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,4vw,64px);align-items:start">
+<div style="grid-column:span 2;min-width:0">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c;margin-bottom:28px">BRANNAN COADY</div>
+<h1 style="margin:0 0 30px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(36px,4.8vw,64px);line-height:1.06;letter-spacing:-.025em;max-width:18ch;text-wrap:balance">Founder, operator, investor — and still the one writing the code.</h1>
+<p style="margin:0 0 16px;font-size:18px;line-height:1.7;color:#3c3d33;max-width:720px">I co-founded Netsells in York and ran it as chief executive for a decade, building digital products for Trainline, Coca-Cola, the BBC and Toolstation, and growing it into one of the UK's better-regarded product consultancies. In 2023 it merged with hedgehog lab, backed by BGF, and I stayed on as an investor and advisor.</p>
+<p style="margin:0 0 16px;font-size:18px;line-height:1.7;color:#3c3d33;max-width:720px">Alongside that I was Chief Product Officer and then an executive director at YourParkingSpace, and I've invested in, advised, or sat on the boards of businesses across software, health, fintech, consumer and leisure — including exits to FTSE 100 acquirers.</p>
+<p style="margin:0;font-size:18px;line-height:1.7;color:#3c3d33;max-width:720px">Anyway Ventures is the single vehicle for all of it: my capital, my board work, and the thing that now takes most of my week — going into businesses and portfolios and building AI into how they run, with the people who'll be left with it.</p>
+</div>
+<div style="aspect-ratio:4/5;background:repeating-linear-gradient(135deg,#e6e1d2 0 9px,#eeeade 9px 18px);border:1px solid rgba(21,22,15,.16);display:flex;align-items:flex-end;padding:16px;max-width:360px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:#6e6c5c">PORTRAIT — BRANNAN COADY</span></div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#eeeade">
+<h2 style="margin:0 0 30px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em">The path here</h2>
+<sc-for list="{{ timeline }}" as="t" hint-placeholder-count="5">
+<div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:24px;padding:20px 0;border-top:1px solid rgba(21,22,15,.18);align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#8a5a3c;letter-spacing:.06em">{{ t.when }}</span><div><div style="font-family:'Newsreader',Georgia,serif;font-size:23px;margin-bottom:5px">{{ t.title }}</div><div style="font-size:15.5px;line-height:1.6;color:#3c3d33;max-width:740px">{{ t.body }}</div></div></div>
+</sc-for>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<h2 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em">The bench</h2>
+<p style="margin:0 0 30px;font-size:16px;color:#5c5d51;max-width:640px">A decade of running a consultancy leaves you with people you trust. These roles join engagements when the work needs them — Brannan stays in the room.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px">
+<div style="border:1px solid rgba(21,22,15,.16);padding:24px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#8a5a3c;margin-bottom:10px">ENGINEERING</div><div style="font-size:15.5px;line-height:1.6;color:#3c3d33">Senior full-stack and platform engineers for internal tooling, integrations and agent infrastructure.</div></div>
+<div style="border:1px solid rgba(21,22,15,.16);padding:24px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#8a5a3c;margin-bottom:10px">DATA &amp; ML</div><div style="font-size:15.5px;line-height:1.6;color:#3c3d33">Data engineering and applied ML for evaluation, retrieval and model selection where off-the-shelf isn't enough.</div></div>
+<div style="border:1px solid rgba(21,22,15,.16);padding:24px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#8a5a3c;margin-bottom:10px">SECURITY</div><div style="font-size:15.5px;line-height:1.6;color:#3c3d33">Specialist reviewers for diligence on security posture, data protection and infrastructure.</div></div>
+<div style="border:1px solid rgba(21,22,15,.16);padding:24px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#8a5a3c;margin-bottom:10px">DESIGN</div><div style="font-size:15.5px;line-height:1.6;color:#3c3d33">Product designers for the internal tools people will actually use every day.</div></div>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#eeeade">
+<h2 style="margin:0 0 30px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em">How I work</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:34px">
+<div style="border-top:2px solid #8a5a3c;padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Shipped beats specified</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">A working thing on Friday tells you more than a document in a month. Everything is organised around getting to that Friday.</p></div>
+<div style="border-top:2px solid rgba(21,22,15,.25);padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Say the unwelcome thing early</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">On the first call, in the board pack, in the diligence report. It's the only part of the job that's genuinely scarce.</p></div>
+<div style="border-top:2px solid rgba(21,22,15,.25);padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Leave it owned</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">Dependency on an outside expert is a failure mode, not a business model. I'd rather be re-hired than retained by inertia.</p></div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isHow }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px) clamp(40px,5vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c;margin-bottom:30px">HOW WE WORK &amp; PRICING</div>
+<h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(36px,5vw,64px);line-height:1.05;letter-spacing:-.025em;max-width:18ch;text-wrap:balance">Fixed price, senior hands, <em style="color:#8a5a3c">built to be handed over</em>.</h1>
+<p style="margin:30px 0 0;font-size:18px;line-height:1.62;color:#3c3d33;max-width:680px;text-wrap:pretty">Every engagement is priced against a defined outcome before it starts, led personally by Brannan, and finished when your team owns the result. This page sets out how that works in practice, and roughly what it costs.</p>
+</div>
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<h2 style="margin:0 0 28px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em">Indicative pricing</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:transparent;border:1px solid rgba(21,22,15,.16);--cell:1">
+<sc-for list="{{ pricing }}" as="pr" hint-placeholder-count="4">
+<div style="background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:28px 26px;display:flex;flex-direction:column;gap:10px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c">{{ pr.kicker }}</div><div style="font-family:'Newsreader',Georgia,serif;font-size:23px;line-height:1.15">{{ pr.title }}</div><div style="font-family:'Newsreader',Georgia,serif;font-size:32px;font-weight:300;letter-spacing:-.02em;margin-top:6px">{{ pr.price }}</div><div style="font-size:14px;line-height:1.55;color:#5c5d51">{{ pr.note }}</div></div>
+</sc-for>
+</div>
+<p style="margin:18px 0 0;font-size:12.5px;color:#8a5a3c;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em">Ranges are placeholders — set real bands before publication, or remove the figures and keep the structure.</p>
+</div>
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#eeeade">
+<h2 style="margin:0 0 30px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em">The principles behind the price</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:34px">
+<div style="border-top:2px solid #8a5a3c;padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Outcome, not hours</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">We agree what done looks like and a price for it. If it takes longer, that's our problem; if it's faster, you still get the outcome.</p></div>
+<div style="border-top:2px solid rgba(21,22,15,.25);padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Your stack, your accounts</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">Everything is built in your repos, cloud and AI accounts. You own the IP and the running costs are visible to you from day one.</p></div>
+<div style="border-top:2px solid rgba(21,22,15,.25);padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Confidentiality by default</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">NDA before any data or code is seen. Client work is described anonymously unless you'd like it named.</p></div>
+<div style="border-top:2px solid rgba(21,22,15,.25);padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">A defined end</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">Handover is part of the scope, not an extra. Retainers are offered where they help, never assumed.</p></div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isFaq }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px) clamp(40px,5vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c;margin-bottom:30px">QUESTIONS WE GET ASKED</div>
+<h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(36px,5vw,64px);line-height:1.05;letter-spacing:-.025em;max-width:18ch;text-wrap:balance">Straight answers to the <em style="color:#8a5a3c">usual questions</em>.</h1>
+<p style="margin:30px 0 0;font-size:18px;line-height:1.62;color:#3c3d33;max-width:680px;text-wrap:pretty">From deal teams, CEOs and owner-managers. If yours isn’t here, the first call is free.</p>
+</div>
+<div style="padding:clamp(30px,4vw,50px) clamp(20px,4vw,60px) clamp(46px,6vw,70px);border-bottom:1px solid rgba(21,22,15,.14)">
+<sc-for list="{{ faq }}" as="it" hint-placeholder-count="5">
+<div style="display:grid;grid-template-columns:minmax(160px,260px) minmax(0,1fr);gap:28px;padding:24px 0;border-top:1px solid rgba(21,22,15,.16);align-items:start"><h2 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:23px;line-height:1.2">{{ it.q }}</h2><p style="margin:0;font-size:16px;line-height:1.65;color:#3c3d33;max-width:720px">{{ it.a }}</p></div>
+</sc-for>
+<div style="border-top:1px solid rgba(21,22,15,.16)"></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPrivacy }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px) clamp(40px,5vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c;margin-bottom:30px">PRIVACY &amp; COOKIES</div>
+<h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(36px,5vw,64px);line-height:1.05;letter-spacing:-.025em;max-width:18ch;text-wrap:balance">How we handle your <em style="color:#8a5a3c">information</em>.</h1>
+<p style="margin:30px 0 0;font-size:18px;line-height:1.62;color:#3c3d33;max-width:680px;text-wrap:pretty">Anyway Ventures Ltd is the data controller for this website and for enquiries made through it. This notice is written to be read; the short version is that we collect the minimum, we don’t sell it, and you can ask us to delete it. Last updated {{ policyDate }}.</p>
+</div>
+<div style="padding:clamp(30px,4vw,50px) clamp(20px,4vw,60px) clamp(46px,6vw,70px);border-bottom:1px solid rgba(21,22,15,.14);max-width:900px">
+<sc-for list="{{ privacy }}" as="it" hint-placeholder-count="5">
+<div style="display:grid;grid-template-columns:minmax(0,1fr);gap:8px;padding:24px 0;border-top:1px solid rgba(21,22,15,.16);align-items:start"><h2 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:23px;line-height:1.2">{{ it.q }}</h2><p style="margin:0;font-size:16px;line-height:1.65;color:#3c3d33;max-width:720px">{{ it.a }}</p></div>
+</sc-for>
+<div style="border-top:1px solid rgba(21,22,15,.16)"></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isTerms }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px) clamp(40px,5vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c;margin-bottom:30px">TERMS OF ENGAGEMENT</div>
+<h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(36px,5vw,64px);line-height:1.05;letter-spacing:-.025em;max-width:18ch;text-wrap:balance">How <em style="color:#8a5a3c">engagements</em> are contracted.</h1>
+<p style="margin:30px 0 0;font-size:18px;line-height:1.62;color:#3c3d33;max-width:680px;text-wrap:pretty">A plain-language summary of the standard terms. Every engagement is governed by a signed statement of work, which takes precedence over this page. Last updated {{ policyDate }}.</p>
+</div>
+<div style="padding:clamp(30px,4vw,50px) clamp(20px,4vw,60px) clamp(46px,6vw,70px);border-bottom:1px solid rgba(21,22,15,.14);max-width:900px">
+<sc-for list="{{ terms }}" as="it" hint-placeholder-count="5">
+<div style="display:grid;grid-template-columns:minmax(0,1fr);gap:8px;padding:24px 0;border-top:1px solid rgba(21,22,15,.16);align-items:start"><h2 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:23px;line-height:1.2">{{ it.q }}</h2><p style="margin:0;font-size:16px;line-height:1.65;color:#3c3d33;max-width:720px">{{ it.a }}</p></div>
+</sc-for>
+<div style="border-top:1px solid rgba(21,22,15,.16)"></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCookies }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px) clamp(40px,5vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c;margin-bottom:30px">COOKIES</div>
+<h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(36px,5vw,64px);line-height:1.05;letter-spacing:-.025em;max-width:18ch;text-wrap:balance">Almost <em style="color:#8a5a3c">none</em>.</h1>
+<p style="margin:30px 0 0;font-size:18px;line-height:1.62;color:#3c3d33;max-width:680px;text-wrap:pretty">This site sets no advertising or tracking cookies and needs no cookie banner. Here is exactly what it does use. Last updated {{ policyDate }}.</p>
+</div>
+<div style="padding:clamp(30px,4vw,50px) clamp(20px,4vw,60px) clamp(46px,6vw,70px);border-bottom:1px solid rgba(21,22,15,.14);max-width:900px">
+<sc-for list="{{ cookies }}" as="it" hint-placeholder-count="4">
+<div style="display:grid;grid-template-columns:minmax(0,1fr);gap:8px;padding:24px 0;border-top:1px solid rgba(21,22,15,.16)"><h2 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:23px;line-height:1.2">{{ it.q }}</h2><p style="margin:0;font-size:16px;line-height:1.65;color:#3c3d33;max-width:720px">{{ it.a }}</p></div>
+</sc-for>
+<div style="border-top:1px solid rgba(21,22,15,.16)"></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isThanks }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:clamp(60px,9vw,110px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(30px,5vw,70px);align-items:start">
+<div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c;margin-bottom:28px">RECEIVED</div>
+<h1 style="margin:0 0 24px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(36px,5vw,64px);line-height:1.05;letter-spacing:-.025em;max-width:14ch;text-wrap:balance">Thank you. You'll hear from Brannan <em style="color:#8a5a3c">within a week</em>.</h1>
+<p style="margin:0;font-size:18px;line-height:1.65;color:#3c3d33;max-width:560px">Usually much sooner. The reply will either propose a 30-minute call or say plainly why we're not the right fit and who might be. If it's urgent — a deal in exclusivity, say — mention that and it jumps the queue.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(21,22,15,.18)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#5c5d51;padding:18px 0 10px">WHILE YOU WAIT</div>
+<sc-for list="{{ posts }}" as="p" hint-placeholder-count="3">
+<a href="#" onClick="{{ p.open }}" style="text-decoration:none;color:#15160f;display:block;padding:14px 0;border-top:1px solid rgba(21,22,15,.12)"><div style="font-family:'Newsreader',Georgia,serif;font-size:20px;line-height:1.2">{{ p.title }}</div><div style="font-size:13px;color:#5c5d51;margin-top:4px">{{ p.kicker }} · {{ p.read }}</div></a>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isNotFound }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:clamp(60px,9vw,110px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c;margin-bottom:28px">404 · NOT FOUND</div>
+<h1 style="margin:0 0 24px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(36px,5vw,64px);line-height:1.05;letter-spacing:-.025em;max-width:16ch;text-wrap:balance">That page has been <em style="color:#8a5a3c">handed over</em>, or never built.</h1>
+<p style="margin:0 0 34px;font-size:18px;line-height:1.65;color:#3c3d33;max-width:560px">The site was restructured recently, so older links may have moved. Here's where most people are heading.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:1px;border:1px solid rgba(21,22,15,.16)">
+<a href="#" onClick="{{ goPe }}" style="text-decoration:none;color:#15160f;outline:1px solid rgba(21,22,15,.16);padding:22px 20px;min-height:48px"><div style="font-family:'Newsreader',Georgia,serif;font-size:20px">For PE &amp; investors</div><div style="font-size:13px;color:#5c5d51;margin-top:3px">Diligence, operating partner, board</div></a>
+<a href="#" onClick="{{ goEmbedded }}" style="text-decoration:none;color:#15160f;outline:1px solid rgba(21,22,15,.16);padding:22px 20px;min-height:48px"><div style="font-family:'Newsreader',Georgia,serif;font-size:20px">For operators</div><div style="font-size:13px;color:#5c5d51;margin-top:3px">Embedded AI delivery</div></a>
+<a href="#" onClick="{{ goRecord }}" style="text-decoration:none;color:#15160f;outline:1px solid rgba(21,22,15,.16);padding:22px 20px;min-height:48px"><div style="font-family:'Newsreader',Georgia,serif;font-size:20px">Track record</div><div style="font-size:13px;color:#5c5d51;margin-top:3px">Investments, exits, client work</div></a>
+<a href="#" onClick="{{ goContact }}" style="text-decoration:none;color:#15160f;outline:1px solid rgba(21,22,15,.16);padding:22px 20px;min-height:48px"><div style="font-family:'Newsreader',Georgia,serif;font-size:20px">Contact</div><div style="font-size:13px;color:#5c5d51;margin-top:3px">Book 30 minutes</div></a>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(30px,5vw,70px);align-items:start">
+<div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c;margin-bottom:28px">ENQUIRIES</div>
+<h1 style="margin:0 0 24px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(36px,5vw,64px);line-height:1.05;letter-spacing:-.025em;max-width:14ch">An honest read, within a week.</h1>
+<p style="margin:0 0 30px;font-size:18px;line-height:1.65;color:#3c3d33;max-width:560px">The first conversation is free and takes under an hour. Tell me what's slow, expensive, or undecided. If there's an engagement worth having you'll leave knowing its shape and its price — and if there isn't, I'll say so and point you at someone better placed.</p>
+<div style="display:flex;flex-direction:column;gap:14px;padding-top:26px;border-top:1px solid rgba(21,22,15,.16);max-width:560px">
+<div style="display:flex;justify-content:space-between;gap:20px;font-size:15px"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:#5c5d51">EMAIL</span><a href="{{ mailto }}" style="text-decoration:none">{{ contactEmail }}</a></div>
+<div style="display:flex;justify-content:space-between;gap:20px;font-size:15px"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:#5c5d51">CALENDAR</span><a href="{{ calendarUrl }}" style="text-decoration:none">Book 30 minutes directly</a></div>
+<div style="display:flex;justify-content:space-between;gap:20px;font-size:15px"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:#5c5d51">LINKEDIN</span><a href="{{ linkedinUrl }}" target="_blank" rel="noreferrer" style="text-decoration:none">/in/brannancoady</a></div>
+<div style="display:flex;justify-content:space-between;gap:20px;font-size:15px"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:#5c5d51">BASED</span><span style="color:#3c3d33">York, United Kingdom · working UK-wide</span></div>
+</div>
+</div>
+<div style="background:#eeeade;border:1px solid rgba(21,22,15,.16);padding:clamp(26px,3vw,38px)">
+<div style="font-family:'Newsreader',Georgia,serif;font-size:26px;margin-bottom:8px">Start a conversation</div><p style="margin:0 0 20px;font-size:14px;line-height:1.5;color:#5c5d51">Every enquiry — diligence, retained role, build, board or investment — starts with the same free 30-minute call.</p>
+<div style="display:flex;flex-direction:column;gap:18px">
+<div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#5c5d51;margin-bottom:7px">WHAT'S THE ENQUIRY</div><div style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ enquiryTypes }}" as="t" hint-placeholder-count="5">
+<a href="#" onClick="{{ t.pick }}" style="text-decoration:none;border:1px solid {{ t.border }};background:{{ t.bg }};color:{{ t.fg }};padding:9px 14px;font-size:13.5px">{{ t.label }}</a>
+</sc-for>
+</div></div>
+<div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#5c5d51;margin-bottom:7px">NAME</div><input value="{{ formName }}" onChange="{{ setName }}" placeholder="Your name" style="width:100%;background:#f5f2ea;border:1px solid rgba(21,22,15,.22);padding:13px 14px;font-size:15px;font-family:inherit;color:#15160f;outline:none"></input></div>
+<div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#5c5d51;margin-bottom:7px">COMPANY OR FUND</div><input value="{{ formOrg }}" onChange="{{ setOrg }}" placeholder="Company or fund" style="width:100%;background:#f5f2ea;border:1px solid rgba(21,22,15,.22);padding:13px 14px;font-size:15px;font-family:inherit;color:#15160f;outline:none"></input></div>
+<div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#5c5d51;margin-bottom:7px">{{ formPromptLabel }}</div><textarea value="{{ formBody }}" onChange="{{ setBody }}" placeholder="A few lines is plenty." style="width:100%;background:#f5f2ea;border:1px solid rgba(21,22,15,.22);padding:13px 14px;font-size:15px;font-family:inherit;color:#15160f;min-height:110px;resize:vertical;outline:none"></textarea></div>
+<a href="{{ formMailto }}" onClick="{{ sendForm }}" style="text-decoration:none;display:block;background:#15160f;color:#f5f2ea;padding:16px;min-height:48px;text-align:center;font-size:15px;font-weight:500">Send</a>
+<div style="font-size:13px;color:#5c5d51;line-height:1.5">Opens in your email client. No newsletter, no sequence — replies come from Brannan.</div>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<div style="padding:clamp(50px,6vw,80px) clamp(20px,4vw,60px);background:#15160f;color:#f5f2ea;display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px clamp(28px,4vw,60px);align-items:center">
+<div style="flex:1 1 420px;min-width:0">
+<h2 style="margin:0 0 14px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.025em">{{ ctaHeading }}</h2>
+<p style="margin:0;font-size:18px;line-height:1.6;color:#c5c4b4;max-width:620px">The first conversation is free and takes under an hour. If there's an engagement worth having you'll leave knowing its shape and its price — and if there isn't, I'll say so.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;flex:none">
+<a href="#" onClick="{{ goContact }}" style="text-decoration:none;background:#f5f2ea;color:#15160f;padding:17px 30px;font-size:15px;font-weight:600;white-space:nowrap">{{ ctaLabel }}</a>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#a9a897">{{ contactEmail }}</span>
+</div>
+</div>
+
+<div style="padding:clamp(40px,5vw,60px) max(clamp(20px,4vw,60px),env(safe-area-inset-right)) max(28px,env(safe-area-inset-bottom)) max(clamp(20px,4vw,60px),env(safe-area-inset-left));border-top:1px solid rgba(21,22,15,.14)">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:36px 32px">
+<div style="grid-column:span 1;min-width:0"><div style="font-family:'Newsreader',Georgia,serif;font-size:22px;letter-spacing:-.01em;margin-bottom:12px">Anyway&nbsp;Ventures</div><p style="margin:0 0 14px;font-size:14px;line-height:1.55;color:#5c5d51;max-width:260px">Capital, board work and hands-on AI for PE-backed and mid-market businesses. Led by Brannan Coady with a small senior bench.</p><a href="{{ mailto }}" style="text-decoration:none;font-size:14px">{{ contactEmail }}</a></div>
+<div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:14px">FOR PE &amp; INVESTORS</div><div style="display:flex;flex-direction:column;gap:9px"><a href="#" onClick="{{ goPe }}" style="text-decoration:none;color:#3c3d33;font-size:14px;line-height:1.4">Overview</a><a href="#" onClick="{{ goDiligence }}" style="text-decoration:none;color:#3c3d33;font-size:14px;line-height:1.4">Tech, product &amp; AI due diligence</a><a href="#" onClick="{{ goOpPartner }}" style="text-decoration:none;color:#3c3d33;font-size:14px;line-height:1.4">Fractional AI operating partner</a><a href="#" onClick="{{ goBoard }}" style="text-decoration:none;color:#3c3d33;font-size:14px;line-height:1.4">Board &amp; NED</a></div></div>
+<div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:14px">FOR OPERATORS</div><div style="display:flex;flex-direction:column;gap:9px"><a href="#" onClick="{{ goEmbedded }}" style="text-decoration:none;color:#3c3d33;font-size:14px;line-height:1.4">Embedded AI delivery</a><a href="#" onClick="{{ goHow }}" style="text-decoration:none;color:#3c3d33;font-size:14px;line-height:1.4">How we work &amp; pricing</a><a href="#" onClick="{{ goFaq }}" style="text-decoration:none;color:#3c3d33;font-size:14px;line-height:1.4">Questions we get asked</a><a href="#" onClick="{{ goContact }}" style="text-decoration:none;color:#3c3d33;font-size:14px;line-height:1.4">Book 30 minutes</a></div></div>
+<div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:14px">ABOUT</div><div style="display:flex;flex-direction:column;gap:9px"><a href="#" onClick="{{ goAbout }}" style="text-decoration:none;color:#3c3d33;font-size:14px;line-height:1.4">Brannan Coady</a><a href="#" onClick="{{ goRecord }}" style="text-decoration:none;color:#3c3d33;font-size:14px;line-height:1.4">Investments &amp; exits</a><a href="#" onClick="{{ goCases }}" style="text-decoration:none;color:#3c3d33;font-size:14px;line-height:1.4">Case studies</a><a href="#" onClick="{{ goInsights }}" style="text-decoration:none;color:#3c3d33;font-size:14px;line-height:1.4">Insights</a></div></div>
+<div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:14px">CONTACT</div><div style="display:flex;flex-direction:column;gap:9px"><a href="{{ mailto }}" style="text-decoration:none;color:#3c3d33;font-size:14px">Email</a><a href="{{ calendarUrl }}" style="text-decoration:none;color:#3c3d33;font-size:14px">Book 30 minutes</a><a href="{{ linkedinUrl }}" target="_blank" rel="noreferrer" style="text-decoration:none;color:#3c3d33;font-size:14px">LinkedIn</a><span style="color:#5c5d51;font-size:14px;line-height:1.4">York, United Kingdom<br>Working UK-wide</span></div></div>
+</div>
+<div style="margin-top:40px;padding-top:20px;border-top:1px solid rgba(21,22,15,.12);display:flex;justify-content:space-between;align-items:center;gap:14px 30px;flex-wrap:wrap;font-size:12.5px;color:#5c5d51">
+<span>© {{ year }} Anyway Ventures Ltd. Registered in England &amp; Wales, company no. {{ companyNo }}. Registered office: {{ registeredOffice }}.</span>
+<div style="display:flex;gap:20px;flex-wrap:wrap"><a href="#" onClick="{{ goPrivacy }}" style="text-decoration:none;color:#5c5d51">Privacy</a><a href="#" onClick="{{ goTerms }}" style="text-decoration:none;color:#5c5d51">Terms of engagement</a><a href="#" onClick="{{ goCookies }}" style="text-decoration:none;color:#5c5d51">Cookies</a></div>
+</div>
+</div>
+</div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;ctaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Book 30 minutes&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;contactEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;brannan@anywayventures.com&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;calendarUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;linkedinUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://www.linkedin.com/in/brannancoady&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;sampleUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;companyNo&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Legal&quot;},&quot;registeredOffice&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Legal&quot;}}">
+class Component extends DCLogic {
+  state = { page: "home", postIdx: 0, menu: null, drawer: false, vw: typeof window !== "undefined" ? window.innerWidth : 1200, enquiry: "AI due diligence", formName: "", formOrg: "", formBody: "" };
+  nav(p, extra) {
+    return (e) => { if (e) e.preventDefault(); this.setState({ page: p, menu: null, drawer: false, ...(extra || {}) }); window.scrollTo(0, 0); };
+  }
+  componentDidMount() {
+    this.setTitle();
+    this._onResize = () => { const vw = window.innerWidth; if (vw !== this.state.vw) this.setState({ vw, menu: vw < 900 ? null : this.state.menu, drawer: vw >= 900 ? false : this.state.drawer }); };
+    window.addEventListener("resize", this._onResize); this._onResize();
+  }
+  componentWillUnmount() { window.removeEventListener("resize", this._onResize); }
+  componentDidUpdate() { this.setTitle(); }
+  setTitle() {
+    const t = {
+      home: "Anyway Ventures — AI operating partner for PE-backed and mid-market businesses",
+      pe: "For private equity & investors — technology and AI across the deal cycle | Anyway Ventures",
+      diligence: "Technology, product & AI due diligence for private equity | Anyway Ventures",
+      oppartner: "Fractional AI operating partner for PE funds | Anyway Ventures",
+      embedded: "Embedded AI delivery — internal tooling, automation & agents | Anyway Ventures",
+      board: "Board & non-executive roles | Anyway Ventures",
+      record: "Track record — companies, investments, exits | Anyway Ventures",
+      insights: "Insights — writing for deal teams and operators | Anyway Ventures",
+      about: "Brannan Coady — founder, operator, investor | Anyway Ventures",
+      contact: "Enquire | Anyway Ventures",
+      cases: "Case studies — recent AI delivery and diligence work | Anyway Ventures",
+      how: "How we work & pricing | Anyway Ventures", faq: "Questions we get asked | Anyway Ventures",
+      privacy: "Privacy & cookies | Anyway Ventures", terms: "Terms of engagement | Anyway Ventures",
+      cookies: "Cookies | Anyway Ventures", thanks: "Thank you | Anyway Ventures", "404": "Page not found | Anyway Ventures"
+    };
+    const p = this.state.page;
+    document.title = p === "post" ? (this.posts()[this.state.postIdx].title + " | Anyway Ventures") : (t[p] || t.home);
+  }
+  posts() {
+    return [
+      { kicker: "DILIGENCE", date: "SEP 2026", read: "6 MIN", title: "AI due diligence is a value-creation plan, not a risk register",
+        standfirst: "Most funds now ask 'what's the AI risk?' in diligence. The better question is 'what does AI make this business worth, and how fast?'",
+        paras: [
+          "Technical diligence has a settled shape: architecture, code quality, security, team, a red/amber/green summary. It is useful and it is almost entirely defensive — a list of things that could go wrong. AI has been bolted onto that list as another risk category: is the target's AI real, is the data clean, is there IP exposure.",
+          "That misses the point of the moment. For most mid-market targets the AI question is not 'what could go wrong' but 'how much cost comes out of this operation, how much faster does it grow, and how quickly can a new owner make that happen'. That is a value-creation question, and it belongs in the investment case, not the risk appendix.",
+          "Done properly it looks like a function-by-function walk of the business — finance, operations, sales, service, product — ranked by hours and margin at stake, tested against what the target's data and systems can actually support today, and sequenced into a first-hundred-days plan with a conservative, base and stretch case the deal team can drop into the model.",
+          "The uncomfortable part is that it can only be written by someone who has recently built these systems in production. Vendor decks and analyst frameworks will tell you what is theoretically possible. The plan you can underwrite is the one that knows what broke last month."
+        ] },
+      { kicker: "OPERATING PARTNER", date: "AUG 2026", read: "5 MIN", title: "Why mid-market funds can't hire an AI operating partner — and what to do instead",
+        standfirst: "The people who can do the job are scarce, expensive, and mostly don't want a full-time seat at a £300m fund. There's a better structure.",
+        paras: [
+          "Large-cap funds are building AI operating teams. Lower-mid-market funds — six to fifteen portfolio companies, small operating bench — mostly aren't, not because they don't see the need but because the economics don't work. A credible AI operating partner costs what a partner costs, and the portfolio isn't large enough to amortise that.",
+          "The workaround most funds have landed on is a workshop: bring in a consultancy, run an AI strategy day with each management team, produce a roadmap. Six months later very little is in production, because a roadmap is not a capability and management teams were already busy.",
+          "The structure that does work is fractional and continuous: a retained operating partner two to four days a month across the portfolio, who writes each company's AI value-creation plan, meets each CEO monthly, reports to the IC quarterly — and, crucially, can bring hands when a portco can't deliver alone. Plans without delivery capacity are how the workshop failure repeats.",
+          "The fund gets a single owner for the AI thesis across the hold, at a fraction of a full-time cost, with patterns that transfer from one portco to the next. The portfolio companies get a counterpart who has sat in their chair. And the exit story gets evidenced rather than asserted."
+        ] },
+      { kicker: "DELIVERY", date: "JUL 2026", read: "4 MIN", title: "You bought the licences and nothing changed",
+        standfirst: "The most common AI failure in mid-market businesses isn't technical. It's that the tools arrived and the work didn't move.",
+        paras: [
+          "A pattern I see in almost every business I walk into: a company-wide AI licence rolled out eighteen months ago, a handful of enthusiasts using it heavily, most people using it to draft emails, and the core processes — quoting, onboarding, reconciliation, reporting — exactly as they were.",
+          "Licences don't change workflows. Workflows change when someone sits with the person doing the work, maps where the hours go, builds the thing that removes them, and stays until the new way is the habit. That is not a training problem and it is not a strategy problem; it is a build-and-embed problem.",
+          "The practical answer is a short embedded sprint: two to three weeks inside the business, the top one or two processes automated and running before the end, the team watching it happen so they own it after. It costs a fraction of the transformation programme and it produces something you can measure in the following month's numbers.",
+          "The measure of success is boring on purpose: what is still running, unattended, six months after the outside help has left."
+        ] }
+    ];
+  }
+  renderVals() {
+    const p = this.state.page;
+    const on = "#8a5a3c", off = "#4a4b40";
+    const record = [
+      { name: "Netsells", role: "Co-founder & Chief Executive", sector: "Consultancy", status: "MERGED", colour: "#8a5a3c" },
+      { name: "Railguard", role: "Executive director & investor", sector: "Software", status: "EXITED", colour: "#8a5a3c" },
+      { name: "YourParkingSpace", role: "Chief Product Officer, exec director", sector: "Marketplace", status: "OPERATED", colour: "#5c5d51" },
+      { name: "hedgehog lab", role: "Investor & advisor", sector: "Consultancy", status: "HELD", colour: "#5c5d51" },
+      { name: "Odhealth", role: "Investor, former interim CTO", sector: "Health", status: "HELD", colour: "#5c5d51" },
+      { name: "Wombat", role: "Investor", sector: "Fintech", status: "HELD", colour: "#5c5d51" },
+      { name: "Jigsaw", role: "Investor & advisor", sector: "Consumer", status: "HELD", colour: "#5c5d51" },
+      { name: "Brawn Power", role: "Investor", sector: "Consumer", status: "HELD", colour: "#5c5d51" },
+      { name: "The Good Golf Company", role: "Owner-operator", sector: "Leisure", status: "CURRENT", colour: "#5c5d51" }
+    ];
+    const cases = [
+      { tag: "EMBEDDED · PE-BACKED SERVICES", title: "Three agents live in six weeks at a £40m-revenue services business", body: "Quoting, customer onboarding and month-end reconciliation automated with the ops and finance teams in the room. Built on their existing systems; handed over documented.", stat1: "~900", label1: "hours returned per month", stat2: "6 wks", label2: "from first call to production" },
+      { tag: "DILIGENCE · BUY-SIDE", title: "Tech, product & AI diligence on a vertical SaaS target", body: "Platform and team review plus a costed AI value-creation plan for the IC. Two of the plan's items were delivered in the first quarter of ownership.", stat1: "~1,400", label1: "hours/month returned in the first-100-day plan", stat2: "9 days", label2: "scoping to IC session" },
+      { tag: "CAPABILITY · OWNER-MANAGED", title: "An owner-managed distributor made AI-native in a quarter", body: "Internal pricing tool and document handling rebuilt with the team, then a twelve-week embed until the new workflows were the habit.", stat1: "~320", label1: "hours returned per month, unattended at 6 months", stat2: "2→14", label2: "staff using AI in daily workflow" }
+    ];
+    const steps = [
+      { n: "001", title: "The call", body: "What's slow, what's expensive, what your team already tried. A straight answer on fit.", time: "60 MINS" },
+      { n: "002", title: "Paid discovery, on site", body: "Days with the people doing the work. You leave with a ranked, costed list of what to build — whether or not we build it.", time: "1 WEEK" },
+      { n: "003", title: "Build, in the open", body: "Fixed price against the outcome. Your team in the room, shipping into your stack, demoed weekly.", time: "2–8 WEEKS" },
+      { n: "004", title: "Handover, or stay close", body: "Documented and owned by your team. Some clients keep a light retainer or a board seat.", time: "ONGOING" }
+    ];
+    const aiPlan = [
+      { n: "A", title: "Opportunity map", body: "Every function walked — ops, finance, sales, service, product — and ranked by where AI moves cost or revenue most, with the evidence behind each call." },
+      { n: "B", title: "Cost-out and growth model", body: "Hours, headcount and margin impact per opportunity, in a form your deal team can drop into the model — conservative, base and stretch cases." },
+      { n: "C", title: "Readiness", body: "Whether the data, systems and people can support it today, and what has to change first. Most plans fail here, not on the technology." },
+      { n: "D", title: "AI claims, tested", body: "If the target is selling an AI story: what's real, what's a wrapper, what's defensible, and what it costs to run at scale." },
+      { n: "E", title: "The first hundred days", body: "A sequenced, costed delivery plan — quick wins in the first quarter, structural change after — ready for the incoming management team." }
+    ];
+    const ddSteps = [
+      { n: "001", title: "Scoping call", body: "Deal context, access, timetable and which strands you need. Fixed quote the same week.", time: "DAY 1" },
+      { n: "002", title: "Fieldwork", body: "Data room, code and systems review, and sessions with the CTO, product and operational leads.", time: "1–2 WEEKS" },
+      { n: "003", title: "Report and IC session", body: "A red/amber/green findings report, the AI value-creation plan, and a walkthrough with the deal team or committee.", time: "2–3 DAYS" },
+      { n: "004", title: "Post-completion, optional", body: "Delivery of the plan alongside management, as a retained or embedded engagement.", time: "ON COMPLETION" }
+    ];
+    const opSteps = [
+      { n: "001", title: "Portfolio baseline", body: "A short pass across every portco: where the hours go, what's already been tried, and who on each management team will carry it.", time: "WEEKS 1–4" },
+      { n: "002", title: "Plans and priorities", body: "An AI value-creation plan per company and a portfolio view for the IC — what to do first, what to skip, and what it's worth.", time: "WEEKS 5–8" },
+      { n: "003", title: "First deliveries", body: "Two or three quick wins in production across the portfolio, to prove the pattern and build management appetite.", time: "WEEKS 9–12" },
+      { n: "004", title: "Steady state", body: "Monthly CEO sessions, quarterly IC reporting, embedded sprints where a portco needs hands, and diligence support on the pipeline.", time: "ONGOING" }
+    ];
+    const timeline = [
+      { when: "2013–2023", title: "Netsells — co-founder & CEO", body: "Built a York-based digital product consultancy serving Trainline, Coca-Cola, the BBC and Toolstation." },
+      { when: "2019–2023", title: "YourParkingSpace — CPO, executive director", body: "Product and technology leadership at one of Europe's faster-growing marketplaces." },
+      { when: "2023", title: "Merger with hedgehog lab, backed by BGF", body: "Netsells merged into the hedgehog lab group; continued as investor and advisor." },
+      { when: "2016–", title: "Investing and board work", body: "Personal investments and advisory roles across software, health, fintech, consumer and leisure — with realised exits." },
+      { when: "2024–", title: "Anyway Ventures — the AI practice", body: "Hands-on AI implementation and diligence for PE-backed and mid-market businesses, alongside their teams." }
+    ];
+    const posts = this.posts().map((x, i) => ({ ...x, open: this.nav("post", { postIdx: i }) }));
+    const peServices = [
+      { n: "01", title: "Tech, product & AI due diligence", body: "What the platform is, whether the product earns the plan, and a costed AI value-creation plan in the IC pack.", meta: "PRE-DEAL · 1–3 WKS", open: this.nav("diligence") },
+      { n: "02", title: "Fractional AI operating partner", body: "Retained by the fund: AI plans across the portfolio, a counterpart for each CEO, quarterly reporting to the IC.", meta: "RETAINED · 2–4 DAYS/MO", open: this.nav("oppartner") },
+      { n: "03", title: "Embedded AI delivery", body: "Inside one portfolio company with its team: internal tooling, automation and agents in production in weeks.", meta: "IN A PORTCO · 2–8 WKS", open: this.nav("embedded") },
+      { n: "04", title: "Board & NED", body: "A small number of seats where technology, product and AI decide the outcome.", meta: "GOVERNANCE · ANNUAL", open: this.nav("board") }
+    ];
+    const headings = { home: "An honest read, within a week.", pe: "Got a deal in exclusivity, or a portfolio to move?", diligence: "Got a deal in exclusivity?", oppartner: "One further fund this year.", embedded: "Tell me what's slow or expensive.", board: "A seat, or a second opinion.", record: "Send the deck.", insights: "Disagree with something?", post: "Talk about this piece.", about: "Start a conversation.", contact: "Or just email." };
+    const types = ["AI due diligence", "AI operating partner", "Embedded delivery", "Board / NED", "Investment"];
+    const enquiryTypes = types.map(t => { const sel = t === this.state.enquiry; return { label: t, pick: (e) => { e.preventDefault(); this.setState({ enquiry: t }); }, border: sel ? "#15160f" : "rgba(21,22,15,.3)", bg: sel ? "#15160f" : "transparent", fg: sel ? "#f5f2ea" : "#3c3d33" }; });
+    const promptLabels = { "AI due diligence": "THE DEAL, THE TIMETABLE, WHAT YOU NEED", "AI operating partner": "THE FUND, THE PORTFOLIO, WHAT'S PROMPTING THIS", "Embedded delivery": "WHAT'S SLOW OR EXPENSIVE", "Board / NED": "THE BUSINESS AND THE SEAT", "Investment": "THE BUSINESS AND WHY NOW" };
+    const email = this.props.contactEmail ?? "brannan@anywayventures.com";
+    const subject = encodeURIComponent("Enquiry: " + this.state.enquiry + (this.state.formOrg ? " — " + this.state.formOrg : ""));
+    const bodyTxt = encodeURIComponent((this.state.formName ? this.state.formName + "\n" : "") + (this.state.formOrg ? this.state.formOrg + "\n\n" : "") + this.state.formBody);
+    const peFamily = ["pe", "diligence", "oppartner", "embedded", "board"].includes(p);
+    const m = this.state.menu;
+    const servicePage = peFamily;
+    const aboutPage = ["about", "record"].includes(p);
+    const pePages = ["pe", "diligence", "oppartner", "board"].includes(p);
+    const opsPages = p === "embedded";
+    const aboutPages = ["about", "record", "cases"].includes(p);
+    const open = (k) => () => { if (m !== k) this.setState({ menu: k }); };
+    const menuVals = {
+      peOpen: m === "pe", opsOpen: m === "ops", aboutOpen: m === "about",
+      openPe: open("pe"), openOps: open("ops"), openAbout: open("about"),
+      closeMenu: () => { if (m) this.setState({ menu: null }); },
+      cPe: (pePages || m === "pe") ? on : off, cOperators: (opsPages || m === "ops") ? on : off, cAboutMenu: (aboutPages || m === "about") ? on : off,
+      uPe: pePages ? on : "transparent", uOps: opsPages ? on : "transparent", uAbout: aboutPages ? on : "transparent",
+      featPe: posts[0], featOps: posts[2], featAbout: posts[1],
+      isCases: p === "cases", goCases: this.nav("cases"),
+      isCookies: p === "cookies", goCookies: this.nav("cookies"), isThanks: p === "thanks", isNotFound: p === "404", goNotFound: this.nav("404"),
+      sendForm: () => { setTimeout(() => this.setState({ page: "thanks", formBody: "" }), 400); },
+      cookies: [
+        { q: "Strictly necessary", a: "None are set by this site itself. If a booking or form provider is embedded (for example a calendar), it may set a session cookie needed for that embed to work; it is not used for tracking." },
+        { q: "Analytics", a: "Aggregate, cookie-free page counts only (no personal data, no cross-site tracking). If a cookie-based analytics tool is introduced in future, consent will be asked for first and this page updated." },
+        { q: "Advertising and social", a: "None. No advertising pixels, no social-media trackers. If a LinkedIn Insight Tag is added to measure campaign performance, it will be loaded only after consent and listed here." },
+        { q: "Your choices", a: "Because nothing non-essential is set, there is nothing to opt out of. You can clear cookies at any time in your browser settings. Questions to the email in the footer." }
+      ],
+      isDesktop: this.state.vw >= 900, isCompact: this.state.vw < 900, drawerOpen: this.state.drawer && this.state.vw < 900,
+      toggleDrawer: (e) => { e.preventDefault(); this.setState({ drawer: !this.state.drawer, menu: null }); },
+      drawerLabel: this.state.drawer ? "CLOSE" : "MENU",
+      drawerGroups: [
+        { heading: "FOR PE & INVESTORS", items: [
+          { label: "Overview", sub: "The deal cycle", go: this.nav("pe") },
+          { label: "Tech, product & AI due diligence", sub: "1–3 wks", go: this.nav("diligence") },
+          { label: "Fractional AI operating partner", sub: "Retained", go: this.nav("oppartner") },
+          { label: "Board & NED", sub: "2–4 seats", go: this.nav("board") } ] },
+        { heading: "FOR OPERATORS", items: [
+          { label: "Embedded AI delivery", sub: "2–8 wks", go: this.nav("embedded") },
+          { label: "How we work & pricing", sub: "", go: this.nav("how") },
+          { label: "Questions we get asked", sub: "", go: this.nav("faq") } ] },
+        { heading: "ABOUT", items: [
+          { label: "Brannan Coady", sub: "", go: this.nav("about") },
+          { label: "Investments & exits", sub: "", go: this.nav("record") },
+          { label: "Case studies", sub: "", go: this.nav("cases") } ] }
+      ],
+      drawerFeatured: posts[0],
+      stepCols: this.state.vw < 640 ? "56px minmax(0,1fr)" : "56px minmax(0,1fr) 130px",
+      timeCol: this.state.vw < 640 ? "2" : "auto", timeAlign: this.state.vw < 640 ? "left" : "right",
+      peSvcCols: this.state.vw < 640 ? "56px minmax(0,1fr)" : (this.state.vw < 900 ? "56px minmax(0,1fr) 140px" : "70px minmax(180px,260px) minmax(0,1fr) 150px"),
+      peMetaCol: this.state.vw < 640 ? "2" : "auto",
+      recordCols: this.state.vw < 640 ? "minmax(0,1fr) minmax(0,1fr)" : (this.state.vw < 900 ? "1.2fr 1.6fr .9fr" : "1.1fr 1.6fr .9fr .8fr"),
+      isHow: p === "how", goHow: this.nav("how"), isFaq: p === "faq", goFaq: this.nav("faq"),
+      isPrivacy: p === "privacy", goPrivacy: this.nav("privacy"), isTerms: p === "terms", goTerms: this.nav("terms"),
+      year: new Date().getFullYear(), companyNo: this.props.companyNo || "[COMPANY NO.]", registeredOffice: this.props.registeredOffice || "[REGISTERED OFFICE ADDRESS]",
+      policyDate: "September 2026", updated: "SEP 2026",
+      sampleUrl: this.props.sampleUrl || ("mailto:" + email + "?subject=" + encodeURIComponent("Request: sample AI value-creation plan")),
+      dont: [
+        { t: "Strategy decks", b: "If the deliverable is a document about what you could build, we're the wrong call." },
+        { t: "Licence resale or vendor commissions", b: "No tooling recommendations we're paid for. Ever." },
+        { t: "Juniors on your account", b: "Brannan does the work. The bench is senior or it isn't on the job." },
+        { t: "Offshore or white-label delivery", b: "Nothing is subcontracted to a team you haven't met." },
+        { t: "Day rates and open-ended retainers", b: "Fixed price against an outcome, with a defined end." },
+        { t: "Two sides of one deal", b: "We won't advise buyer and seller, or two bidders, on the same transaction." }
+      ],
+      calendarUrl: this.props.calendarUrl || ("mailto:" + email + "?subject=" + encodeURIComponent("30 minutes — first conversation")),
+      linkedinUrl: this.props.linkedinUrl || "https://www.linkedin.com/in/brannancoady",
+      pricing: [
+        { kicker: "DILIGENCE", title: "Tech, product & AI due diligence", price: "£15–40k", note: "Fixed, by strands commissioned and target size. Quoted the same week." },
+        { kicker: "EMBEDDED", title: "Embedded sprint, 2–3 weeks", price: "£20–35k", note: "Paid discovery week can be commissioned first at £8–12k and credited." },
+        { kicker: "BUILD", title: "Tooling, automation & agents", price: "£30–120k", note: "Fixed against the agreed outcome; 4–8 weeks." },
+        { kicker: "RETAINED", title: "Fractional AI operating partner", price: "£8–15k/mo", note: "2–4 days a month across the portfolio, annual term. Delivery priced separately." }
+      ],
+      faq: [
+        { q: "Is it really you doing the work?", a: "Yes. Brannan leads and does the work on every engagement. Where more hands are needed, senior engineers, designers and security specialists he has worked with for years join — and he stays in the room. No juniors, no hand-off after the pitch." },
+        { q: "How is this different from a consultancy or an agency?", a: "Fixed price against an outcome rather than day rates; one senior person accountable end to end; and everything built in your stack so nothing depends on us afterwards. The one number we report on every engagement is hours returned to the business per month — and what's still running, unattended, six months after we've left." },
+        { q: "Which AI tools and models do you use?", a: "Whatever fits the job and your existing vendors, with a bias towards what's boring and reliable in production. We're not tied to any provider and will tell you plainly where a simpler non-AI fix is the better answer." },
+        { q: "How do you handle our data and confidentiality?", a: "NDA before any code or data is seen. Work is done in your accounts and environments so data doesn't leave your control. Client work is described anonymously unless you choose otherwise." },
+        { q: "How fast can you start?", a: "Diligence is quoted within 48 hours and starts within a week, built around your exclusivity window. Embedded and build work is booked in blocks; ask about the next available window." },
+        { q: "Do you work outside the UK?", a: "Based in York, working across the UK on site, and remotely with European portfolios where the fund is UK-based." },
+        { q: "Do you invest as well as advise?", a: "Yes, small personal cheques into early UK software and consumer businesses — usually with time attached. It's a separate conversation from advisory work and we're careful about conflicts." },
+        { q: "What if you're not the right fit?", a: "We'll say so on the first call and point you to someone who is. The first conversation is free precisely so that's cheap for both sides." }
+      ],
+      privacy: [
+        { q: "What we collect", a: "Information you give us when you enquire — name, organisation, email and what you write — and standard server logs. This site uses no advertising cookies and no third-party analytics beyond privacy-respecting, aggregate page counts. If that changes we will update this notice and ask for consent where the law requires it." },
+        { q: "Why we use it", a: "To reply to you, to scope and deliver work you ask for, and to keep records we're legally required to keep. We do not sell or share your information for marketing, and we do not add you to a mailing list." },
+        { q: "Legal basis", a: "Legitimate interests (responding to an enquiry you have made), performance of a contract (once we're engaged), and legal obligation (accounting and tax records)." },
+        { q: "How long we keep it", a: "Enquiries that don't become engagements are deleted within twelve months. Engagement records are kept for six years after the work ends, in line with UK statutory requirements." },
+        { q: "Who we share it with", a: "Only service providers needed to run the business — email hosting, accounting software and, during an engagement, the bench members working on your project under NDA. All are bound by contract and processed under UK GDPR." },
+        { q: "Your rights", a: "You can ask to see, correct or delete the information we hold about you, or object to how we use it, by emailing the address below. You can also complain to the ICO at ico.org.uk." },
+        { q: "Contact", a: "Anyway Ventures Ltd — data controller. Email: " + email + ". Registered office as shown in the footer." }
+      ],
+      terms: [
+        { q: "Scope and price", a: "Every engagement is defined in a written statement of work setting out the outcome, what is in and out of scope, the fixed price, and the timetable. Changes to scope are agreed in writing before they're worked on." },
+        { q: "Payment", a: "Fixed-price work is typically invoiced 50% on commencement and 50% on completion; retainers monthly in advance. Payment terms are 14 days. Expenses are charged at cost and agreed in advance." },
+        { q: "Intellectual property", a: "On payment, you own everything built specifically for you. We retain rights in our pre-existing tools, methods and know-how, and may reuse general learning that doesn't identify you or your data." },
+        { q: "Confidentiality", a: "Mutual confidentiality applies from the first conversation and survives the engagement. We don't name clients or share results without written permission." },
+        { q: "Data protection", a: "Where we process personal data on your behalf we act as processor under your instructions, and a data-processing agreement forms part of the statement of work." },
+        { q: "Conflicts", a: "We will tell you before starting if we hold an investment, board or advisory position that could conflict with the work, and we won't advise two parties on the same transaction." },
+        { q: "Liability", a: "Liability is capped at the fees paid under the relevant statement of work, excluding matters that can't be limited by law. Professional indemnity insurance is held; details on request." },
+        { q: "Governing law", a: "England and Wales." }
+      ]
+    };
+    const sub = (k) => p === k ? "#8a5a3c" : "#15160f";
+    return {
+      ...menuVals,
+      isHome: p === "home", isPe: p === "pe", isDiligence: p === "diligence", isOpPartner: p === "oppartner", isEmbedded: p === "embedded", isBoard: p === "board",
+      isRecord: p === "record", isInsights: p === "insights", isPost: p === "post", isAbout: p === "about", isContact: p === "contact", isPeFamily: peFamily,
+      cRecord: p === "record" ? on : off, cInsights: (p === "insights" || p === "post") ? on : off, cAbout: p === "about" ? on : off,
+      sPe: sub("pe"), sDiligence: sub("diligence"), sOpPartner: sub("oppartner"), sEmbedded: sub("embedded"), sBoard: sub("board"),
+      goHome: this.nav("home"), goPe: this.nav("pe"), goDiligence: this.nav("diligence"), goOpPartner: this.nav("oppartner"), goEmbedded: this.nav("embedded"), goOperators: this.nav("embedded"),
+      goBoard: this.nav("board"), goRecord: this.nav("record"), goInsights: this.nav("insights"), goAbout: this.nav("about"), goContact: this.nav("contact"),
+      embeddedKicker: "03 · EMBEDDED AI DELIVERY — FOR PORTFOLIO COMPANIES, CEOS & OWNER-MANAGERS",
+      record, cases, steps, aiPlan, ddSteps, opSteps, timeline, posts, peServices, enquiryTypes,
+      post: (() => {
+        const all = this.posts(); const i = this.state.postIdx; const x = all[i];
+        const meta = [
+          { dateLong: "September 2026", readLong: "Six minutes", audience: "Deal teams, investment committees", service: "AI due diligence", go: this.nav("diligence"), pull: "The plan you can underwrite is the one that knows what broke last month." },
+          { dateLong: "August 2026", readLong: "Five minutes", audience: "Fund partners, portfolio directors", service: "Fractional AI operating partner", go: this.nav("oppartner"), pull: "A roadmap is not a capability, and management teams were already busy." },
+          { dateLong: "July 2026", readLong: "Four minutes", audience: "CEOs, owner-managers, COOs", service: "Embedded AI delivery", go: this.nav("embedded"), pull: "Licences don't change workflows. Someone sitting with the person doing the work does." }
+        ][i];
+        return { ...x, ...meta, serviceGo: meta.go, lead: x.paras[0], bodyA: x.paras.slice(1, 2), bodyB: x.paras.slice(2), related: posts.filter((_, j) => j !== i) };
+      })(),
+      formName: this.state.formName, formOrg: this.state.formOrg, formBody: this.state.formBody,
+      setName: (e) => this.setState({ formName: e.target.value }), setOrg: (e) => this.setState({ formOrg: e.target.value }), setBody: (e) => this.setState({ formBody: e.target.value }),
+      formPromptLabel: promptLabels[this.state.enquiry],
+      formMailto: "mailto:" + email + "?subject=" + subject + "&body=" + bodyTxt,
+      mailto: "mailto:" + email,
+      ctaHeading: headings[p] || headings.home,
+      ctaLabel: this.props.ctaLabel ?? "Book 30 minutes",
+      contactEmail: email
+    };
+  }
+}
+</script>
+</body>
+</html>

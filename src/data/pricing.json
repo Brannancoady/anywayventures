@@ -1,0 +1,26 @@
+[
+  {
+    "kicker": "DILIGENCE",
+    "title": "Tech, product & AI due diligence",
+    "price": "£15–40k",
+    "note": "Fixed, by strands commissioned and target size. Quoted the same week."
+  },
+  {
+    "kicker": "EMBEDDED",
+    "title": "Embedded sprint, 2–3 weeks",
+    "price": "£20–35k",
+    "note": "Paid discovery week can be commissioned first at £8–12k and credited."
+  },
+  {
+    "kicker": "BUILD",
+    "title": "Tooling, automation & agents",
+    "price": "£30–120k",
+    "note": "Fixed against the agreed outcome; 4–8 weeks."
+  },
+  {
+    "kicker": "RETAINED",
+    "title": "Fractional AI operating partner",
+    "price": "£8–15k/mo",
+    "note": "2–4 days a month across the portfolio, annual term. Delivery priced separately."
+  }
+]

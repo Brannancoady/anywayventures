@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getPosts } from '../../lib/data';
+
+const path = '/contact/thanks';
+const posts = await getPosts();
+---
+<Base path={path}>
+<div>
+<div style="padding:clamp(60px,9vw,110px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(30px,5vw,70px);align-items:start">
+<div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c;margin-bottom:28px">RECEIVED</div>
+<h1 style="margin:0 0 24px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(36px,5vw,64px);line-height:1.05;letter-spacing:-.025em;max-width:14ch;text-wrap:balance">Thank you. You'll hear from Brannan <em style="color:#8a5a3c">within a week</em>.</h1>
+<p style="margin:0;font-size:18px;line-height:1.65;color:#3c3d33;max-width:560px">Usually much sooner. The reply will either propose a 30-minute call or say plainly why we're not the right fit and who might be. If it's urgent — a deal in exclusivity, say — mention that and it jumps the queue.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(21,22,15,.18)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#5c5d51;padding:18px 0 10px">WHILE YOU WAIT</div>
+{posts.map((p) => (<Fragment>
+<a href={p.href} style="text-decoration:none;color:#15160f;display:block;padding:14px 0;border-top:1px solid rgba(21,22,15,.12)"><div style="font-family:'Newsreader',Georgia,serif;font-size:20px;line-height:1.2">{p.title}</div><div style="font-size:13px;color:#5c5d51;margin-top:4px">{p.kicker} · {p.read}</div></a>
+</Fragment>))}
+</div>
+</div>
+</div>
+</Base>

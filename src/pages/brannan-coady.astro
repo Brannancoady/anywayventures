@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import { timeline } from '../lib/data';
+
+const path = '/brannan-coady';
+---
+<Base path={path}>
+<div>
+<div style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px) clamp(40px,5vw,60px);border-bottom:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,4vw,64px);align-items:start">
+<div style="grid-column:span 2;min-width:0">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c;margin-bottom:28px">BRANNAN COADY</div>
+<h1 style="margin:0 0 30px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(36px,4.8vw,64px);line-height:1.06;letter-spacing:-.025em;max-width:18ch;text-wrap:balance">Founder, operator, investor — and still the one writing the code.</h1>
+<p style="margin:0 0 16px;font-size:18px;line-height:1.7;color:#3c3d33;max-width:720px">I co-founded Netsells in York and ran it as chief executive for a decade, building digital products for Trainline, Coca-Cola, the BBC and Toolstation, and growing it into one of the UK's better-regarded product consultancies. In 2023 it merged with hedgehog lab, backed by BGF, and I stayed on as an investor and advisor.</p>
+<p style="margin:0 0 16px;font-size:18px;line-height:1.7;color:#3c3d33;max-width:720px">Alongside that I was Chief Product Officer and then an executive director at YourParkingSpace, and I've invested in, advised, or sat on the boards of businesses across software, health, fintech, consumer and leisure — including exits to FTSE 100 acquirers.</p>
+<p style="margin:0;font-size:18px;line-height:1.7;color:#3c3d33;max-width:720px">Anyway Ventures is the single vehicle for all of it: my capital, my board work, and the thing that now takes most of my week — going into businesses and portfolios and building AI into how they run, with the people who'll be left with it.</p>
+</div>
+<div style="aspect-ratio:4/5;background:repeating-linear-gradient(135deg,#e6e1d2 0 9px,#eeeade 9px 18px);border:1px solid rgba(21,22,15,.16);display:flex;align-items:flex-end;padding:16px;max-width:360px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:#6e6c5c">PORTRAIT — BRANNAN COADY</span></div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#eeeade">
+<h2 style="margin:0 0 30px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em">The path here</h2>
+{timeline.map((t) => (<Fragment>
+<div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:24px;padding:20px 0;border-top:1px solid rgba(21,22,15,.18);align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#8a5a3c;letter-spacing:.06em">{t.when}</span><div><div style="font-family:'Newsreader',Georgia,serif;font-size:23px;margin-bottom:5px">{t.title}</div><div style="font-size:15.5px;line-height:1.6;color:#3c3d33;max-width:740px">{t.body}</div></div></div>
+</Fragment>))}
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<h2 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em">The bench</h2>
+<p style="margin:0 0 30px;font-size:16px;color:#5c5d51;max-width:640px">A decade of running a consultancy leaves you with people you trust. These roles join engagements when the work needs them — Brannan stays in the room.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px">
+<div style="border:1px solid rgba(21,22,15,.16);padding:24px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#8a5a3c;margin-bottom:10px">ENGINEERING</div><div style="font-size:15.5px;line-height:1.6;color:#3c3d33">Senior full-stack and platform engineers for internal tooling, integrations and agent infrastructure.</div></div>
+<div style="border:1px solid rgba(21,22,15,.16);padding:24px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#8a5a3c;margin-bottom:10px">DATA &amp; ML</div><div style="font-size:15.5px;line-height:1.6;color:#3c3d33">Data engineering and applied ML for evaluation, retrieval and model selection where off-the-shelf isn't enough.</div></div>
+<div style="border:1px solid rgba(21,22,15,.16);padding:24px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#8a5a3c;margin-bottom:10px">SECURITY</div><div style="font-size:15.5px;line-height:1.6;color:#3c3d33">Specialist reviewers for diligence on security posture, data protection and infrastructure.</div></div>
+<div style="border:1px solid rgba(21,22,15,.16);padding:24px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#8a5a3c;margin-bottom:10px">DESIGN</div><div style="font-size:15.5px;line-height:1.6;color:#3c3d33">Product designers for the internal tools people will actually use every day.</div></div>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#eeeade">
+<h2 style="margin:0 0 30px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em">How I work</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:34px">
+<div style="border-top:2px solid #8a5a3c;padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Shipped beats specified</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">A working thing on Friday tells you more than a document in a month. Everything is organised around getting to that Friday.</p></div>
+<div style="border-top:2px solid rgba(21,22,15,.25);padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Say the unwelcome thing early</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">On the first call, in the board pack, in the diligence report. It's the only part of the job that's genuinely scarce.</p></div>
+<div style="border-top:2px solid rgba(21,22,15,.25);padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Leave it owned</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">Dependency on an outside expert is a failure mode, not a business model. I'd rather be re-hired than retained by inertia.</p></div>
+</div>
+</div>
+</div>
+</Base>

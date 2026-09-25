@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import { opSteps, sampleUrl, updatedLabel } from '../lib/data';
+
+const path = '/ai-operating-partner';
+const updated = updatedLabel(path);
+---
+<Base path={path}>
+<div>
+<div style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px) clamp(40px,5vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#15160f;color:#f5f2ea">
+<div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:30px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#d9a27e">02 · FRACTIONAL AI OPERATING PARTNER</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:#a9a897">LAST UPDATED {updated}</div></div>
+<h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(38px,5.4vw,72px);line-height:1.04;letter-spacing:-.025em;max-width:18ch;text-wrap:balance">An AI operating partner for the fund — <em style="color:#d9a27e">without the headcount</em>.</h1>
+<div style="display:flex;flex-direction:column;gap:30px;margin-top:40px;align-items:flex-start">
+<p style="margin:0;font-size:19px;line-height:1.62;color:#e4e1d6;max-width:700px;text-wrap:pretty">Mid-market funds know AI belongs in every value-creation plan and can't justify a full-time operating partner to own it. This is that role, retained: two to four days a month across the portfolio, plus the hands to build what the plans call for.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;align-self:stretch">
+<a href="/contact" style="flex:none;white-space:nowrap;text-decoration:none;background:#f5f2ea;color:#15160f;padding:16px 24px;font-size:15px;font-weight:600">Book 30 minutes</a>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#a9a897">ONE OR TWO FUNDS AT A TIME · ANNUAL TERM</span>
+</div>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<h2 style="margin:0 0 8px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:38px;letter-spacing:-.02em">What the role covers</h2>
+<p style="margin:0 0 36px;font-size:16px;color:#5c5d51;max-width:640px">Shaped with the deal team at the start of the term and reviewed quarterly.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:transparent;border:1px solid rgba(21,22,15,.16);--cell:1">
+<div style="background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:30px 28px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">PORTFOLIO</div><h3 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:24px;line-height:1.15">AI value-creation plan per portco</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">A function-by-function opportunity map, costed and sequenced, for each business — refreshed as the tooling moves.</p></div>
+<div style="background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:30px 28px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">MANAGEMENT</div><h3 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:24px;line-height:1.15">A counterpart for each CEO</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">Monthly working sessions with management on priorities, vendors, hires and what to stop. Someone who has sat in their chair.</p></div>
+<div style="background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:30px 28px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">DELIVERY</div><h3 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:24px;line-height:1.15">Hands, when the plan needs them</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">Where a portco can't deliver alone, an <a href="/embedded-ai-delivery">embedded sprint</a> from me and the bench — scoped and priced separately.</p></div>
+<div style="background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:30px 28px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">DEAL TEAM</div><h3 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:24px;line-height:1.15">Pipeline and exit support</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">Early reads on targets, priority access for <a href="/ai-due-diligence">full diligence</a>, and an evidenced AI story for each exit.</p></div>
+<div style="background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:30px 28px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">FUND</div><h3 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:24px;line-height:1.15">Reporting to the IC</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">A quarterly portfolio view: hours out, cost out, revenue effects, and what's still theatre. Written to be read.</p></div>
+<div style="background:#f5f2ea;outline:1px solid rgba(21,22,15,.16);padding:30px 28px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">SHARED LEARNING</div><h3 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:24px;line-height:1.15">Reuse across the portfolio</h3><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">What works in one portco is packaged and rolled to the next. Ten businesses pay for a pattern once.</p></div>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#eeeade;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,4vw,60px)">
+<div style="max-width:320px"><h2 style="margin:0 0 14px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em;line-height:1.1">The first ninety days</h2><p style="margin:0;font-size:15.5px;line-height:1.6;color:#5c5d51">How a retained term begins.</p></div>
+<div style="grid-column:span 2;min-width:0">
+{opSteps.map((s) => (<Fragment>
+<div class="r-step" style="display:grid;gap:20px;padding:22px 0;border-top:1px solid rgba(21,22,15,.18);align-items:start"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8a5a3c">{s.n}</span><div><div style="font-family:'Newsreader',Georgia,serif;font-size:23px;margin-bottom:6px">{s.title}</div><div style="font-size:15.5px;color:#3c3d33;line-height:1.6">{s.body}</div></div><span class="r-time" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5c5d51;letter-spacing:.1em">{s.time}</span></div>
+</Fragment>))}
+</div>
+</div>
+
+<div style="padding:clamp(40px,5vw,56px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#15160f;color:#f5f2ea;display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px 40px;align-items:center">
+<div style="flex:1 1 380px;min-width:0"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#d9a27e;margin-bottom:12px">SAMPLE · REDACTED</div><h2 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:30px;letter-spacing:-.02em;line-height:1.1">See what an AI value-creation plan actually looks like</h2><p style="margin:0;font-size:15.5px;line-height:1.6;color:#c5c4b4;max-width:560px">A redacted plan from a recent engagement: the opportunity map, the cost-out model in three cases, readiness findings and the first-hundred-days sequence. Twelve pages, PDF.</p></div>
+<a href={sampleUrl} style="flex:none;text-decoration:none;border:1px solid rgba(245,242,234,.5);color:#f5f2ea;padding:15px 24px;font-size:14.5px;font-weight:500;white-space:nowrap">Request the sample plan →</a>
+</div>
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<h2 style="margin:0 0 30px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em">Who it suits</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:34px">
+<div style="border-top:2px solid #8a5a3c;padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Lower-mid-market funds</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">Six to fifteen portfolio companies, no in-house operating team of scale, and an LP base asking about AI.</p></div>
+<div style="border-top:2px solid rgba(21,22,15,.25);padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Tech-enabled services and software</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">Businesses where the cost base is people doing process, and the growth story rests on product.</p></div>
+<div style="border-top:2px solid rgba(21,22,15,.25);padding-top:18px"><h3 style="margin:0 0 9px;font-size:19px;font-weight:600">Funds who want it done, not described</h3><p style="margin:0;font-size:15.5px;line-height:1.62;color:#3c3d33">If you want a framework and a workshop, there are cheaper options. This is for funds that want working systems in the portfolio.</p></div>
+</div>
+</div>
+
+<div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px 40px;align-items:center;background:#eeeade">
+<div><h2 style="margin:0 0 12px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:34px;letter-spacing:-.02em">Capacity for one further fund this year</h2><p style="margin:0;font-size:17px;line-height:1.6;color:#3c3d33;max-width:620px">The role only works with real attention, so it's deliberately limited. A conversation costs nothing and settles fit quickly.</p></div>
+<a href="/contact" style="flex:none;text-decoration:none;background:#15160f;color:#f5f2ea;padding:14px 28px;min-height:48px;display:inline-flex;align-items:center;font-size:15px;font-weight:500">Book 30 minutes</a>
+</div>
+</div>
+</Base>

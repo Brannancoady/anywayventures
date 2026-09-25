@@ -1,0 +1,29 @@
+[
+  {
+    "tag": "EMBEDDED · PE-BACKED SERVICES",
+    "title": "Three agents live in six weeks at a £40m-revenue services business",
+    "body": "Quoting, customer onboarding and month-end reconciliation automated with the ops and finance teams in the room. Built on their existing systems; handed over documented.",
+    "stat1": "~900",
+    "label1": "hours returned per month",
+    "stat2": "6 wks",
+    "label2": "from first call to production"
+  },
+  {
+    "tag": "DILIGENCE · BUY-SIDE",
+    "title": "Tech, product & AI diligence on a vertical SaaS target",
+    "body": "Platform and team review plus a costed AI value-creation plan for the IC. Two of the plan's items were delivered in the first quarter of ownership.",
+    "stat1": "~1,400",
+    "label1": "hours/month returned in the first-100-day plan",
+    "stat2": "9 days",
+    "label2": "scoping to IC session"
+  },
+  {
+    "tag": "CAPABILITY · OWNER-MANAGED",
+    "title": "An owner-managed distributor made AI-native in a quarter",
+    "body": "Internal pricing tool and document handling rebuilt with the team, then a twelve-week embed until the new workflows were the habit.",
+    "stat1": "~320",
+    "label1": "hours returned per month, unattended at 6 months",
+    "stat2": "2→14",
+    "label2": "staff using AI in daily workflow"
+  }
+]

@@ -1,0 +1,101 @@
+---
+// Paid-traffic landing page (LinkedIn Ads). No site navigation; noindex (see src/lib/pages.ts).
+import Base from '../../layouts/Base.astro';
+import { calendarUrl, contactEmail, mailto } from '../../lib/data';
+
+const path = '/lp/ai-operating-partner';
+const stages = ['Under 6 portcos', '6–10 portcos', '10+ portcos'];
+const steps = [
+  { n: '001', title: 'Portfolio baseline', body: "A short pass across every portco: where the hours go, what's been tried, who on each management team will carry it.", time: 'WEEKS 1–4' },
+  { n: '002', title: 'Plans and priorities', body: "An AI value-creation plan per company and a portfolio view for the IC — what to do first, what to skip, what it's worth.", time: 'WEEKS 5–8' },
+  { n: '003', title: 'First deliveries', body: 'Two or three quick wins in production across the portfolio, to prove the pattern and build management appetite.', time: 'WEEKS 9–12' },
+];
+---
+<Base path={path} bare>
+<header style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);flex-wrap:wrap">
+<span style="font-family:'Newsreader',Georgia,serif;font-size:23px;letter-spacing:-.01em">Anyway&nbsp;Ventures</span>
+<div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#5c5d51">FRACTIONAL AI OPERATING PARTNER · FOR PE FUNDS</span>
+<a href="#enquire" style="text-decoration:none;color:#f5f2ea;background:#15160f;padding:10px 18px;font-size:13.5px;font-weight:500">Book 30 minutes</a>
+</div>
+</header>
+
+<div style="padding:clamp(48px,7vw,84px) clamp(20px,4vw,60px) clamp(40px,5vw,60px);border-bottom:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(30px,5vw,70px);align-items:start" class="seg-split">
+<div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c;margin-bottom:28px">FOR LOWER-MID-MARKET FUNDS · UK · RETAINED · 2–4 DAYS/MONTH</div>
+<h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(38px,5vw,66px);line-height:1.04;letter-spacing:-.025em;text-wrap:balance">An AI operating partner for the fund — <em style="color:#8a5a3c">without the headcount</em>.</h1>
+<p style="margin:30px 0 0;font-size:18.5px;line-height:1.62;color:#3c3d33;max-width:600px;text-wrap:pretty">Every value-creation plan now has an AI line and most mid-market funds have nobody to own it. This is that role, retained: an AI plan per portfolio company, a monthly counterpart for each CEO, quarterly reporting to the IC — and the hands to build what the plans call for.</p>
+<div style="display:flex;flex-wrap:wrap;gap:22px 34px;margin-top:34px;padding-top:26px;border-top:1px solid rgba(21,22,15,.14)">
+<div><div style="font-family:'Newsreader',Georgia,serif;font-size:34px;font-weight:300;letter-spacing:-.02em">2–4</div><div style="font-size:13.5px;color:#5c5d51">days a month across the portfolio</div></div>
+<div><div style="font-family:'Newsreader',Georgia,serif;font-size:34px;font-weight:300;letter-spacing:-.02em">90 days</div><div style="font-size:13.5px;color:#5c5d51">to plans for every portco and first deliveries live</div></div>
+<div><div style="font-family:'Newsreader',Georgia,serif;font-size:34px;font-weight:300;letter-spacing:-.02em">12 yrs</div><div style="font-size:13.5px;color:#5c5d51">building and selling software businesses</div></div>
+</div>
+</div>
+
+<div id="enquire" style="background:#eeeade;border:1px solid rgba(21,22,15,.16);padding:clamp(26px,3vw,36px);max-width:520px;width:100%;justify-self:end">
+<div style="font-family:'Newsreader',Georgia,serif;font-size:25px;margin-bottom:6px">Discuss a retained role</div>
+<p style="margin:0 0 20px;font-size:14px;line-height:1.5;color:#5c5d51">A thirty-minute call to test fit, then a proposal for the term. Capacity for one further fund this year.</p>
+<form name="lp-ai-operating-partner" method="POST" action="/contact/thanks" data-netlify="true" netlify-honeypot="company_website" data-enquiry="lp-ai-operating-partner" data-subject-prefix="AI operating partner enquiry" style="display:flex;flex-direction:column;gap:14px">
+<input type="hidden" name="form-name" value="lp-ai-operating-partner" />
+<input type="hidden" name="subject" data-remove-prefix value="AI operating partner enquiry: Under 6 portcos" />
+<p class="visually-hidden"><label>Leave this field empty <input name="company_website" tabindex="-1" autocomplete="off" /></label></p>
+<label class="visually-hidden" for="lp-name">Name</label><input id="lp-name" name="name" required autocomplete="name" placeholder="Name" class="field" />
+<label class="visually-hidden" for="lp-email">Email</label><input id="lp-email" name="email" type="email" required autocomplete="email" placeholder="Work email" class="field" />
+<label class="visually-hidden" for="lp-org">Fund</label><input id="lp-org" name="organisation" autocomplete="organization" placeholder="Fund" class="field" />
+<fieldset style="border:0;margin:0;padding:0;min-width:0"><legend class="visually-hidden">Portfolio size</legend><div style="display:flex;flex-wrap:wrap;gap:8px">
+{stages.map((s, i) => (<Fragment>
+<label class="chip"><input type="radio" name="stage" value={s} checked={i === 0} required /><span style="text-decoration:none;padding:8px 13px;font-size:13px">{s}</span></label>
+</Fragment>))}
+</div></fieldset>
+<label class="visually-hidden" for="lp-msg">Details</label><textarea id="lp-msg" name="message" placeholder="Portfolio size, sectors, what's prompting this — a few lines is plenty." class="field" style="min-height:96px;resize:vertical"></textarea>
+<button type="submit" class="submit" style="display:block;background:#15160f;color:#f5f2ea;padding:16px;min-height:48px;text-align:center;font-size:15px;font-weight:500">Request a proposal</button>
+<div style="font-size:12.5px;color:#5c5d51;line-height:1.5;text-align:center">Or book directly: <a href={calendarUrl} style="text-decoration:underline;text-underline-offset:3px">30 minutes with Brannan</a></div>
+</form>
+</div>
+</div>
+
+<div style="padding:clamp(40px,5vw,60px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:rgba(21,22,15,.16);border:1px solid rgba(21,22,15,.16)">
+<div style="background:#f5f2ea;padding:30px 28px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">PORTFOLIO</div><h2 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:25px;line-height:1.15">An AI value-creation plan per portco</h2><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">A function-by-function opportunity map for each business, costed and sequenced, refreshed as the tooling moves. What works in one portco is packaged and rolled to the next.</p></div>
+<div style="background:#f5f2ea;padding:30px 28px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">MANAGEMENT &amp; IC</div><h2 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:25px;line-height:1.15">A counterpart for each CEO, a report for the IC</h2><p style="margin:0;font-size:15px;line-height:1.6;color:#3c3d33">Monthly working sessions with management on priorities, vendors, hires and what to stop. A quarterly portfolio view for the committee: hours out, cost out, revenue effects, and what's still theatre.</p></div>
+<div style="background:#15160f;color:#f5f2ea;padding:30px 28px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:#d9a27e;margin-bottom:12px">DELIVERY</div><h2 style="margin:0 0 10px;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:25px;line-height:1.15">Hands, when the plan needs them</h2><p style="margin:0;font-size:15px;line-height:1.6;color:#e4e1d6">Where a portfolio company can't deliver alone, an embedded sprint from Brannan and a small senior bench — internal tooling, automation and agents live in weeks, scoped and priced separately. Plans without delivery capacity are how workshops fail.</p></div>
+</div>
+</div>
+
+<div style="padding:clamp(40px,5vw,60px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#eeeade;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,4vw,60px)">
+<div style="max-width:320px"><h2 style="margin:0 0 12px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:34px;letter-spacing:-.02em;line-height:1.1">The first ninety days</h2><p style="margin:0;font-size:15px;line-height:1.6;color:#5c5d51">How a retained term begins. Steady state after: monthly CEO sessions, quarterly IC reporting, sprints where needed.</p></div>
+<div style="grid-column:span 2;min-width:0">
+{steps.map((s) => (<Fragment>
+<div class="r-step-lp" style="display:grid;gap:18px;padding:18px 0;border-top:1px solid rgba(21,22,15,.18);align-items:start"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8a5a3c">{s.n}</span><div><div style="font-family:'Newsreader',Georgia,serif;font-size:21px;margin-bottom:4px">{s.title}</div><div style="font-size:15px;color:#3c3d33;line-height:1.55">{s.body}</div></div><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5c5d51;letter-spacing:.1em" class="r-time">{s.time}</span></div>
+</Fragment>))}
+</div>
+</div>
+
+<div style="padding:clamp(40px,5vw,60px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,4vw,60px);align-items:start">
+<div style="grid-column:span 2;min-width:0">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#8a5a3c;margin-bottom:12px">WHO WRITES IT</div>
+<h2 style="margin:0 0 18px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:34px;letter-spacing:-.02em;line-height:1.1">An operator who has been on both sides of the table</h2>
+<p style="margin:0 0 14px;font-size:16.5px;line-height:1.65;color:#3c3d33;max-width:680px">Brannan Coady co-founded Netsells and ran it as CEO for a decade — building product for Trainline, Coca-Cola, the BBC and Toolstation — to a merger with hedgehog lab backed by BGF. Former CPO and executive director at YourParkingSpace; investor and board member across UK software and consumer businesses, with exits to FTSE 100 acquirers.</p>
+<p style="margin:0;font-size:16.5px;line-height:1.65;color:#3c3d33;max-width:680px">He still builds AI systems inside portfolio companies every week, so the plans reflect what works in production now. Senior engineers, designers and security specialists from a small trusted bench join where a portfolio company's work warrants it.</p>
+</div>
+<div style="aspect-ratio:4/5;background:repeating-linear-gradient(135deg,#e6e1d2 0 9px,#eeeade 9px 18px);border:1px solid rgba(21,22,15,.16);display:flex;align-items:flex-end;padding:14px;max-width:260px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;color:#6e6c5c">PORTRAIT</span></div>
+</div>
+
+<div style="padding:clamp(40px,5vw,60px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#eeeade">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+<div style="border:1px solid rgba(21,22,15,.16);background:#f5f2ea;padding:28px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#8a5a3c;margin-bottom:12px">PORTFOLIO · PE-BACKED SERVICES</div><p style="margin:0 0 14px;font-family:'Newsreader',Georgia,serif;font-size:21px;line-height:1.3">Three agents live in six weeks at a £40m-revenue PE-backed services business: ~900 hours returned to the operation per month, handed over documented.</p><div style="font-size:13px;color:#5c5d51">Figures illustrative pending client sign-off.</div></div>
+<div style="border:1px solid rgba(21,22,15,.16);background:#f5f2ea;padding:28px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#8a5a3c;margin-bottom:12px">WHAT DEAL TEAMS SAY</div><p style="margin:0 0 14px;font-family:'Newsreader',Georgia,serif;font-size:21px;line-height:1.3;font-style:italic">“Quote from a fund partner or portfolio director to go here — one sentence on what changed across the portfolio.”</p><div style="font-size:13px;color:#5c5d51">Name, title, fund — with permission.</div></div>
+</div>
+</div>
+
+<div style="padding:clamp(50px,6vw,70px) clamp(20px,4vw,60px);background:#15160f;color:#f5f2ea;display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px 40px;align-items:center">
+<div style="flex:1 1 420px;min-width:0"><h2 style="margin:0 0 12px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(30px,3.6vw,44px);line-height:1.05;letter-spacing:-.025em">One further fund this year.</h2><p style="margin:0;font-size:17px;line-height:1.6;color:#c5c4b4;max-width:600px">The role only works with real attention, so it's deliberately limited. Thirty minutes settles fit; a proposal for the term follows within the week.</p></div>
+<a href="#enquire" style="flex:none;text-decoration:none;background:#f5f2ea;color:#15160f;padding:17px 30px;font-size:15px;font-weight:600;white-space:nowrap">Request a proposal</a>
+</div>
+
+<div style="padding:24px clamp(20px,4vw,60px);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12.5px;color:#5c5d51">
+<span>Anyway Ventures Ltd · York, United Kingdom</span>
+<a href={mailto} style="color:#5c5d51;text-decoration:none">{contactEmail}</a>
+</div>
+
+</Base>

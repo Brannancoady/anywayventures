@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import { calendarUrl, linkedinUrl, contactEmail, mailto } from '../../lib/data';
+
+const path = '/contact';
+const enquiryTypes = [
+  { label: 'AI due diligence', prompt: 'THE DEAL, THE TIMETABLE, WHAT YOU NEED' },
+  { label: 'AI operating partner', prompt: "THE FUND, THE PORTFOLIO, WHAT'S PROMPTING THIS" },
+  { label: 'Embedded delivery', prompt: "WHAT'S SLOW OR EXPENSIVE" },
+  { label: 'Board / NED', prompt: 'THE BUSINESS AND THE SEAT' },
+  { label: 'Investment', prompt: 'THE BUSINESS AND WHY NOW' },
+];
+---
+<Base path={path}>
+<div>
+<div class="seg-split" style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(30px,5vw,70px);align-items:start">
+<div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c;margin-bottom:28px">ENQUIRIES</div>
+<h1 style="margin:0 0 24px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(36px,5vw,64px);line-height:1.05;letter-spacing:-.025em;max-width:14ch">An honest read, within a week.</h1>
+<p style="margin:0 0 30px;font-size:18px;line-height:1.65;color:#3c3d33;max-width:560px">The first conversation is free and takes under an hour. Tell me what's slow, expensive, or undecided. If there's an engagement worth having you'll leave knowing its shape and its price — and if there isn't, I'll say so and point you at someone better placed.</p>
+<div style="display:flex;flex-direction:column;gap:14px;padding-top:26px;border-top:1px solid rgba(21,22,15,.16);max-width:560px">
+<div style="display:flex;justify-content:space-between;gap:20px;font-size:15px"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:#5c5d51">EMAIL</span><a href={mailto} style="text-decoration:none">{contactEmail}</a></div>
+<div style="display:flex;justify-content:space-between;gap:20px;font-size:15px"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:#5c5d51">CALENDAR</span><a href={calendarUrl} style="text-decoration:none">Book 30 minutes directly</a></div>
+<div style="display:flex;justify-content:space-between;gap:20px;font-size:15px"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:#5c5d51">LINKEDIN</span><a href={linkedinUrl} target="_blank" rel="noreferrer" style="text-decoration:none">/in/brannancoady</a></div>
+<div style="display:flex;justify-content:space-between;gap:20px;font-size:15px"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:#5c5d51">BASED</span><span style="color:#3c3d33">York, United Kingdom · working UK-wide</span></div>
+</div>
+</div>
+<div style="background:#eeeade;border:1px solid rgba(21,22,15,.16);padding:clamp(26px,3vw,38px)">
+<div style="font-family:'Newsreader',Georgia,serif;font-size:26px;margin-bottom:8px">Start a conversation</div><p style="margin:0 0 20px;font-size:14px;line-height:1.5;color:#5c5d51">Every enquiry — diligence, retained role, build, board or investment — starts with the same free 30-minute call.</p>
+<form name="enquiry" method="POST" action="/contact/thanks" data-netlify="true" netlify-honeypot="company_website" data-enquiry="contact" data-subject-prefix="Enquiry" style="display:flex;flex-direction:column;gap:18px">
+<input type="hidden" name="form-name" value="enquiry" />
+<input type="hidden" name="subject" data-remove-prefix value="Enquiry: AI due diligence" />
+<p class="visually-hidden"><label>Leave this field empty <input name="company_website" tabindex="-1" autocomplete="off" /></label></p>
+<fieldset style="border:0;margin:0;padding:0;min-width:0"><legend style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#5c5d51;margin-bottom:7px;padding:0">WHAT'S THE ENQUIRY</legend><div style="display:flex;flex-wrap:wrap;gap:8px">
+{enquiryTypes.map((t, i) => (<Fragment>
+<label class="chip"><input type="radio" name="enquiry_type" value={t.label} checked={i === 0} required /><span style="text-decoration:none;padding:9px 14px;font-size:13.5px">{t.label}</span></label>
+<span hidden data-prompt-for={t.label} data-label={t.prompt}></span>
+</Fragment>))}
+</div></fieldset>
+<div><label for="f-name" style="display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#5c5d51;margin-bottom:7px">NAME</label><input id="f-name" name="name" required autocomplete="name" placeholder="Your name" class="field" /></div>
+<div><label for="f-email" style="display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#5c5d51;margin-bottom:7px">EMAIL</label><input id="f-email" name="email" type="email" required autocomplete="email" placeholder="you@company.com" class="field" /></div>
+<div><label for="f-org" style="display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#5c5d51;margin-bottom:7px">COMPANY OR FUND</label><input id="f-org" name="organisation" autocomplete="organization" placeholder="Company or fund" class="field" /></div>
+<div><label for="f-msg" data-prompt style="display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#5c5d51;margin-bottom:7px">{enquiryTypes[0].prompt}</label><textarea id="f-msg" name="message" required placeholder="A few lines is plenty." class="field" style="min-height:110px;resize:vertical"></textarea></div>
+<button type="submit" class="submit" style="display:block;background:#15160f;color:#f5f2ea;padding:16px;min-height:48px;text-align:center;font-size:15px;font-weight:500">Send</button>
+<div style="font-size:13px;color:#5c5d51;line-height:1.5">Goes straight to Brannan's inbox. No newsletter, no sequence — replies come from Brannan.</div>
+</form>
+</div>
+</div>
+</div>
+</Base>

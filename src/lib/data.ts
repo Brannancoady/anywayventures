@@ -1,0 +1,73 @@
+// Single place pages read content from. Everything is plain JSON/Markdown in src/data and src/content.
+import { getCollection, type CollectionEntry } from 'astro:content';
+import site from '../data/site.json';
+import updatedDates from '../data/updated.json';
+import recordData from '../data/record.json';
+import casesData from '../data/cases.json';
+import timelineData from '../data/timeline.json';
+import dontData from '../data/dont.json';
+import pricingData from '../data/pricing.json';
+import faqData from '../data/faq.json';
+import termsData from '../data/terms.json';
+import privacyData from '../data/privacy.json';
+import cookiesData from '../data/cookies.json';
+import services from '../data/services.json';
+
+export { site };
+export const record = recordData;
+export const cases = casesData;
+export const timeline = timelineData;
+export const dont = dontData;
+export const pricing = pricingData;
+export const faq = faqData;
+export const terms = termsData;
+export const cookies = cookiesData;
+export const privacy = privacyData.map((x) => ({ ...x, a: x.a.replace('{email}', site.contactEmail) }));
+export const { peServices, aiPlan, ddSteps, opSteps, steps } = services;
+
+export const contactEmail = site.contactEmail;
+export const mailto = 'mailto:' + site.contactEmail;
+// Until a Calendly link is set in site.json, "Book 30 minutes" goes to the enquiry form.
+export const calendarUrl = site.calendarUrl || '/contact';
+export const linkedinUrl = site.linkedinUrl;
+export const sampleUrl =
+  site.sampleUrl || 'mailto:' + site.contactEmail + '?subject=' + encodeURIComponent('Request: sample AI value-creation plan');
+export const companyNo = site.companyNo;
+export const registeredOffice = site.registeredOffice;
+export const policyDate = site.policyDate;
+export const ctaLabel = site.ctaLabel;
+export const year = new Date().getFullYear();
+export const embeddedKicker = '03 · EMBEDDED AI DELIVERY — FOR PORTFOLIO COMPANIES, CEOS & OWNER-MANAGERS';
+
+const dates = updatedDates as Record<string, string>;
+/** ISO date a page was last updated (from src/data/updated.json). */
+export function updatedIso(path: string): string | undefined {
+  return dates[path];
+}
+/** "SEP 2026" style label for the visible LAST UPDATED stamp. */
+export function updatedLabel(path: string): string {
+  const iso = dates[path];
+  if (!iso) return '';
+  return monthYear(new Date(iso));
+}
+
+const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+/** "SEP 2026", as used in the design. */
+export function monthYear(d: Date): string {
+  return `${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
+}
+
+export type Post = CollectionEntry<'insights'>['data'] & { slug: string; href: string; date: string; body: string };
+
+export async function getPosts(): Promise<Post[]> {
+  const entries = await getCollection('insights', (e) => !e.data.draft);
+  return entries
+    .map((e) => ({
+      ...e.data,
+      slug: e.id,
+      href: `/insights/${e.id}`,
+      date: monthYear(e.data.published),
+      body: e.body ?? '',
+    }))
+    .sort((a, b) => b.published.getTime() - a.published.getTime() || (a.order ?? 0) - (b.order ?? 0));
+}

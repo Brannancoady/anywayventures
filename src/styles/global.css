@@ -1,0 +1,106 @@
+/* Self-hosted fonts (latin subset). Newsreader: one file per weight/style, each keeping the optical-size axis (6–72). */
+@font-face { font-family: 'Newsreader'; font-style: normal; font-weight: 300; font-display: swap; src: url(/fonts/newsreader-300-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Newsreader'; font-style: normal; font-weight: 400; font-display: swap; src: url(/fonts/newsreader-400-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Newsreader'; font-style: italic; font-weight: 300; font-display: swap; src: url(/fonts/newsreader-300-italic.woff2) format('woff2'); }
+@font-face { font-family: 'Newsreader'; font-style: italic; font-weight: 400; font-display: swap; src: url(/fonts/newsreader-400-italic.woff2) format('woff2'); }
+@font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url(/fonts/ibm-plex-sans-latin-400-normal.woff2) format('woff2'); }
+@font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 500; font-display: swap; src: url(/fonts/ibm-plex-sans-latin-500-normal.woff2) format('woff2'); }
+@font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url(/fonts/ibm-plex-sans-latin-600-normal.woff2) format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url(/fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url(/fonts/ibm-plex-mono-latin-500-normal.woff2) format('woff2'); }
+
+/* Colour tokens (BUILD-HANDOFF.md §9). Markup uses the literal values inline, as in the design mock. */
+:root {
+  --paper: #f5f2ea; --ground: #eeeade; --ink: #15160f; --body: #3c3d33; --muted: #5c5d51;
+  --rule: rgba(21,22,15,.14); --accent: #8a5a3c; --accent-on-dark: #d9a27e;
+  --header-h: 73px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* From the mock's base styles */
+body { margin: 0; background: #f5f2ea; font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #15160f; }
+a { color: #8a5a3c; }
+a:hover { color: #15160f; }
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-padding-top: calc(var(--header-h) + 12px); }
+[id] { scroll-margin-top: calc(var(--header-h) + 12px); }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid #8a5a3c; outline-offset: 2px; }
+img { max-width: 100%; height: auto; }
+
+.skip { position: absolute; left: -9999px; top: 0; z-index: 100; background: #15160f; color: #f5f2ea; padding: 12px 16px; }
+.skip:focus { left: 12px; top: 12px; }
+
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* ---- Header: mega menus (≥900) and drawer (<900) overlay the page ---- */
+#site-header .megamenu, #site-header .drawer { position: absolute; left: 0; right: 0; top: 100%; }
+#site-header [data-menu][aria-expanded="true"] { color: #8a5a3c !important; }
+.only-compact { display: none !important; }
+@media (max-width: 899.98px) {
+  .only-desktop, #site-header .megamenu { display: none !important; }
+  .only-compact { display: flex !important; }
+}
+@media (min-width: 900px) { #site-header .drawer { display: none !important; } }
+
+/* ---- Responsive grids that the mock computed from window width ---- */
+/* Step lists: number | text | time */
+.r-step { grid-template-columns: 56px minmax(0,1fr) 130px; }
+.r-step-lp { grid-template-columns: 50px minmax(0,1fr) 120px; }
+.r-time { text-align: right; grid-column: auto; }
+/* PE services list */
+.r-svc { grid-template-columns: 70px minmax(180px,260px) minmax(0,1fr) 150px; }
+/* Track-record table */
+.r-rec { grid-template-columns: 1.1fr 1.6fr .9fr .8fr; }
+
+@media (max-width: 899.98px) {
+  .r-svc { grid-template-columns: 56px minmax(0,1fr) 140px; }
+  .r-rec { grid-template-columns: 1.2fr 1.6fr .9fr; }
+}
+@media (max-width: 639.98px) {
+  .r-step, .r-svc { grid-template-columns: 56px minmax(0,1fr); }
+  .r-step-lp { grid-template-columns: 44px minmax(0,1fr); }
+  .r-time { text-align: left; grid-column: 2; }
+  .r-rec { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+}
+
+/* ---- Enquiry chips (radio inputs styled like the mock's chips) ---- */
+.chip { position: relative; display: inline-flex; }
+.chip input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.chip span { border: 1px solid rgba(21,22,15,.3); background: transparent; color: #3c3d33; cursor: pointer; min-height: 40px; display: inline-flex; align-items: center; }
+.chip input:checked + span { border-color: #15160f; background: #15160f; color: #f5f2ea; }
+.chip input:focus-visible + span { outline: 2px solid #8a5a3c; outline-offset: 2px; }
+.field { width: 100%; background: #f5f2ea; border: 1px solid rgba(21,22,15,.22); padding: 13px 14px; font-size: 16px; font-family: inherit; color: #15160f; outline: none; border-radius: 0; }
+.field:focus { border-color: #15160f; }
+button.submit { font: inherit; border: 0; cursor: pointer; width: 100%; }
+
+/* ---- Foldables: keep hero copy and the form/CTA card on either side of the hinge ---- */
+@media (horizontal-viewport-segments: 2) {
+  .seg-split {
+    grid-template-columns: env(viewport-segment-width 0 0) env(viewport-segment-width 1 0) !important;
+    column-gap: calc(env(viewport-segment-left 1 0) - env(viewport-segment-right 0 0)) !important;
+    padding-left: 0 !important; padding-right: 0 !important;
+  }
+  .seg-split > * { padding-left: 20px; padding-right: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
+@media print { #site-header, #consent, footer, [data-loc="section"] + section { display: none !important; } }
+
+/* Narrow foldable cover screens (~340–380px): keep wordmark, Enquire and MENU on one line. */
+@media (max-width: 379.98px) {
+  #site-header .hdr-row { gap: 10px !important; padding-left: max(16px, env(safe-area-inset-left)) !important; padding-right: max(16px, env(safe-area-inset-right)) !important; }
+  #site-header .wordmark { font-size: 20px !important; }
+  #site-header .only-compact { gap: 8px !important; }
+  #site-header .only-compact > * { padding-left: 12px !important; padding-right: 12px !important; }
+}
+
+/* "Cookie settings" only appears once a tracker is configured (see Consent.astro). */
+[data-consent-open] { display: none; }
+.has-consent [data-consent-open] { display: inline; }
+
+/* Question/answer rows (FAQ, legal pages): label column beside the answer, stacked on phones. */
+.r-qa { grid-template-columns: minmax(160px,260px) minmax(0,1fr); }
+@media (max-width: 639.98px) { .r-qa { grid-template-columns: minmax(0,1fr); gap: 10px !important; } }

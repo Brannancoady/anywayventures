@@ -1,0 +1,30 @@
+[
+  {
+    "q": "What we collect",
+    "a": "Information you give us when you enquire — name, organisation, email and what you write — and standard server logs. If you accept cookies, Google Analytics and the LinkedIn Insight Tag also collect information about how you use this site; see the cookies page. If you don't accept, neither is loaded."
+  },
+  {
+    "q": "Why we use it",
+    "a": "To reply to you, to scope and deliver work you ask for, and to keep records we're legally required to keep. We do not sell or share your information for marketing, and we do not add you to a mailing list."
+  },
+  {
+    "q": "Legal basis",
+    "a": "Legitimate interests (responding to an enquiry you have made), performance of a contract (once we're engaged), and legal obligation (accounting and tax records)."
+  },
+  {
+    "q": "How long we keep it",
+    "a": "Enquiries that don't become engagements are deleted within twelve months. Engagement records are kept for six years after the work ends, in line with UK statutory requirements."
+  },
+  {
+    "q": "Who we share it with",
+    "a": "Only service providers needed to run the business — website hosting and form handling (Netlify), email hosting, accounting software, analytics providers (Google, LinkedIn — only with your consent) and, during an engagement, the bench members working on your project under NDA. All are bound by contract and processed under UK GDPR."
+  },
+  {
+    "q": "Your rights",
+    "a": "You can ask to see, correct or delete the information we hold about you, or object to how we use it, by emailing the address below. You can also complain to the ICO at ico.org.uk."
+  },
+  {
+    "q": "Contact",
+    "a": "Anyway Ventures Ltd — data controller. Email: {email}. Registered office as shown in the footer."
+  }
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Netsells",
+    "role": "Co-founder & Chief Executive",
+    "sector": "Consultancy",
+    "status": "MERGED",
+    "colour": "#8a5a3c"
+  },
+  {
+    "name": "Railguard",
+    "role": "Executive director & investor",
+    "sector": "Software",
+    "status": "EXITED",
+    "colour": "#8a5a3c"
+  },
+  {
+    "name": "YourParkingSpace",
+    "role": "Chief Product Officer, exec director",
+    "sector": "Marketplace",
+    "status": "OPERATED",
+    "colour": "#5c5d51"
+  },
+  {
+    "name": "hedgehog lab",
+    "role": "Investor & advisor",
+    "sector": "Consultancy",
+    "status": "HELD",
+    "colour": "#5c5d51"
+  },
+  {
+    "name": "Odhealth",
+    "role": "Investor, former interim CTO",
+    "sector": "Health",
+    "status": "HELD",
+    "colour": "#5c5d51"
+  },
+  {
+    "name": "Wombat",
+    "role": "Investor",
+    "sector": "Fintech",
+    "status": "HELD",
+    "colour": "#5c5d51"
+  },
+  {
+    "name": "Jigsaw",
+    "role": "Investor & advisor",
+    "sector": "Consumer",
+    "status": "HELD",
+    "colour": "#5c5d51"
+  },
+  {
+    "name": "Brawn Power",
+    "role": "Investor",
+    "sector": "Consumer",
+    "status": "HELD",
+    "colour": "#5c5d51"
+  },
+  {
+    "name": "The Good Golf Company",
+    "role": "Owner-operator",
+    "sector": "Leisure",
+    "status": "CURRENT",
+    "colour": "#5c5d51"
+  }
+]

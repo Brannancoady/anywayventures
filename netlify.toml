@@ -1,0 +1,150 @@
+# Netlify configuration for anywayventures.com (static Astro build).
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# ---------------------------------------------------------------------------
+# Redirects from the previous (Lovable) site. That site was client-rendered and
+# only "/" is indexed, so these cover the routes such sites commonly used.
+# Add any other old URL here as: from -> closest new page, status 301.
+# ---------------------------------------------------------------------------
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/portfolio"
+  to = "/track-record"
+  status = 301
+[[redirects]]
+  from = "/portfolio/*"
+  to = "/track-record"
+  status = 301
+[[redirects]]
+  from = "/investments"
+  to = "/track-record"
+  status = 301
+[[redirects]]
+  from = "/about"
+  to = "/brannan-coady"
+  status = 301
+[[redirects]]
+  from = "/about-us"
+  to = "/brannan-coady"
+  status = 301
+[[redirects]]
+  from = "/team"
+  to = "/brannan-coady"
+  status = 301
+[[redirects]]
+  from = "/services"
+  to = "/private-equity"
+  status = 301
+[[redirects]]
+  from = "/advisory"
+  to = "/private-equity"
+  status = 301
+[[redirects]]
+  from = "/investment"
+  to = "/private-equity"
+  status = 301
+[[redirects]]
+  from = "/due-diligence"
+  to = "/ai-due-diligence"
+  status = 301
+[[redirects]]
+  from = "/contact-us"
+  to = "/contact"
+  status = 301
+[[redirects]]
+  from = "/get-in-touch"
+  to = "/contact"
+  status = 301
+[[redirects]]
+  from = "/blog"
+  to = "/insights"
+  status = 301
+[[redirects]]
+  from = "/blog/*"
+  to = "/insights"
+  status = 301
+[[redirects]]
+  from = "/faq"
+  to = "/questions"
+  status = 301
+[[redirects]]
+  from = "/pricing"
+  to = "/how-we-work"
+  status = 301
+[[redirects]]
+  from = "/privacy-policy"
+  to = "/privacy"
+  status = 301
+[[redirects]]
+  from = "/terms-and-conditions"
+  to = "/terms"
+  status = 301
+[[redirects]]
+  from = "/llm.txt"
+  to = "/llms.txt"
+  status = 301
+
+# Anything else falls through to dist/404.html (served with a 404 status by Netlify).
+
+# ---------------------------------------------------------------------------
+# Headers
+# ---------------------------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    # Inline style attributes come from the design; scripts are self-hosted plus GA4/LinkedIn after consent.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' https://www.googletagmanager.com https://snap.licdn.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://px.ads.linkedin.com https://*.linkedin.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://px.ads.linkedin.com https://*.linkedin.com; font-src 'self'; frame-src https://calendly.com; form-action 'self'; base-uri 'self'; frame-ancestors 'self'"
+
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/llms-full.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/*.md"
+  [headers.values]
+    Content-Type = "text/markdown; charset=utf-8"
+    X-Robots-Tag = "noindex"
+
+# Paid landing pages and the thank-you page stay out of search results.
+[[headers]]
+  for = "/lp/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/contact/thanks"
+  [headers.values]
+    X-Robots-Tag = "noindex"

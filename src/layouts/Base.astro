@@ -1,0 +1,95 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Cta from '../components/Cta.astro';
+import Footer from '../components/Footer.astro';
+import Consent from '../components/Consent.astro';
+import { pageMeta, defaultCtaHeading } from '../lib/pages';
+import { graph, abs, type ArticleInfo } from '../lib/schema';
+import { site, updatedIso } from '../lib/data';
+
+interface Props {
+  /** Registry path (src/lib/pages.ts). */
+  path: string;
+  /** Set on article pages; overrides title/description/canonical. */
+  article?: ArticleInfo;
+  /** Landing pages: no site header, CTA band or footer. */
+  bare?: boolean;
+  /** Override the heading of the dark enquire band. */
+  ctaHeading?: string;
+}
+const { path, article, bare = false, ctaHeading } = Astro.props;
+const meta = pageMeta(path);
+
+const title = article ? `${article.title} | ${site.name}` : meta.title;
+const description = article?.description ?? meta.description;
+const canonical = abs(article?.path ?? meta.path);
+const modified = article ? (article.updated ?? article.published).toISOString() : updatedIso(meta.path);
+const robots = meta.noindex ? 'noindex, follow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
+const jsonld = JSON.stringify(graph(meta, article)).replace(/</g, '\\u003c');
+const { ga4MeasurementId, linkedinPartnerId } = site.analytics;
+const trackingPages = path.startsWith('/lp/') || meta.kind === 'service';
+---
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{title}</title>
+<meta name="description" content={description}>
+{meta.path !== '/404' && <link rel="canonical" href={canonical}>}
+<meta name="robots" content={robots}>
+<meta name="author" content="Brannan Coady">
+<meta name="theme-color" content="#f5f2ea">
+<meta name="format-detection" content="telephone=no">
+
+<link rel="preload" href="/fonts/newsreader-300-normal.woff2" as="font" type="font/woff2" crossorigin>
+{!article && <link rel="preload" href="/fonts/newsreader-300-italic.woff2" as="font" type="font/woff2" crossorigin>}
+<link rel="preload" href="/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="alternate" type="text/plain" title="LLM summary" href="/llms.txt">
+{!meta.noindex && <link rel="alternate" type="text/markdown" title="This page as Markdown" href={(article?.path ?? (meta.path === '/' ? '/index' : meta.path)) + '.md'}>}
+{!bare && <link rel="alternate" type="application/rss+xml" title="Anyway Ventures — Insights" href="/insights/rss.xml">}
+
+<meta property="og:site_name" content={site.name}>
+<meta property="og:locale" content="en_GB">
+<meta property="og:type" content={article ? 'article' : 'website'}>
+<meta property="og:title" content={article?.title ?? meta.title}>
+<meta property="og:description" content={description}>
+<meta property="og:url" content={canonical}>
+<meta property="og:image" content={abs('/og.png')}>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Anyway Ventures — AI operating partner for PE-backed and mid-market businesses">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={article?.title ?? meta.title}>
+<meta name="twitter:description" content={description}>
+<meta name="twitter:image" content={abs('/og.png')}>
+{article && <meta property="article:published_time" content={article.published.toISOString()}>}
+{article && <meta property="article:author" content={abs('/brannan-coady')}>}
+{article && <meta property="article:section" content={article.section}>}
+{modified && <meta property="article:modified_time" content={modified}>}
+
+<script type="application/ld+json" set:html={jsonld} />
+</head>
+<body data-calendar={site.calendarUrl || undefined}>
+<a class="skip" href="#main">Skip to content</a>
+<div style="background:#f5f2ea;color:#15160f;font-family:'IBM Plex Sans',system-ui,sans-serif;min-height:100dvh">
+{!bare && <Header path={path} />}
+<main id="main" data-loc="section">
+<slot />
+</main>
+{!bare && <Cta heading={ctaHeading ?? meta.ctaHeading ?? defaultCtaHeading} />}
+{!bare && <Footer />}
+<slot name="after" />
+</div>
+<Consent ga4={ga4MeasurementId} linkedin={trackingPages ? linkedinPartnerId : ''} />
+<script>
+  import '../scripts/site.ts';
+</script>
+</body>
+</html>

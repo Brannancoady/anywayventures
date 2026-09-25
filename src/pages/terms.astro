@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import { terms, policyDate } from '../lib/data';
+
+const path = '/terms';
+---
+<Base path={path}>
+<div>
+<div style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,60px) clamp(40px,5vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:#8a5a3c;margin-bottom:30px">TERMS OF ENGAGEMENT</div>
+<h1 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(36px,5vw,64px);line-height:1.05;letter-spacing:-.025em;max-width:18ch;text-wrap:balance">How <em style="color:#8a5a3c">engagements</em> are contracted.</h1>
+<p style="margin:30px 0 0;font-size:18px;line-height:1.62;color:#3c3d33;max-width:680px;text-wrap:pretty">A plain-language summary of the standard terms. Every engagement is governed by a signed statement of work, which takes precedence over this page. Last updated {policyDate}.</p>
+</div>
+<div style="padding:clamp(30px,4vw,50px) clamp(20px,4vw,60px) clamp(46px,6vw,70px);border-bottom:1px solid rgba(21,22,15,.14);max-width:900px">
+{terms.map((it) => (<Fragment>
+<div style="display:grid;grid-template-columns:minmax(0,1fr);gap:8px;padding:24px 0;border-top:1px solid rgba(21,22,15,.16);align-items:start"><h2 style="margin:0;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:23px;line-height:1.2">{it.q}</h2><p style="margin:0;font-size:16px;line-height:1.65;color:#3c3d33;max-width:720px">{it.a}</p></div>
+</Fragment>))}
+<div style="border-top:1px solid rgba(21,22,15,.16)"></div>
+</div>
+</div>
+</Base>
