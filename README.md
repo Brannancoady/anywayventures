@@ -67,6 +67,8 @@ One-time setup in the Netlify dashboard:
 2. **Site configuration → Notifications → Emails and webhooks → Form submission notifications → Add notification → Email notification.** Choose "Any form" and enter `brannan@anywayventures.com`. Replying to the notification email replies to the enquirer.
 3. The email subject is set by the form, for example "Enquiry: AI due diligence — Acme Capital".
 
+**If a test submission says "Sorry, that didn't send"**, Netlify hasn't registered the forms yet. Check that form detection is on, then trigger a fresh deploy. Forms are only picked up during a deploy.
+
 Spam protection is a honeypot field plus Netlify's built-in Akismet filter. Flagged submissions appear under **Forms → Spam**. The free tier covers 100 submissions a month.
 
 ## Analytics & cookies

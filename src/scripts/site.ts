@@ -139,10 +139,41 @@ document.querySelectorAll<HTMLFormElement>('form[data-enquiry]').forEach((form) 
   });
   org?.addEventListener('input', update);
   update();
-  form.addEventListener('submit', () => {
+  // Submit in the background so a failure is shown on the page instead of landing on an error page.
+  // Netlify accepts form posts to "/" (https://docs.netlify.com/forms/setup/#submit-html-forms-with-ajax).
+  const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+  const status = document.createElement('p');
+  status.setAttribute('role', 'alert');
+  status.style.cssText = 'margin:0;font-size:14px;line-height:1.5;color:#8a3c3c';
+  status.hidden = true;
+  button?.after(status);
+  let sending = false;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (sending) return;
     update();
-    if (kind === 'contact') track('enquiry_submit', { type: selected() });
-    else track('lp_form_submit', { lp: kind, stage: selected() });
+    sending = true;
+    status.hidden = true;
+    const label = button?.textContent;
+    if (button) { button.disabled = true; button.textContent = 'Sending…'; }
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form) as unknown as Record<string, string>).toString(),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (kind === 'contact') track('enquiry_submit', { type: selected() });
+      else track('lp_form_submit', { lp: kind, stage: selected() });
+      location.assign(form.getAttribute('action') || '/contact/thanks');
+    } catch {
+      const email = document.body.dataset.email || '';
+      status.innerHTML = `Sorry, that didn't send. Please email <a href="mailto:${email}">${email}</a> instead, or try again.`;
+      status.hidden = false;
+      if (button) { button.disabled = false; button.textContent = label ?? 'Send'; }
+      sending = false;
+    }
   });
 });
 

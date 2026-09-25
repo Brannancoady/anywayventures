@@ -76,7 +76,7 @@ const trackingPages = path.startsWith('/lp/') || meta.kind === 'service';
 
 <script type="application/ld+json" set:html={jsonld} />
 </head>
-<body data-calendar={site.calendarUrl || undefined}>
+<body data-calendar={site.calendarUrl || undefined} data-email={site.contactEmail}>
 <a class="skip" href="#main">Skip to content</a>
 <div style="background:#f5f2ea;color:#15160f;font-family:'IBM Plex Sans',system-ui,sans-serif;min-height:100dvh">
 {!bare && <Header path={path} />}
