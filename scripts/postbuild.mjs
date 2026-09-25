@@ -4,6 +4,7 @@
 //  3. Checks every built page has the SEO basics, and fails the build if not.
 import { readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
+import { createHash } from 'node:crypto';
 
 const dist = new URL('../dist/', import.meta.url).pathname;
 const site = JSON.parse(readFileSync(new URL('../src/data/site.json', import.meta.url), 'utf8'));
@@ -92,8 +93,31 @@ writeFileSync(
     parts.join('\n\n') + '\n',
 );
 
+// ---- 4. Content-Security-Policy with hashes of inline scripts -----------
+// Only executable inline scripts need hashes (JSON-LD blocks are data). Anything else inline is blocked.
+const hashes = new Set();
+for (const f of htmlFiles) {
+  const h = readFileSync(f, 'utf8');
+  for (const m of h.matchAll(/<script(?![^>]*\bsrc=)(?![^>]*application\/ld\+json)[^>]*>([\s\S]*?)<\/script>/g)) {
+    if (m[1].trim()) hashes.add(`'sha256-${createHash('sha256').update(m[1]).digest('base64')}'`);
+  }
+}
+const csp = [
+  "default-src 'self'",
+  `script-src 'self' ${[...hashes].join(' ')} https://www.googletagmanager.com https://snap.licdn.com`.replace(/\s+/g, ' '),
+  "style-src 'self' 'unsafe-inline'", // inline style attributes come from the design
+  "img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.google.com https://px.ads.linkedin.com https://*.linkedin.com",
+  "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://px.ads.linkedin.com https://*.linkedin.com",
+  "font-src 'self'",
+  "frame-src https://calendly.com https://www.googletagmanager.com",
+  "form-action 'self'",
+  "base-uri 'self'",
+  "frame-ancestors 'self'",
+].join('; ');
+writeFileSync(join(dist, '_headers'), `/*\n  Content-Security-Policy: ${csp}\n`);
+
 if (problems.length) {
   console.error('\nSEO check failed:\n' + problems.map((p) => '  - ' + p).join('\n'));
   process.exit(1);
 }
-console.log(`postbuild: ${htmlFiles.length} pages checked, ${urls.length} markdown copies + llms-full.txt written.`);
+console.log(`postbuild: ${htmlFiles.length} pages checked, ${urls.length} markdown copies + llms-full.txt written, CSP with ${hashes.size} inline-script hash(es).`);

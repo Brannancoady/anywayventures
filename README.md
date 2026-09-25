@@ -73,10 +73,11 @@ Spam protection is a honeypot field plus Netlify's built-in Akismet filter. Flag
 
 ## Analytics & cookies
 
-GA4 and the LinkedIn Insight Tag are fully wired but switched off until you add their IDs in `site.json`:
-- **Adding either ID** turns on a cookie banner with equally weighted Accept/Decline buttons, and a "Cookie settings" link in the footer.
-- **Nothing loads until the visitor accepts.**
-- **LinkedIn loads only** on service pages and `/lp/*`, as the handoff specifies.
+GA4 (`G-07BBP2BDFK`) and the LinkedIn Insight Tag are configured in `site.json` → `analytics`.
+- **GA4 uses Google Consent Mode v2.** The Google tag is in every page's `<head>`, so Google can detect it, with analytics consent defaulted to *denied*. Until a visitor accepts, it sets no cookies and sends only cookieless signals. Accepting switches it to full measurement, and declining later switches it back.
+- **The LinkedIn Insight Tag isn't loaded at all until the visitor accepts,** and only on service pages and `/lp/*`, as the handoff specifies. It needs `linkedinPartnerId` set.
+- **Either ID turns on the cookie banner.** The banner has equally weighted Accept/Decline buttons, and a "Cookie settings" link appears in the footer.
+- **The security policy is generated at build time.** `scripts/postbuild.mjs` writes it to `dist/_headers` and allows the inline Google snippet by its hash. If you add another inline script, rebuild; the hash list updates itself.
 
 The events in the handoff are already sent: `cta_click`, `enquiry_type_select`, `enquiry_submit`, `calendar_click`, `sample_plan_request`, `menu_open`, `article_read`, `lp_form_submit` and `outbound_linkedin`. To use them as conversions, mark `enquiry_submit` and `lp_form_submit` as key events in GA4.
 

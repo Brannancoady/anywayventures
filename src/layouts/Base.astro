@@ -29,12 +29,22 @@ const robots = meta.noindex ? 'noindex, follow' : 'index, follow, max-snippet:-1
 const jsonld = JSON.stringify(graph(meta, article)).replace(/</g, '\\u003c');
 const { ga4MeasurementId, linkedinPartnerId } = site.analytics;
 const trackingPages = path.startsWith('/lp/') || meta.kind === 'service';
+// Google tag with Consent Mode v2: present on every page (so Google can detect it) but analytics
+// cookies stay off until the visitor accepts. A returning visitor who accepted starts as 'granted'.
+const gtagInit = ga4MeasurementId
+  ? `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}` +
+    `var c;try{c=localStorage.getItem('av-consent')}catch(e){}` +
+    `gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:c==='granted'?'granted':'denied',wait_for_update:500});` +
+    `gtag('js',new Date());gtag('config','${ga4MeasurementId}');`
+  : '';
 ---
 <!doctype html>
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+{ga4MeasurementId && <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4MeasurementId}`}></script>}
+{gtagInit && <script is:inline set:html={gtagInit} />}
 <title>{title}</title>
 <meta name="description" content={description}>
 {meta.path !== '/404' && <link rel="canonical" href={canonical}>}

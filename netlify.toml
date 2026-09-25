@@ -106,8 +106,8 @@
     X-Frame-Options = "SAMEORIGIN"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
-    # Inline style attributes come from the design; scripts are self-hosted plus GA4/LinkedIn after consent.
-    Content-Security-Policy = "default-src 'self'; script-src 'self' https://www.googletagmanager.com https://snap.licdn.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://px.ads.linkedin.com https://*.linkedin.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://px.ads.linkedin.com https://*.linkedin.com; font-src 'self'; frame-src https://calendly.com; form-action 'self'; base-uri 'self'; frame-ancestors 'self'"
+    # Content-Security-Policy is written to dist/_headers by scripts/postbuild.mjs, so it can
+    # include the hash of the inline Google tag snippet.
 
 [[headers]]
   for = "/_astro/*"

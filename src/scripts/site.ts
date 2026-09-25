@@ -12,16 +12,10 @@ export function track(name: string, params: Record<string, unknown> = {}) {
   if (typeof window.gtag === 'function') window.gtag('event', name, { page: location.pathname, ...params });
 }
 
-function loadGa4(id: string) {
-  if (!id || window.gtag) return;
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function gtag() { window.dataLayer.push(arguments); };
-  window.gtag('js', new Date());
-  window.gtag('config', id);
-  const s = document.createElement('script');
-  s.async = true;
-  s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`;
-  document.head.appendChild(s);
+// The Google tag itself is in every page's <head> with consent defaulted to 'denied' (Base.astro).
+// Accepting or declining here only updates that consent state.
+function setGaConsent(granted: boolean) {
+  if (typeof window.gtag === 'function') window.gtag('consent', 'update', { analytics_storage: granted ? 'granted' : 'denied' });
 }
 
 function loadLinkedIn(id: string) {
@@ -37,7 +31,7 @@ const banner = document.getElementById('consent');
 if (banner) {
   document.documentElement.classList.add('has-consent');
   const apply = (v: string | null) => {
-    if (v === 'granted') { loadGa4(banner.dataset.ga4 || ''); loadLinkedIn(banner.dataset.linkedin || ''); }
+    if (v === 'granted') { setGaConsent(true); loadLinkedIn(banner.dataset.linkedin || ''); }
   };
   const choice = readConsent();
   if (!choice) banner.hidden = false;
@@ -49,7 +43,10 @@ if (banner) {
     writeConsent(v);
     banner.hidden = true;
     if (v === 'granted') apply(v);
-    else if (window.gtag) location.reload(); // withdraw: reload without trackers
+    else {
+      setGaConsent(false);
+      if (window._linkedin_partner_id) location.reload(); // withdraw: reload without the LinkedIn tag
+    }
   });
   document.querySelectorAll('[data-consent-open]').forEach((el) => el.addEventListener('click', () => { banner.hidden = false; }));
 }

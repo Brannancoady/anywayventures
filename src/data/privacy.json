@@ -1,7 +1,7 @@
 [
   {
     "q": "What we collect",
-    "a": "Information you give us when you enquire — name, organisation, email and what you write — and standard server logs. If you accept cookies, Google Analytics and the LinkedIn Insight Tag also collect information about how you use this site; see the cookies page. If you don't accept, neither is loaded."
+    "a": "Information you give us when you enquire — name, organisation, email and what you write — and standard server logs. Google Analytics runs in a cookieless, restricted mode unless you accept cookies, in which case it and (on some pages) the LinkedIn Insight Tag collect information about how you use this site; see the cookies page."
   },
   {
     "q": "Why we use it",
