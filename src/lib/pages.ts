@@ -84,7 +84,7 @@ export const pages: PageMeta[] = [
   {
     path: '/brannan-coady', kind: 'about', name: 'Brannan Coady', image: '/og/brannan-coady.png',
     title: 'Brannan Coady — founder, operator, investor' + suffix,
-    description: 'Co-founder and CEO of Netsells (merged with hedgehog lab, BGF), former CPO YourParkingSpace, investor and NED. Now building AI inside PE-backed businesses.',
+    description: 'Co-founder and CEO of Netsells (merged with hedgehog lab, BGF), former CEO of YourParkingSpace, investor and NED. Now building AI in PE-backed businesses.',
     ctaHeading: 'Start a conversation.',
   },
   {

@@ -13,7 +13,7 @@ export const GET: APIRoute = async () => {
   };
   const text = `# ${site.name}
 
-> ${site.legalName} is an AI operating partner for private-equity-backed and mid-market businesses in the UK. It does technology, product and AI due diligence before a deal, acts as a fractional AI operating partner across a fund's portfolio, and embeds inside companies to put internal tooling, automation and AI agents into production with their teams. It is led by Brannan Coady, an exited founder (co-founder and CEO of Netsells, which merged with hedgehog lab backed by BGF), former Chief Product Officer of YourParkingSpace, investor and non-executive director, with a small senior bench. Based in York, working UK-wide.
+> ${site.legalName} is an AI operating partner for private-equity-backed and mid-market businesses in the UK. It does technology, product and AI due diligence before a deal, acts as a fractional AI operating partner across a fund's portfolio, and embeds inside companies to put internal tooling, automation and AI agents into production with their teams. It is led by Brannan Coady, an exited founder (co-founder and CEO of Netsells, which merged with hedgehog lab backed by BGF), former CEO of YourParkingSpace (sold as part of Flowbird Group to EasyPark, now Arrive), co-founder of Railguard (sold to Trainline), investor and non-executive director, with a small senior bench. Based in York, working UK-wide.
 
 Who it is for: PE deal teams, fund partners and portfolio directors at lower-mid-market funds; CEOs, COOs and owner-managers of mid-market businesses.
 

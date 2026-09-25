@@ -111,7 +111,7 @@ The difference shows up in the capture rates. Someone who hasn't shipped an AI s
 
 It also shows up in sequencing. A generalist will put the most valuable line first. Someone who has built these things will put first the line whose data is ready, because early proof buys the management team's patience for the harder work.
 
-I spent around a decade running Netsells, a York digital product consultancy, and was later Chief Product Officer at YourParkingSpace. These days I build AI systems inside PE-backed and mid-market businesses every week. That's the reason I'm comfortable putting a capture rate in a paper and being held to it.
+I spent thirteen years running Netsells, a York digital product consultancy, and was Chief Product Officer, COO and then CEO of YourParkingSpace. These days I build AI systems inside PE-backed and mid-market businesses every week. That's the reason I'm comfortable putting a capture rate in a paper and being held to it.
 
 ## Handing over at completion
 

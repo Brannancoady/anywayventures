@@ -15,10 +15,11 @@ const path = '/track-record';
 <div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14)">
 <h2 style="margin:0 0 28px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:36px;letter-spacing:-.02em">Companies &amp; positions</h2>
 <div class="r-rec" style="display:grid;gap:12px 20px;padding-bottom:12px;border-bottom:1px solid rgba(21,22,15,.3);font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#5c5d51"><span>COMPANY</span><span>ROLE</span><span>SECTOR</span><span style="text-align:right">STATUS</span></div>
-{record.map((row) => (<Fragment>
+{record.map((row, i) => (<Fragment>
+{(i === 0 || record[i - 1].group !== row.group) && <h3 style="margin:34px 0 4px;font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:10.5px;letter-spacing:.18em;color:#8a5a3c;text-transform:uppercase">{row.group}</h3>}
 <div class="r-rec" style="display:grid;gap:12px 20px;padding:19px 0;border-bottom:1px solid rgba(21,22,15,.12);font-size:15px;align-items:baseline"><span style="font-family:'Newsreader',Georgia,serif;font-size:20px">{row.name}</span><span style="color:#3c3d33">{row.role}</span><span style="color:#5c5d51">{row.sector}</span><span style={`text-align:right;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:${row.colour}`}>{row.status}</span></div>
 </Fragment>))}
-<p style="margin:22px 0 0;font-size:13.5px;color:#5c5d51;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em">Dates, deal values and co-investors to be confirmed before publication.</p>
+<p style="margin:22px 0 0;font-size:13.5px;color:#5c5d51;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em">Also an investor in Boltbar, Supercycle, Ad-MOTO, Clays and IMPOSSIBREW.</p>
 </div>
 
 <div style="padding:clamp(46px,6vw,70px) clamp(20px,4vw,60px);border-bottom:1px solid rgba(21,22,15,.14);background:#eeeade">

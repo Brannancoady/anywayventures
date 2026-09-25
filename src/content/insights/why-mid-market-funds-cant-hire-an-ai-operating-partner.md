@@ -127,6 +127,6 @@ The second is transfer. Portfolio companies in a mid-market fund often share mor
 
 The third is exit evidence. A buyer's diligence team will mark down anything described as AI-enabled that can't be shown working. Systems in production, usage logs, before and after measures and the cost to run them go into the equity story. Assertions don't.
 
-And the portfolio companies get a counterpart who has sat in their chair. I ran Netsells as CEO for around a decade and later sat on the executive team at YourParkingSpace. What management teams want from the fund on AI is someone who will say which idea to kill, then help build the one that's left.
+And the portfolio companies get a counterpart who has sat in their chair. I ran Netsells as CEO for thirteen years and later ran YourParkingSpace as CEO. What management teams want from the fund on AI is someone who will say which idea to kill, then help build the one that's left.
 
 For a fund with ten companies, the realistic comparison is £530k for a seat that starts delivering in year two against roughly £250k for something running this quarter. If you want to test the numbers against your own portfolio, the [fractional AI operating partner](/ai-operating-partner) page sets out how we work, and the first call is free.

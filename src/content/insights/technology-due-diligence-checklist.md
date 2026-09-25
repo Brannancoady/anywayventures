@@ -32,7 +32,7 @@ That filter matters more this year than it did two years ago. Early 2026 saw a s
 
 ## What separates a checklist from a judgement
 
-I have been on both ends of this. I ran Netsells, a York product consultancy, as CEO for around a decade, and I was Chief Product Officer at YourParkingSpace. I've answered the diligence questionnaire late at night as well as written it. The pattern is consistent. Targets are good at producing documents. They are much worse at producing evidence.
+I have been on both ends of this. I ran Netsells, a York product consultancy, as CEO for thirteen years, and I was CPO, COO and then CEO at YourParkingSpace through its sale. I've answered the diligence questionnaire late at night as well as written it. The pattern is consistent. Targets are good at producing documents. They are much worse at producing evidence.
 
 A policy says what should happen. A deployment log or a cloud bill shows what did. The list below asks for the second kind. Where only the first kind exists, that is itself a finding.
 

@@ -1,33 +1,86 @@
 [
   {
+    "group": "Operating roles",
     "name": "Netsells",
-    "role": "Co-founder & Chief Executive",
-    "sector": "Consultancy",
+    "role": "Co-founder and CEO, 2010 to 2023",
+    "sector": "Digital product consultancy",
     "status": "MERGED",
     "colour": "#8a5a3c"
   },
   {
-    "name": "Railguard",
-    "role": "Executive director & investor",
-    "sector": "Software",
+    "group": "Operating roles",
+    "name": "YourParkingSpace",
+    "role": "CPO, COO, then CEO, 2016 to 2024",
+    "sector": "Parking marketplace",
     "status": "EXITED",
     "colour": "#8a5a3c"
   },
   {
-    "name": "YourParkingSpace",
-    "role": "Chief Product Officer, exec director",
-    "sector": "Marketplace",
-    "status": "OPERATED",
+    "group": "Operating roles",
+    "name": "Flowbird Group",
+    "role": "Executive committee, 2023 to 2024",
+    "sector": "Parking and mobility",
+    "status": "EXITED",
+    "colour": "#8a5a3c"
+  },
+  {
+    "group": "Operating roles",
+    "name": "Railguard",
+    "role": "Co-founder and seed investor",
+    "sector": "Rail-tech",
+    "status": "EXITED",
+    "colour": "#8a5a3c"
+  },
+  {
+    "group": "Operating roles",
+    "name": "The Good Golf Company",
+    "role": "Chief Operating Officer, 2025 onwards",
+    "sector": "Golf",
+    "status": "CURRENT",
     "colour": "#5c5d51"
   },
   {
+    "group": "Investments and boards",
+    "name": "Wombat (now NuWealth)",
+    "role": "Investor, former interim CTO",
+    "sector": "Fintech",
+    "status": "EXITED",
+    "colour": "#8a5a3c"
+  },
+  {
+    "group": "Investments and boards",
+    "name": "Ryzon",
+    "role": "Investor and non-executive director",
+    "sector": "",
+    "status": "BOARD",
+    "colour": "#5c5d51"
+  },
+  {
+    "group": "Investments and boards",
+    "name": "Stasher",
+    "role": "Investor and board adviser",
+    "sector": "Travel",
+    "status": "BOARD",
+    "colour": "#5c5d51"
+  },
+  {
+    "group": "Investments and boards",
+    "name": "The Potions Cauldron Group",
+    "role": "Board adviser",
+    "sector": "",
+    "status": "BOARD",
+    "colour": "#5c5d51"
+  },
+  {
+    "group": "Investments and boards",
     "name": "hedgehog lab",
-    "role": "Investor & advisor",
-    "sector": "Consultancy",
+    "role": "Investor and advisor",
+    "sector": "Digital consultancy",
     "status": "HELD",
     "colour": "#5c5d51"
   },
   {
+    "group": "Investments and boards",
     "name": "Odhealth",
     "role": "Investor, former interim CTO",
     "sector": "Health",
@@ -35,31 +88,35 @@
     "colour": "#5c5d51"
   },
   {
-    "name": "Wombat",
-    "role": "Investor",
-    "sector": "Fintech",
-    "status": "HELD",
-    "colour": "#5c5d51"
-  },
-  {
-    "name": "Jigsaw",
-    "role": "Investor & advisor",
-    "sector": "Consumer",
-    "status": "HELD",
-    "colour": "#5c5d51"
-  },
-  {
+    "group": "Investments and boards",
     "name": "Brawn Power",
-    "role": "Investor",
-    "sector": "Consumer",
+    "role": "Investor and fractional CPO",
+    "sector": "Fitness community",
     "status": "HELD",
     "colour": "#5c5d51"
   },
   {
-    "name": "The Good Golf Company",
-    "role": "Owner-operator",
-    "sector": "Leisure",
-    "status": "CURRENT",
+    "group": "Investments and boards",
+    "name": "Truvi (formerly Superhog)",
+    "role": "Investor",
+    "sector": "Short-let property",
+    "status": "HELD",
+    "colour": "#5c5d51"
+  },
+  {
+    "group": "Investments and boards",
+    "name": "Jigsaw",
+    "role": "Investor",
+    "sector": "Dating events",
+    "status": "HELD",
+    "colour": "#5c5d51"
+  },
+  {
+    "group": "Investments and boards",
+    "name": "Agents Capital",
+    "role": "Investor",
+    "sector": "Property finance",
+    "status": "HELD",
     "colour": "#5c5d51"
   }
 ]
