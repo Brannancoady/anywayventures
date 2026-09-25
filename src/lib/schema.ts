@@ -161,6 +161,10 @@ export interface ArticleInfo {
   wordCount: number;
   section: string;
   about: string;
+  /** Absolute-path share image, e.g. /og/insights/<slug>.png */
+  image: string;
+  tags: string[];
+  faq: { q: string; a: string }[];
 }
 
 export function graph(meta: PageMeta, article?: ArticleInfo) {
@@ -178,7 +182,7 @@ export function graph(meta: PageMeta, article?: ArticleInfo) {
     description: article?.description ?? meta.description,
     isPartOf: { '@id': ids.website },
     inLanguage: 'en-GB',
-    primaryImageOfPage: { '@type': 'ImageObject', url: abs('/og.png') },
+    primaryImageOfPage: { '@type': 'ImageObject', url: abs(article?.image ?? '/og.png') },
     ...(modified ? { dateModified: modified } : {}),
   };
   if (meta.path !== '/') webPage.breadcrumb = { '@id': url + '#breadcrumb' };
@@ -213,12 +217,22 @@ export function graph(meta: PageMeta, article?: ArticleInfo) {
       author: { '@id': ids.person },
       publisher: { '@id': ids.org },
       mainEntityOfPage: { '@id': url + '#webpage' },
-      image: abs('/og.png'),
+      image: { '@type': 'ImageObject', url: abs(article.image), width: 1200, height: 630 },
       wordCount: article.wordCount,
+      ...(article.tags.length ? { keywords: article.tags.join(', ') } : {}),
       articleSection: article.section,
       about: article.about,
       inLanguage: 'en-GB',
+      isAccessibleForFree: true,
     });
+    if (article.faq.length) {
+      nodes.push({
+        '@type': 'FAQPage',
+        '@id': url + '#faq',
+        isPartOf: { '@id': url + '#webpage' },
+        mainEntity: article.faq.map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a } })),
+      });
+    }
   }
 
   return { '@context': 'https://schema.org', '@graph': nodes };

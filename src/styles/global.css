@@ -104,3 +104,19 @@ button.submit { font: inherit; border: 0; cursor: pointer; width: 100%; }
 /* Question/answer rows (FAQ, legal pages): label column beside the answer, stacked on phones. */
 .r-qa { grid-template-columns: minmax(160px,260px) minmax(0,1fr); }
 @media (max-width: 639.98px) { .r-qa { grid-template-columns: minmax(0,1fr); gap: 10px !important; } }
+
+/* ---- Article body: Markdown blocks after the lead (headings, lists, tables) ---- */
+.prose-block h2 { font-family: 'Newsreader', Georgia, serif; font-weight: 300; font-size: clamp(26px, 2.6vw, 32px); line-height: 1.15; letter-spacing: -.02em; color: #15160f; margin: 46px 0 16px; }
+.prose-block h3 { font-family: 'Newsreader', Georgia, serif; font-weight: 400; font-size: 22px; line-height: 1.25; color: #15160f; margin: 30px 0 10px; }
+.prose-block p { margin: 0 0 22px; }
+.prose-block ul, .prose-block ol { margin: 0 0 22px; padding-left: 1.2em; }
+.prose-block li { margin: 0 0 10px; padding-left: .2em; }
+.prose-block li::marker { color: #8a5a3c; }
+.prose-block strong { font-weight: 600; }
+.prose-block a { text-decoration: underline; text-underline-offset: 3px; }
+.prose-block table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.5; margin: 6px 0 26px; display: block; overflow-x: auto; }
+.prose-block th { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: #5c5d51; font-weight: 400; text-align: left; padding: 0 16px 10px 0; border-bottom: 1px solid rgba(21,22,15,.3); }
+.prose-block td { padding: 12px 16px 12px 0; border-bottom: 1px solid rgba(21,22,15,.12); vertical-align: top; }
+.prose-block blockquote { margin: 30px 0; padding: 0 0 0 22px; border-left: 2px solid #8a5a3c; font-family: 'Newsreader', Georgia, serif; font-size: 22px; line-height: 1.4; }
+.prose-block h2 + p, .prose-block h3 + p { margin-top: 0; }
+[data-article] p a { text-decoration: underline; text-underline-offset: 3px; }

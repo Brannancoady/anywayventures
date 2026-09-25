@@ -7,10 +7,14 @@
     "dev": "astro dev",
     "build": "astro build && node scripts/postbuild.mjs",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "og": "node scripts/og-images.mjs"
   },
   "dependencies": {
     "astro": "^7.3.5",
     "marked": "^18.0.14"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.56.1"
   }
 }

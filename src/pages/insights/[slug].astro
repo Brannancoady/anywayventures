@@ -22,20 +22,31 @@ const post = {
   ...p,
   dateLong: p.published.toLocaleDateString('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' }),
   lead: blocks[0]?.html ?? '',
-  bodyA: blocks.slice(1, 2).map((b) => b.html),
+  bodyA: blocks.slice(1, 2),
   bodyB: blocks.slice(2),
-  related: posts.filter((x) => x.slug !== p.slug),
+  related: relatedPosts(),
 };
+
+// Up to three related pieces: hand-picked first, then the same service, then the most recent.
+function relatedPosts() {
+  const others = posts.filter((x) => x.slug !== p.slug);
+  const picked = p.related.map((s) => others.find((x) => x.slug === s)).filter((x): x is Post => !!x);
+  const rest = [...others.filter((x) => x.service === p.service), ...others].filter((x) => !picked.includes(x));
+  return [...new Set([...picked, ...rest])].slice(0, 3);
+}
 
 const article = {
   title: p.title,
-  description: p.standfirst,
+  description: p.description ?? p.standfirst,
   path: p.href,
   published: p.published,
   updated: p.updated,
   wordCount: words,
   section: p.kicker.charAt(0) + p.kicker.slice(1).toLowerCase(),
   about: p.service,
+  image: p.image,
+  tags: p.tags,
+  faq: p.faq,
 };
 ---
 <Base path={path} article={article} ctaHeading="Talk about this piece.">
@@ -60,12 +71,23 @@ const article = {
 <article data-article={post.slug} style="min-width:0">
 <p style="margin:0 0 24px;font-size:20px;line-height:1.6;color:#15160f" set:html={post.lead}></p>
 {post.bodyA.map((para) => (<Fragment>
-<p style="margin:0 0 22px;font-size:17.5px;line-height:1.72;color:#15160f" set:html={para}></p>
+{para.p ? <p style="margin:0 0 22px;font-size:17.5px;line-height:1.72;color:#15160f" set:html={para.html}></p> : <div class="prose-block" style="font-size:17.5px;line-height:1.72;color:#15160f;margin:0 0 22px" set:html={para.html} />}
 </Fragment>))}
 <blockquote style="margin:38px 0;padding:0 0 0 26px;border-left:2px solid #8a5a3c;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:clamp(24px,2.4vw,30px);line-height:1.3;letter-spacing:-.01em;color:#15160f">{post.pull}</blockquote>
 {post.bodyB.map((para) => (<Fragment>
 {para.p ? <p style="margin:0 0 22px;font-size:17.5px;line-height:1.72;color:#15160f" set:html={para.html}></p> : <div class="prose-block" style="font-size:17.5px;line-height:1.72;color:#15160f;margin:0 0 22px" set:html={para.html} />}
 </Fragment>))}
+{post.faq.length > 0 && (
+<section aria-labelledby="faq-heading" style="margin-top:48px">
+<h2 id="faq-heading" style="margin:0 0 6px;font-family:'Newsreader',Georgia,serif;font-weight:300;font-size:30px;letter-spacing:-.02em">Questions</h2>
+{post.faq.map((f) => (
+<div style="padding:22px 0;border-top:1px solid rgba(21,22,15,.16)">
+<h3 style="margin:0 0 8px;font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:21px;line-height:1.25">{f.q}</h3>
+<p style="margin:0;font-size:16.5px;line-height:1.68;color:#3c3d33">{f.a}</p>
+</div>
+))}
+</section>
+)}
 <div style="margin-top:44px;padding:26px 28px;border:1px solid rgba(21,22,15,.16);display:grid;grid-template-columns:72px minmax(0,1fr);gap:22px;align-items:center">
 <div style="width:72px;height:72px;border-radius:50%;background:repeating-linear-gradient(135deg,#e6e1d2 0 6px,#eeeade 6px 12px);border:1px solid rgba(21,22,15,.16)"></div>
 <div><div style="font-family:'Newsreader',Georgia,serif;font-size:21px;margin-bottom:4px">Brannan Coady</div><div style="font-size:14.5px;line-height:1.5;color:#3c3d33">Founder of Anyway Ventures. Exited founder, former CPO, investor and board member; now building AI inside PE-backed and mid-market businesses. <a href="/brannan-coady" style="text-decoration:underline;text-underline-offset:3px">More →</a></div></div>

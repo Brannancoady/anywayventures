@@ -18,6 +18,14 @@ const insights = defineCollection({
     pull: z.string(),
     order: z.number().optional(),
     draft: z.boolean().default(false),
+    /** Meta description for search results (<= 155 characters). Falls back to the standfirst. */
+    description: z.string().max(160).optional(),
+    /** Topics for article:tag and JSON-LD keywords. */
+    tags: z.array(z.string()).default([]),
+    /** Optional "questions" block at the end of the article; also emitted as FAQPage structured data. */
+    faq: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
+    /** Optional hand-picked related articles (slugs). Otherwise same-service articles are shown. */
+    related: z.array(z.string()).default([]),
   }),
 });
 

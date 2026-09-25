@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import { cases, getPosts } from '../lib/data';
 
 const path = '/';
-const posts = await getPosts();
+const posts = (await getPosts()).slice(0, 3);
 ---
 <Base path={path}>
 <div>
