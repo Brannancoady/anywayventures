@@ -113,7 +113,7 @@ The events in the handoff are already sent: `cta_click`, `enquiry_type_select`, 
 These are left visible on purpose so the build can be checked against the mock:
 
 - **Company number and registered office:** `src/data/site.json`
-- **Portrait photos:** `src/pages/index.astro`, `brannan-coady.astro`, `lp/*.astro`. Put the image in `public/` and replace the striped box.
+- ~~Portrait photos~~: done. Source crops are in `public/images/`; to replace, overwrite those files at the same sizes (800x1000 and 480x600 portrait, 192x192 avatar).
 - **"FIGURE TBC" exit value:** `src/pages/index.astro`
 - **Case-study figures (illustrative):** `src/data/cases.json`, plus the "Figures illustrative…" notes in `index.astro`, `case-studies.astro`, `track-record.astro` and `lp/*.astro`
 - **Track-record dates, deal values and co-investors:** `src/pages/track-record.astro`

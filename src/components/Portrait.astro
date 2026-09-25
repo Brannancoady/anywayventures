@@ -1,0 +1,30 @@
+---
+// Brannan's portrait: AVIF/WebP with JPEG fallback, fills a 4:5 frame (or a circle when `avatar`).
+interface Props {
+  /** Frame styles from the design (max-width, border etc). */
+  style?: string;
+  /** Above-the-fold use: load eagerly with high priority. */
+  priority?: boolean;
+  avatar?: boolean;
+  sizes?: string;
+}
+const { style = '', priority = false, avatar = false, sizes = '(max-width: 640px) 90vw, 360px' } = Astro.props;
+const alt = 'Brannan Coady, founder of Anyway Ventures';
+const load = priority ? { loading: 'eager', fetchpriority: 'high' } : { loading: 'lazy' };
+---
+{avatar ? (
+  <picture>
+    <source type="image/avif" srcset="/images/brannan-coady-avatar.avif" />
+    <source type="image/webp" srcset="/images/brannan-coady-avatar.webp" />
+    <img src="/images/brannan-coady-avatar.jpg" alt={alt} width="72" height="72" decoding="async" {...load}
+      style={`display:block;width:72px;height:72px;border-radius:50%;object-fit:cover;border:1px solid rgba(21,22,15,.16);${style}`} />
+  </picture>
+) : (
+  <picture style={`display:block;aspect-ratio:4/5;overflow:hidden;background:#e6e1d2;border:1px solid rgba(21,22,15,.16);${style}`}>
+    <source type="image/avif" srcset="/images/brannan-coady-480.avif 480w, /images/brannan-coady.avif 800w" sizes={sizes} />
+    <source type="image/webp" srcset="/images/brannan-coady-480.webp 480w, /images/brannan-coady.webp 800w" sizes={sizes} />
+    <img src="/images/brannan-coady-480.jpg" srcset="/images/brannan-coady-480.jpg 480w, /images/brannan-coady.jpg 800w" sizes={sizes}
+      alt={alt} width="800" height="1000" decoding="async" {...load}
+      style="display:block;width:100%;height:100%;object-fit:cover;object-position:50% 30%" />
+  </picture>
+)}

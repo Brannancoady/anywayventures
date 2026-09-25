@@ -1,4 +1,5 @@
 ---
+import Portrait from '../components/Portrait.astro';
 import Base from '../layouts/Base.astro';
 import { getLatestByService, cases } from '../lib/data';
 
@@ -95,7 +96,7 @@ const posts = await getLatestByService(3);
 <p style="margin:0 0 22px;font-size:18px;line-height:1.68;color:#3c3d33;max-width:700px">I lead every engagement personally. When the work needs more hands, I bring in senior engineers, designers and security specialists I've shipped with for years.</p>
 <a href="/brannan-coady" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-decoration:none;white-space:nowrap">THE LONGER VERSION →</a>
 </div>
-<div style="aspect-ratio:4/5;background:repeating-linear-gradient(135deg,#e6e1d2 0 9px,#eeeade 9px 18px);border:1px solid rgba(21,22,15,.16);display:flex;align-items:flex-end;padding:16px;max-width:340px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:#6e6c5c">PORTRAIT — BRANNAN COADY</span></div>
+<Portrait style="max-width:340px;width:100%" />
 </div>
 </div>
 </Base>

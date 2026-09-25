@@ -80,6 +80,7 @@ export function person() {
     familyName: 'Coady',
     jobTitle: 'Founder',
     url: abs('/brannan-coady'),
+    image: { '@type': 'ImageObject', url: abs('/images/brannan-coady.jpg'), width: 800, height: 1000, caption: 'Brannan Coady' },
     worksFor: { '@id': ids.org },
     description:
       'Co-founder and former CEO of Netsells (merged with hedgehog lab, backed by BGF), former Chief Product Officer and executive director at YourParkingSpace, investor and non-executive director. Founder of Anyway Ventures.',
@@ -182,7 +183,7 @@ export function graph(meta: PageMeta, article?: ArticleInfo) {
     description: article?.description ?? meta.description,
     isPartOf: { '@id': ids.website },
     inLanguage: 'en-GB',
-    primaryImageOfPage: { '@type': 'ImageObject', url: abs(article?.image ?? '/og.png') },
+    primaryImageOfPage: { '@type': 'ImageObject', url: abs(article?.image ?? meta.image ?? '/og.png') },
     ...(modified ? { dateModified: modified } : {}),
   };
   if (meta.path !== '/') webPage.breadcrumb = { '@id': url + '#breadcrumb' };

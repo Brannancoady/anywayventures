@@ -15,6 +15,8 @@ export interface PageMeta {
   ctaHeading?: string;
   /** Breadcrumb parent path (defaults to home). */
   parent?: string;
+  /** Social share image (defaults to /og.png). */
+  image?: string;
   /** For service pages: schema.org serviceType. */
   serviceType?: string;
 }
@@ -80,7 +82,7 @@ export const pages: PageMeta[] = [
     ctaHeading: 'Disagree with something?',
   },
   {
-    path: '/brannan-coady', kind: 'about', name: 'Brannan Coady',
+    path: '/brannan-coady', kind: 'about', name: 'Brannan Coady', image: '/og/brannan-coady.png',
     title: 'Brannan Coady — founder, operator, investor' + suffix,
     description: 'Co-founder and CEO of Netsells (merged with hedgehog lab, BGF), former CPO YourParkingSpace, investor and NED. Now building AI inside PE-backed businesses.',
     ctaHeading: 'Start a conversation.',
