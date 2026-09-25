@@ -1,7 +1,7 @@
 ---
 title: "Board questions about AI: what to ask every quarter"
 standfirst: "Boards tend to ignore AI or demand a strategy deck about it. Both are mistakes. A short list of questions, asked every quarter and answered with evidence, does far more."
-description: "The board questions about AI that chairs and NEDs should ask every quarter, grouped by exposure, value, risk and capability, with good answers and warning signs."
+description: "Board questions about AI chairs and NEDs should ask every quarter, grouped by exposure, value, risk and capability, with good answers and warning signs."
 kicker: "BOARD"
 published: 2026-09-25
 updated: 2026-09-25
@@ -12,6 +12,7 @@ service: "Board & NED"
 serviceHref: "/board-and-ned"
 pull: "AI doesn't need a new kind of governance."
 order: 6
+draft: true
 tags: ["board questions about AI", "AI governance for boards", "non-executive director AI", "board oversight of AI", "AI strategy board"]
 related: ["measuring-ai-roi", "why-ai-pilots-fail"]
 faq:
@@ -124,7 +125,7 @@ If management can't produce these, that's the answer to the capability question.
 
 ### A policy short enough to be read
 
-Two pages. What tools are approved, what data must never go into any AI tool, who to ask when unsure, and who owns the policy. A twenty page policy protects the author, not the business. Staff don't read it, so they keep pasting.
+Two pages. What tools are approved, what data must never go into any AI tool, who to ask when unsure, and who owns the policy. A twenty-page policy protects the author, not the business. Staff don't read it, so they keep pasting.
 
 ### Knowing when to bring in help
 

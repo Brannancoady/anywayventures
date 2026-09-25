@@ -5,13 +5,14 @@ description: "How to build an AI value creation plan for a portfolio company: ba
 kicker: "OPERATING PARTNER"
 published: 2026-09-25
 updated: 2026-09-25
-read: "9 MIN"
-readLong: "Nine minutes"
+read: "10 MIN"
+readLong: "Ten minutes"
 audience: "Operating partners, portfolio directors, portfolio CEOs"
 service: "Fractional AI operating partner"
 serviceHref: "/ai-operating-partner"
 pull: "Hours returned are not EBITDA until someone stops paying for them."
 order: 4
+draft: true
 tags: ["AI value creation plan", "AI value creation private equity", "AI in portfolio companies", "100-day plan AI", "AI EBITDA impact"]
 related: ["ai-operating-partner-private-equity", "measuring-ai-roi"]
 faq:
@@ -52,7 +53,7 @@ Value at stake is the hours in scope multiplied by the hourly cost, or the reven
 - Systems: can we get at it through an API or an export without a six-month integration project?
 - People: is there a manager who wants this, and a team that will use it on a wet Tuesday?
 
-Multiply value by the readiness total and sort. The top of the list is rarely glamorous. It's usually invoice processing, ticket triage, proposal drafting, job reporting. The agentic customer journey that the board is excited about tends to land in the middle, because the data is scattered and nobody owns the process end to end. That's fine. It goes in the plan for later, with the data work that has to happen first written in front of it.
+Multiply value by the readiness total and sort. The top of the list is rarely glamorous. It's usually invoice processing, ticket triage, proposal drafting, job reporting. The customer-facing AI agent the board is excited about tends to land in the middle, because the data is scattered and nobody owns the process end to end. That's fine. It goes in the plan for later, with the data work that has to happen first written in front of it.
 
 A low readiness score doesn't kill an opportunity. It tells you what has to be fixed first, and that fix becomes a line in the plan with its own cost.
 
